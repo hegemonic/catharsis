@@ -1,0 +1,33 @@
+{
+	"version": "0.0.1",
+	"name": "catharsis",
+	"description": "A parser for Google Closure Compiler type expressions, powered by PEG.js.",
+	"author": "Jeff Williams <jeffrey.l.williams@gmail.com>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/hegemonic/catharsis"
+	},
+	"bugs": "https://github.com/hegemonic/catharsis/issues",
+	"main": "catharsis.js",
+	"dependencies": {
+		"async": "0.1.22"
+	},
+	"devDependencies": {
+		"mocha": "1.3.2",
+		"pegjs": "0.7.0",
+		"should": "1.1.0"
+	},
+	"engines": {
+		"node": ">= 0.6"
+	},
+	"scripts": {
+		"prepublish": "pegjs ./lib/parser.pegjs",
+		"test": "mocha"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://github.com/hegemonic/catharsis/raw/master/LICENSE"
+		}
+	]
+}
