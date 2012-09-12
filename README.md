@@ -40,12 +40,3 @@ Synchronous parsing:
 	catch(e) {
 		console.error("couldn't parse %s: %s", type, e);
 	}
-
-
-## Installing Catharsis
-
-You can install Catharsis with `npm`:
-
-	npm install catharsis
-
-
