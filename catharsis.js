@@ -6,10 +6,9 @@
  * @license MIT License (http://opensource.org/licenses/mit-license.php/)
  */
 
-"use strict";
+'use strict';
 
-var async = require("async");
-var parse = require("./lib/parser").parse;
+var parse = require('./lib/parser').parse;
 
 var cache = {};
 
@@ -24,12 +23,12 @@ function cachedParse(string) {
 function Catharsis() {}
 
 Catharsis.prototype.parse = function(string, callback) {
-	async.nextTick(function() {
+	process.nextTick(function() {
 		try {
 			callback(null, cachedParse(string));
 		}
 		catch(e) {
-			callback("unable to parse the type " + string + ": " + e.message);
+			callback('unable to parse the type ' + string + ': ' + e.message);
 		}
 	});
 };
