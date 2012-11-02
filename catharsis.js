@@ -3,7 +3,7 @@
  * A parser for Google Closure Compiler type expressions, powered by PEG.js.
  *
  * @author Jeff Williams <jeffrey.l.williams@gmail.com>
- * @license MIT License (http://opensource.org/licenses/mit-license.php/)
+ * @license MIT License <http://opensource.org/licenses/mit-license.php/>
  */
 
 'use strict';
@@ -20,10 +20,26 @@ function cachedParse(string) {
 	return cache[string];
 }
 
+var nextTick = (function() {
+	if (process && process.nextTick) {
+		return process.nextTick;
+	} else if (setTimeout) {
+		return function(callback) {
+			setTimeout(callback, 0);
+		};
+	} else {
+		// better safe than sorry
+		return function(callback) {
+			callback('Your JavaScript environment does not support the parse() method. ' +
+				'Please call parseSync() instead.');
+		};
+	}
+})();
+
 function Catharsis() {}
 
 Catharsis.prototype.parse = function(string, callback) {
-	process.nextTick(function() {
+	nextTick(function() {
 		try {
 			callback(null, cachedParse(string));
 		}
