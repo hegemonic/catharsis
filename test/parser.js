@@ -1,7 +1,7 @@
 /*global describe: true, it: true */
 'use strict';
 
-var parser = require('../lib/parser');
+var parse = require('../lib/parser').parse;
 var should = require('should');
 
 
@@ -16,7 +16,7 @@ function checkTypes(name) {
 		var parsed;
 
 		function parseIt() {
-			parsed = parser.parse(item[1]);
+			parsed = parse(item[1]);
 		}
 
 		parseIt.should.not.throw();

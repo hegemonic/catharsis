@@ -18,7 +18,7 @@ describe('catharsis', function() {
 		});
 
 		it('should return an object when given basic input', function(done) {
-			catharsis.parse(simpleType, function(error, obj) {
+			catharsis.parse(simpleType, {}, function(error, obj) {
 				should.not.exist(error);
 				should.exist(obj);
 				obj.should.be.a('object');
@@ -27,11 +27,11 @@ describe('catharsis', function() {
 		});
 
 		it('should return an error when given an invalid type', function(done) {
-			catharsis.parse(invalidType, function(error) {
+			catharsis.parse(invalidType, {}, function(error) {
 				should.exist(error);
 
 				// now make sure the cache isn't somehow causing the error to be suppressed
-				catharsis.parse(invalidType, function(error) {
+				catharsis.parse(invalidType, {}, function(error) {
 					should.exist(error);
 					done();
 				});

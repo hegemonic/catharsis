@@ -1,5 +1,5 @@
 {
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"name": "catharsis",
 	"description": "A parser for Google Closure Compiler type expressions, powered by PEG.js.",
 	"author": "Jeff Williams <jeffrey.l.williams@gmail.com>",
