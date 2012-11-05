@@ -6,6 +6,21 @@ var should = require('should');
 
 var simpleType = 'foo';
 var invalidType = '{*<?';
+var simpleParsedType = {typeName: 'string'};
+var invalidParsedType = {
+	typeName: 'bogus',
+	nullable: false,
+	optional: false,
+	repeatable: true,
+	canContain: [
+		{
+			typeName: 'bah'
+		}
+	],
+	signature: {
+		parameters: 'whatever'
+	}
+};
 
 describe('catharsis', function() {
 	describe('parse()', function() {
@@ -57,6 +72,54 @@ describe('catharsis', function() {
 				catharsis.parseSync(invalidType);
 			}
 			
+			invalid.should.throw();
+		});
+	});
+
+	describe('stringify()', function() {
+		it('should exist', function() {
+			should.exist(catharsis.stringify);
+		});
+
+		it('should be a function', function() {
+			catharsis.stringify.should.be.a('function');
+		});
+
+		it('should return a string when given basic input', function(done) {
+			catharsis.stringify(simpleParsedType, {}, function(error, typeExpr) {
+				should.not.exist(error);
+				typeExpr.should.be.a('string');
+				done();
+			});
+		});
+
+		it('should return an error when given invalid input if validation is enabled',
+			function(done) {
+			catharsis.stringify(invalidParsedType, {validate: true}, function(error) {
+				should.exist(error);
+				done();
+			});
+		});
+	});
+
+	describe('stringifySync()', function() {
+		it('should exist', function() {
+			should.exist(catharsis.stringify);
+		});
+
+		it('should be a function', function() {
+			catharsis.stringify.should.be.a('function');
+		});
+
+		it('should return a string when given basic input', function() {
+			catharsis.stringifySync(simpleParsedType).should.be.a('string');
+		});
+
+		it('should throw an error when given invalid input if validation is enabled', function() {
+			function invalid() {
+				catharsis.stringifySync(invalidParsedType, {validate: true});
+			}
+
 			invalid.should.throw();
 		});
 	});

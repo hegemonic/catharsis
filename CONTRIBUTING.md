@@ -16,4 +16,5 @@ code is exempt.
 4. **Generated Code**: Don't forget to regenerate the parser code after you edit the PEG.js grammar.
 Type `npm run-script prepublish` to regenerate the code.
 5. **Cross-Platform Compatibility**: Avoid using APIs that are specific to a particular JavaScript
-environment, including Node.js.
+environment, including Node.js, unless there are readily available cross-platform shims for those
+APIs.

@@ -9,7 +9,8 @@ Catharsis is designed to be:
 any valid type expression, no matter how complex. It uses a
 [Mocha](http://visionmedia.github.com/mocha/) test suite to verify the parser's accuracy.
 + **Fast**. Parse results are cached, so the parser is invoked only when necessary.
-+ **Flexible**. Catharsis provides both asynchronous and synchronous interfaces.
++ **Flexible**. Catharsis provides both asynchronous and synchronous interfaces. In addition, it can
+convert parse results back into type expressions.
 
 
 ## Examples ##
@@ -25,6 +26,13 @@ Asynchronous interface:
 			console.error('unable to parse %s: %s', type, error);
 		} else {
 			console.log('%j', parsed);  // {"typeName":"Object","nullable":false}
+			catharsis.stringify(parsed, {}, function(error, expr) {
+				if (error) {
+					console.error('unable to stringify %j: %s', parsed, error);
+				} else {
+					console.log('%s', expr);  // !Object
+				}
+			});
 		}
 	});
 
@@ -34,6 +42,7 @@ Synchronous interface:
 
 	var type = '!Object';
 	var parsed;
+	var expr;
 
 	try {
 		parsed = catharsis.parseSync('!Object');  // {"typeName":"Object","nullable":false}
@@ -42,33 +51,73 @@ Synchronous interface:
 		console.error('unable to parse %s: %s', type, e);
 	}
 
+	try {
+		expr = catharsis.stringifySync(parsed);  // !Object
+	}
+	catch(e) {
+		console.error('unable to parse %j: %s', parsed, e);
+	}
+
 See the `test/specs/` directory for more examples of Catharsis' parse results.
 
 
-## Synchronous interface ##
+## Asynchronous interface ##
 
 ### parse(type, opts, callback) ###
-Parse the Closure Compiler type `type`, and pass the parse results to the callback.
+Parse the Closure Compiler type expression `type`, and pass the parse results to the callback.
 
 #### Parameters ####
-+ `type`: A string containing a Closure Compiler type.
-+ `opts`: Options for parsing the type string.
++ `type`: A string containing a Closure Compiler type expression.
++ `opts`: Options for parsing the type expression.
     + `opts.useCache`: Specifies whether to use the cache of parsed types. Defaults to `true`.
 + `callback(error, parsedType)`: Parse results.
     + `error`: A description of the error, if any.
     + `parsedType`: An object containing the parse results.
+
+### stringify(parsedType, opts, callback) ###
+Stringify the parsed Closure Compiler type expression `parsedType`, and pass the type expression to
+the callback.
+
+#### Parameters ####
++ `parsedType`: An object containing a parsed Closure Compiler type expression.
++ `opts`: Options for stringifying the parse results.
+    + `opts.useCache`: Specifies whether to use the cache of stringified parse results. Defaults to
+    `true`.
+    + `opts.validate`: Specifies whether to validate the stringified parse results by attempting to
+    parse them as a type expression. Defaults to `false`.
++ `callback(error, typeExpr)`: Stringification results.
+    + `error`: A description of the error, if any.
+    + `typeExpr`: A string containing the type expression.
+
+
+## Synchronous interface ##
 
 ### parseSync(type, opts) ###
 Parse the Closure Compiler type `type`, and return the parse results. Throws an error if the type
 cannot be parsed.
 
 #### Parameters ####
-+ `type`: A string containing a Closure Compiler type.
-+ `opts`: Options for parsing the type string.
++ `type`: A string containing a Closure Compiler type expression.
++ `opts`: Options for parsing the type expression.
     + `opts.useCache`: Specifies whether to use the cache of parsed types. Defaults to `true`.
 
 #### Returns ####
 An object containing the parse results.
+
+### stringifySync(parsedType, opts) ###
+Stringify the parsed Closure Compiler type expression `parsedType`, and return the type expression.
+If validation is enabled, throws an error if the stringified type expression cannot be parsed.
+
+#### Parameters ####
++ `parsedType`: An object containing a parsed Closure Compiler type expression.
++ `opts`: Options for stringifying the parse results.
+    + `opts.useCache`: Specifies whether to use the cache of stringified parse results. Defaults to
+    `true`.
+    + `opts.validate`: Specifies whether to validate the stringified parse results by attempting to
+    parse them as a type expression. Defaults to `false`.
+
+#### Returns ####
+A string containing the type expression.
 
 
 ## Installation ##
@@ -96,6 +145,12 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.2.0 (November 2012):
+    + Added `stringify()` and `stringifySync()` methods, which convert a parsed type to a type
+    expression.
+    + Simplified the parse results for function signatures. **Note**: This change is not
+    backwards-compatible with previous versions.
+    + Corrected minor errors in README.md.
 + 0.1.1 (November 2012): Added `opts` argument to `parse()` and `parseSync()` methods. **Note**: The
 change to `parse()` is not backwards-compatible with previous versions.
 + 0.1.0 (November 2012): Initial release.

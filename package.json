@@ -1,7 +1,7 @@
 {
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"name": "catharsis",
-	"description": "A parser for Google Closure Compiler type expressions, powered by PEG.js.",
+	"description": "A JavaScript parser for Google Closure Compiler type expressions.",
 	"author": "Jeff Williams <jeffrey.l.williams@gmail.com>",
 	"repository": {
 		"type": "git",

@@ -27,6 +27,7 @@ function checkTypes(name) {
 
 describe('parser', function() {
 	describe('parse()', function() {
+		// TODO: instead of listing each spec, we should read the specs directory and do a foreach()
 		it('can parse basic types', function() {
 			checkTypes('basic');
 		});

@@ -10,15 +10,11 @@ module.exports = [
 				parameters: [
 					{
 						name: undefined,
-						type: {
-							typeName: 'string'
-						}
+						typeName: 'string'
 					},
 					{
 						name: undefined,
-						type: {
-							typeName: 'boolean'
-						}
+						typeName: 'boolean'
 					}
 				]
 			}
@@ -46,9 +42,7 @@ module.exports = [
 				parameters: [
 					{
 						name: undefined,
-						type: {
-							typeName: 'string'
-						}
+						typeName: 'string'
 					}
 				],
 				funcThis: 'goog.ui.Menu'
@@ -64,9 +58,7 @@ module.exports = [
 				parameters: [
 					{
 						name: undefined,
-						type: {
-							typeName: 'string'
-						}
+						typeName: 'string'
 					}
 				],
 				funcNew: 'goog.ui.Menu'
@@ -82,16 +74,12 @@ module.exports = [
 				parameters: [
 					{
 						name: undefined,
-						type: {
-							typeName: 'string'
-						}
+						typeName: 'string'
 					},
 					{
 						name: undefined,
-						type: {
-							typeName: 'number',
-							repeatable: true
-						}
+						typeName: 'number',
+						repeatable: true
 					}
 				],
 				funcReturns: {
@@ -111,33 +99,25 @@ module.exports = [
 				parameters: [
 					{
 						name: undefined,
-						type: {
-							typeName: 'string'
-						}
+						typeName: 'string'
 					},
 					{
 						name: 'foo',
-						type: {
-							typeName: 'goog.ui.Menu'
-						}
+						typeName: 'goog.ui.Menu'
 					},
 					{
 						name: 'bar',
-						type: {
-							typeName: 'Array',
-							canContain: [
-								{
-									typeName: 'Object'
-								}
-							]
-						}
+						typeName: 'Array',
+						canContain: [
+							{
+								typeName: 'Object'
+							}
+						]
 					},
 					{
 						name: 'baz',
-						type: {
-							typeName: 'string',
-							repeatable: true
-						}
+						typeName: 'string',
+						repeatable: true
 					}
 				],
 				funcNew: 'Master',
