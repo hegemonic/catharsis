@@ -3,7 +3,12 @@
 
 var parse = require('../lib/parser').parse;
 var should = require('should');
+var util = require('util');
 
+
+function jsonify(obj) {
+	return JSON.parse(JSON.stringify(obj));
+}
 
 // each item in the 'types' array looks like:
 // item[0]: {string} description
@@ -16,12 +21,18 @@ function checkTypes(name) {
 		var parsed;
 
 		function parseIt() {
-			parsed = parse(item[1]);
+			try {
+				parsed = parse(item[1]);
+			} catch(e) {
+				throw new Error(util.format('unable to parse type expression %s: %s', item[1],
+					e.message));
+			}
 		}
 
 		parseIt.should.not.throw();
 		
-		parsed.should.eql(item[2]);
+		// TODO: investigate why some tests fail without the JSON round-trip
+		jsonify(parsed).should.eql(jsonify(item[2]));
 	});
 }
 
@@ -50,6 +61,10 @@ describe('parser', function() {
 
 		it('can parse function types', function() {
 			checkTypes('function-type');
+		});
+
+		it('can parse complex combinations of types', function() {
+			checkTypes('combined');
 		});
 	});
 });

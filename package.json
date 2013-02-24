@@ -1,5 +1,5 @@
 {
-	"version": "0.2.0",
+	"version": "0.3.0-dev",
 	"name": "catharsis",
 	"description": "A JavaScript parser for Google Closure Compiler type expressions.",
 	"author": "Jeff Williams <jeffrey.l.williams@gmail.com>",
@@ -12,7 +12,7 @@
 	"devDependencies": {
 		"mocha": "1.6.0",
 		"pegjs": "0.7.0",
-		"should": "1.2.0"
+		"should": "1.2.2"
 	},
 	"engines": {
 		"node": ">= 0.6"

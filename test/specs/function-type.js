@@ -21,6 +21,22 @@ module.exports = [
 		}
 	],
 	[
+		'optional function with one basic parameter',
+		'function(string)=',
+		{
+			typeName: 'function',
+			signature: {
+				parameters: [
+					{
+						name: undefined,
+						typeName: 'string'
+					}
+				]
+			},
+			optional: true
+		}
+	],
+	[
 		'function with no parameters and a return value',
 		'function(): number',
 		{

@@ -21,14 +21,14 @@ Asynchronous interface:
 
 	var type = '!Object';
 
-	catharsis.parse(type, {}, function(error, parsed) {
+	catharsis.parse(type, {}, function(error, parsedType) {
 		if (error) {
 			console.error('unable to parse %s: %s', type, error);
 		} else {
-			console.log('%j', parsed);  // {"typeName":"Object","nullable":false}
-			catharsis.stringify(parsed, {}, function(error, expr) {
+			console.log('%j', parsedType);  // {"typeName":"Object","nullable":false}
+			catharsis.stringify(parsedType, {}, function(error, expr) {
 				if (error) {
-					console.error('unable to stringify %j: %s', parsed, error);
+					console.error('unable to stringify %j: %s', parsedType, error);
 				} else {
 					console.log('%s', expr);  // !Object
 				}
@@ -41,21 +41,21 @@ Synchronous interface:
 	var catharsis = require('catharsis');
 
 	var type = '!Object';
-	var parsed;
+	var parsedType;
 	var expr;
 
 	try {
-		parsed = catharsis.parseSync('!Object');  // {"typeName":"Object","nullable":false}
+		parsedType = catharsis.parseSync('!Object');  // {"typeName":"Object","nullable":false}
 	}
 	catch(e) {
 		console.error('unable to parse %s: %s', type, e);
 	}
 
 	try {
-		expr = catharsis.stringifySync(parsed);  // !Object
+		expr = catharsis.stringifySync(parsedType);  // !Object
 	}
 	catch(e) {
-		console.error('unable to parse %j: %s', parsed, e);
+		console.error('unable to parse %j: %s', parsedType, e);
 	}
 
 See the `test/specs/` directory for more examples of Catharsis' parse results.
@@ -145,6 +145,13 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.3.0 (February 2013):
+    + Union types are now returned as an object with a `union` property, which contains the array of
+    types for the union. Previous versions returned union types as an array. **Note**: This change
+    is not backwards-compatible with previous versions.
+    + Union types that are optional or nullable, or that can be passed a variable number of times,
+    are now parsed and stringified correctly.
+    + Optional function types and record types are now parsed and stringified correctly.
 + 0.2.0 (November 2012):
     + Added `stringify()` and `stringifySync()` methods, which convert a parsed type to a type
     expression.

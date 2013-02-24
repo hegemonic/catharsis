@@ -4,6 +4,7 @@
 var parse = require('../lib/parser').parse;
 var should = require('should');
 var stringify = require('../lib/stringify');
+var util = require('util');
 
 
 // each item in the 'types' array looks like:
@@ -17,8 +18,18 @@ function checkStringifiedTypes(name) {
 		var string;
 
 		function stringifyIt() {
-			string = stringify(item[2]);
-			parse(string);
+			try {
+				string = stringify(item[2]);
+			} catch(e) {
+				throw new Error(util.format('unable to stringify %j: %s', item[2], e.message));
+			}
+
+			try {
+				parse(string);
+			} catch(e) {
+				throw new Error(util.format('unable to parse string "%s", created from %j: %s',
+					string, item[2], e.message));
+			}
 		}
 
 		stringifyIt.should.not.throw();
@@ -51,5 +62,9 @@ describe('stringify', function() {
 
 	it('can stringify function types', function() {
 		checkStringifiedTypes('function-type');
+	});
+
+	it('can stringify complex combinations of types', function() {
+		checkStringifiedTypes('combined');
 	});
 });
