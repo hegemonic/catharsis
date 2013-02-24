@@ -10,7 +10,6 @@
 
 var parse = require('./lib/parser').parse;
 var stringify = require('./lib/stringify');
-var util = require('util');
 
 var typeExpressionCache = {};
 var parsedTypeCache = {};
@@ -42,8 +41,8 @@ var nextTick = (function() {
 	} else {
 		// better safe than sorry
 		return function(callback) {
-			callback('Your JavaScript environment does not support the parse() method. ' +
-				'Please call parseSync() instead.');
+			callback('Your JavaScript environment does not support the Catharsis asynchronous ' +
+				'methods. Please call the synchronous methods instead.');
 		};
 	}
 })();
@@ -58,7 +57,7 @@ Catharsis.prototype.parse = function(type, opts, callback) {
 			callback(null, opts.useCache !== false ? cachedParse(type) : parse(type));
 		}
 		catch(e) {
-			callback(util.format('unable to parse the type %s: %s', type, e.message));
+			callback('unable to parse the type ' + type + ': ' + e.message);
 		}
 	});
 };
@@ -81,7 +80,7 @@ Catharsis.prototype.stringify = function(parsedType, opts, callback) {
 			}
 			callback(null, result);
 		} catch (e) {
-			callback(util.format('the following parsed type is not valid: %j', parsedType));
+			callback('the following parsed type is not valid: ' + JSON.stringify(parsedType));
 		}
 	});
 };
