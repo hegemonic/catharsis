@@ -146,9 +146,10 @@ pull request, please contact me in advance so I can help things go smoothly.
 ## Changelog ##
 
 + 0.3.0 (February 2013):
-    + Union types are now returned as an object with a `union` property, which contains the array of
-    types for the union. Previous versions returned union types as an array. **Note**: This change
-    is not backwards-compatible with previous versions.
+    + The parse results now use a significantly different format from previous versions. The new
+    format is more expressive and is similar, but not identical, to the format used by the
+    [doctrine](https://github.com/Constellation/doctrine) parser. **Note**: This change is not
+    backwards-compatible with previous versions.
     + Union types that are optional or nullable, or that can be passed a variable number of times,
     are now parsed and stringified correctly.
     + Optional function types and record types are now parsed and stringified correctly.

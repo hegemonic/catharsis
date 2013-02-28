@@ -1,14 +1,21 @@
 'use strict';
 
+var Types = require('../../lib/types');
+
 module.exports = [
 	[
 		'array of strings',
 		'Array.<string>',
 		{
-			typeName: 'Array',
-			canContain: [
+			type: Types.TypeApplication,
+			expression: {
+				type: Types.NameExpression,
+				name: 'Array'
+			},
+			applications: [
 				{
-					typeName: 'string'
+					type: Types.NameExpression,
+					name: 'string'
 				}
 			]
 		}
@@ -17,13 +24,19 @@ module.exports = [
 		'object whose properties are strings and property values are numbers',
 		'Object.<string, number>',
 		{
-			typeName: 'Object',
-			canContain: [
+			type: Types.TypeApplication,
+			expression: {
+				type: Types.NameExpression,
+				name: 'Object'
+			},
+			applications: [
 				{
-					typeName: 'string'
+					type: Types.NameExpression,
+					name: 'string'
 				},
 				{
-					typeName: 'number'
+					type: Types.NameExpression,
+					name: 'number'
 				}
 			]
 		}
@@ -32,14 +45,19 @@ module.exports = [
 		'array of objects that have a length property',
 		'Array.<{length}>',
 		{
-			typeName: 'Array',
-			canContain: [
+			type: Types.TypeApplication,
+			expression: {
+				type: Types.NameExpression,
+				name: 'Array'
+			},
+			applications: [
 				{
-					typeName: 'object',
-					properties: [
+					type: Types.RecordType,
+					fields: [
 						{
-							name: 'length',
-							typeName: undefined
+							type: Types.FieldType,
+							key: 'length',
+							value: undefined
 						}
 					]
 				}

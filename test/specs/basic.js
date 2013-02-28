@@ -1,32 +1,38 @@
 'use strict';
 
+var Types = require('../../lib/types');
+
 module.exports = [
 	[
 		'boolean',
 		'boolean',
 		{
-			typeName: 'boolean'
+			type: Types.NameExpression,
+			name: 'boolean'
 		}
 	],
 	[
 		'object',
 		'Window',
 		{
-			typeName: 'Window'
+			type: Types.NameExpression,
+			name: 'Window'
 		}
 	],
 	[
 		'object with properties',
 		'goog.ui.Menu',
 		{
-			typeName: 'goog.ui.Menu'
+			type: Types.NameExpression,
+			name: 'goog.ui.Menu'
 		}
 	],
 	[
 		'variable number of parameters',
 		'...number',
 		{
-			typeName: 'number',
+			type: Types.NameExpression,
+			name: 'number',
 			repeatable: true
 		}
 	],
@@ -34,7 +40,8 @@ module.exports = [
 		'optional number parameter',
 		'number=',
 		{
-			typeName: 'number',
+			type: Types.NameExpression,
+			name: 'number',
 			optional: true
 		}
 	],
@@ -42,7 +49,8 @@ module.exports = [
 		'optional Object parameter',
 		'Object=',
 		{
-			typeName: 'Object',
+			type: Types.NameExpression,
+			name: 'Object',
 			optional: true
 		}
 	]

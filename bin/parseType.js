@@ -22,7 +22,8 @@ if (!typeExpression) {
 	try {
 		parsedType = catharsis.parseSync(typeExpression);
 	} catch (e) {
-		console.error(util.format('Unable to parse %s: %s', typeExpression, e.message));
+		console.error(util.format('Unable to parse "%s" (exception follows):', typeExpression));
+		console.error(e.stack);
 		process.exit(1);
 	}
 

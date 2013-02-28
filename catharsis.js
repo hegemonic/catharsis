@@ -47,7 +47,9 @@ var nextTick = (function() {
 	}
 })();
 
-function Catharsis() {}
+function Catharsis() {
+	this.Types = require('./lib/types');
+}
 
 Catharsis.prototype.parse = function(type, opts, callback) {
 	opts = opts || {};

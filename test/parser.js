@@ -24,7 +24,7 @@ function checkTypes(name) {
 			try {
 				parsed = parse(item[1]);
 			} catch(e) {
-				throw new Error(util.format('unable to parse type expression %s: %s', item[1],
+				throw new Error(util.format('unable to parse type expression "%s": %s', item[1],
 					e.message));
 			}
 		}

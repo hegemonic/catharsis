@@ -3,23 +3,18 @@
 
 var catharsis = require('../catharsis');
 var should = require('should');
+var Types = catharsis.Types;
 
 var simpleType = 'foo';
 var invalidType = '{*<?';
-var simpleParsedType = {typeName: 'string'};
+var simpleParsedType = {
+	type: Types.NameExpression,
+	name: 'string'
+};
 var invalidParsedType = {
-	typeName: 'bogus',
-	nullable: false,
-	optional: false,
-	repeatable: true,
-	canContain: [
-		{
-			typeName: 'bah'
-		}
-	],
-	signature: {
-		parameters: 'whatever'
-	}
+	type: Types.NameExpression,
+	applications: {},
+	params: 'whatever'
 };
 
 describe('catharsis', function() {

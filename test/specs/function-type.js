@@ -1,38 +1,36 @@
 'use strict';
 
+var Types = require('../../lib/types');
+
 module.exports = [
 	[
 		'function with two basic parameters',
 		'function(string, boolean)',
 		{
-			typeName: 'function',
-			signature: {
-				parameters: [
-					{
-						name: undefined,
-						typeName: 'string'
-					},
-					{
-						name: undefined,
-						typeName: 'boolean'
-					}
-				]
-			}
+			type: Types.FunctionType,
+			params: [
+				{
+					type: Types.NameExpression,
+					name: 'string'
+				},
+				{
+					type: Types.NameExpression,
+					name: 'boolean'
+				}
+			]
 		}
 	],
 	[
 		'optional function with one basic parameter',
 		'function(string)=',
 		{
-			typeName: 'function',
-			signature: {
-				parameters: [
-					{
-						name: undefined,
-						typeName: 'string'
-					}
-				]
-			},
+			type: Types.FunctionType,
+			params: [
+				{
+					type: Types.NameExpression,
+					name: 'string'
+				}
+			],
 			optional: true
 		}
 	],
@@ -40,12 +38,11 @@ module.exports = [
 		'function with no parameters and a return value',
 		'function(): number',
 		{
-			typeName: 'function',
-			signature: {
-				parameters: [],
-				funcReturns: {
-					typeName: 'number'
-				}
+			type: Types.FunctionType,
+			params: [],
+			result: {
+				type: Types.NameExpression,
+				name: 'number'
 			}
 		}
 	],
@@ -53,15 +50,16 @@ module.exports = [
 		'function with a "this" type and one parameter',
 		'function(this:goog.ui.Menu, string)',
 		{
-			typeName: 'function',
-			signature: {
-				parameters: [
-					{
-						name: undefined,
-						typeName: 'string'
-					}
-				],
-				funcThis: 'goog.ui.Menu'
+			type: Types.FunctionType,
+			params: [
+				{
+					type: Types.NameExpression,
+					name: 'string'
+				}
+			],
+			'this': {
+				type: Types.NameExpression,
+				name: 'goog.ui.Menu'
 			}
 		}
 	],
@@ -69,15 +67,16 @@ module.exports = [
 		'function with a "new" type and one parameter',
 		'function(new:goog.ui.Menu, string)',
 		{
-			typeName: 'function',
-			signature: {
-				parameters: [
-					{
-						name: undefined,
-						typeName: 'string'
-					}
-				],
-				funcNew: 'goog.ui.Menu'
+			type: Types.FunctionType,
+			params: [
+				{
+					type: Types.NameExpression,
+					name: 'string'
+				}
+			],
+			'new': {
+				type: Types.NameExpression,
+				name: 'goog.ui.Menu'
 			}
 		}
 	],
@@ -85,62 +84,70 @@ module.exports = [
 		'function with a variable number of parameters and a return value',
 		'function(string, ...[number]): number',
 		{
-			typeName: 'function',
-			signature: {
-				parameters: [
-					{
-						name: undefined,
-						typeName: 'string'
-					},
-					{
-						name: undefined,
-						typeName: 'number',
-						repeatable: true
-					}
-				],
-				funcReturns: {
-					typeName: 'number'
+			type: Types.FunctionType,
+			params: [
+				{
+					type: Types.NameExpression,
+					name: 'string'
+				},
+				{
+					type: Types.NameExpression,
+					name: 'number',
+					repeatable: true
 				}
+			],
+			result: {
+				type: Types.NameExpression,
+				name: 'number'
 			}
 		}
 	],
 	[
-		'function with a variable number of named/unnamed parameters, a "new" type, ' +
-			'a "this" type, and a return value',
-		'function(new:Master, this:Everyone, string, foo:goog.ui.Menu, bar:Array.<Object>, ' +
-			'...[baz:string]): boolean',
+		'function with a variable number of parameters, a "new" type, a "this" type, and a ' +
+			'return value',
+		'function(new:Master, this:Everyone, string, goog.ui.Menu, Array.<Object>, ...[string]): ' +
+			'boolean',
 		{
-			typeName: 'function',
-			signature: {
-				parameters: [
-					{
-						name: undefined,
-						typeName: 'string'
+			type: Types.FunctionType,
+			params: [
+				{
+					type: Types.NameExpression,
+					name: 'string'
+				},
+				{
+					type: Types.NameExpression,
+					name: 'goog.ui.Menu'
+				},
+				{
+					type: Types.TypeApplication,
+					expression: {
+						type: Types.NameExpression,
+						name: 'Array'
 					},
-					{
-						name: 'foo',
-						typeName: 'goog.ui.Menu'
-					},
-					{
-						name: 'bar',
-						typeName: 'Array',
-						canContain: [
-							{
-								typeName: 'Object'
-							}
-						]
-					},
-					{
-						name: 'baz',
-						typeName: 'string',
-						repeatable: true
-					}
-				],
-				funcNew: 'Master',
-				funcThis: 'Everyone',
-				funcReturns: {
-					typeName: 'boolean'
+					applications: [
+						{
+							type: Types.NameExpression,
+							name: 'Object'
+						}
+					]
+				},
+				{
+					type: Types.NameExpression,
+					name: 'string',
+					repeatable: true
 				}
+			],
+			'new': {
+				type: Types.NameExpression,
+				name: 'Master'
+			},
+			'this': {
+				type: Types.NameExpression,
+				name: 'Everyone'
+			},
+			result: {
+				type: Types.NameExpression,
+				name: 'boolean'
 			}
 		}
 	]

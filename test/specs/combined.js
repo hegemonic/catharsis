@@ -1,5 +1,7 @@
 'use strict';
 
+var Types = require('../../lib/types');
+
 module.exports = [
 	// categories refer to outermost type
 	
@@ -18,35 +20,44 @@ module.exports = [
 		'optional union with multiple types',
 		'(jQuerySelector|Element|Object|Array.<Element>|jQuery|string|function())=',
 		{
-			union: [
+			type: Types.UnionType,
+			elements: [
 				{
-					typeName: 'jQuerySelector'
+					type: Types.NameExpression,
+					name: 'jQuerySelector'
 				},
 				{
-					typeName: 'Element'
+					type: Types.NameExpression,
+					name: 'Element'
 				},
 				{
-					typeName: 'Object'
+					type: Types.NameExpression,
+					name: 'Object'
 				},
 				{
-					typeName: 'Array',
-					canContain: [
+					type: Types.TypeApplication,
+					expression: {
+						type: Types.NameExpression,
+						name: 'Array'
+					},
+					applications: [
 						{
-							typeName: 'Element'
+							type: Types.NameExpression,
+							name: 'Element'
 						}
 					]
 				},
 				{
-					typeName: 'jQuery'
+					type: Types.NameExpression,
+					name: 'jQuery'
 				},
 				{
-					typeName: 'string'
+					type: Types.NameExpression,
+					name: 'string'
 				},
 				{
-					typeName: 'function',
-					signature: {
-						parameters: []
-					}
+					type: Types.FunctionType,
+					params: []
 				}
 			],
 			optional: true
@@ -57,38 +68,48 @@ module.exports = [
 		'optional union with multiple types, including a nested union type',
 		'(Element|Object|Document|Object.<string, (string|function(!jQuery.event=))>)=',
 		{
-			union: [
+			type: Types.UnionType,
+			elements: [
 				{
-					typeName: 'Element'
+					type: Types.NameExpression,
+					name: 'Element'
 				},
 				{
-					typeName: 'Object'
+					type: Types.NameExpression,
+					name: 'Object'
 				},
 				{
-					typeName: 'Document'
+					type: Types.NameExpression,
+					name: 'Document'
 				},
 				{
-					typeName: 'Object',
-					canContain: [
+					type: Types.TypeApplication,
+					expression: {
+						type: Types.NameExpression,
+						name: 'Object'
+					},
+					applications: [
 						{
-							typeName: 'string'
+							type: Types.NameExpression,
+							name: 'string'
 						},
 						{
-							union: [
+							type: Types.UnionType,
+							elements: [
 								{
-									typeName: 'string'
+									type: Types.NameExpression,
+									name: 'string'
 								},
 								{
-									typeName: 'function',
-									signature: {
-										parameters: [
-											{
-												typeName: 'jQuery.event',
-												optional: true,
-												nullable: false
-											}
-										]
-									}
+									type: Types.FunctionType,
+									params: [
+										{
+											type: Types.NameExpression,
+											name: 'jQuery.event',
+											optional: true,
+											nullable: false
+										}
+									]
 								}
 							]
 						}

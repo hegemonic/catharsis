@@ -1,11 +1,14 @@
 'use strict';
 
+var Types = require('../../lib/types');
+
 module.exports = [
 	[
 		'number or null',
 		'?number',
 		{
-			typeName: 'number',
+			type: Types.NameExpression,
+			name: 'number',
 			nullable: true
 		}
 	],
@@ -13,7 +16,8 @@ module.exports = [
 		'object, not null',
 		'!Object',
 		{
-			typeName: 'Object',
+			type: Types.NameExpression,
+			name: 'Object',
 			nullable: false
 		}
 	]

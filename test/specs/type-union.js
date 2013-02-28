@@ -1,16 +1,21 @@
 'use strict';
 
+var Types = require('../../lib/types');
+
 module.exports = [
 	[
 		'union with 2 types (number and boolean)',
 		'(number|boolean)',
 		{
-			union: [
+			type: Types.UnionType,
+			elements: [
 				{
-					typeName: 'number'
+					type: Types.NameExpression,
+					name: 'number'
 				},
 				{
-					typeName: 'boolean'
+					type: Types.NameExpression,
+					name: 'boolean'
 				}
 			]
 		}
@@ -19,12 +24,14 @@ module.exports = [
 		'union with 2 types (Object and undefined)',
 		'(Object|undefined)',
 		{
-			union: [
+			type: Types.UnionType,
+			elements: [
 				{
-					typeName: 'Object'
+					type: Types.NameExpression,
+					name: 'Object'
 				},
 				{
-					typeName: 'undefined'
+					type: Types.UndefinedLiteral
 				}
 			]
 		}
@@ -33,15 +40,19 @@ module.exports = [
 		'union with 3 types (number, Window, and goog.ui.Menu)',
 		'(number|Window|goog.ui.Menu)',
 		{
-			union: [
+			type: Types.UnionType,
+			elements: [
 				{
-					typeName: 'number'
+					type: Types.NameExpression,
+					name: 'number'
 				},
 				{
-					typeName: 'Window'
+					type: Types.NameExpression,
+					name: 'Window'
 				},
 				{
-					typeName: 'goog.ui.Menu'
+					type: Types.NameExpression,
+					name: 'goog.ui.Menu'
 				}
 			]
 		}
@@ -50,12 +61,15 @@ module.exports = [
 		'nullable union with 2 types (number and boolean)',
 		'?(number|boolean)',
 		{
-			union: [
+			type: Types.UnionType,
+			elements: [
 				{
-					typeName: 'number'
+					type: Types.NameExpression,
+					name: 'number'
 				},
 				{
-					typeName: 'boolean'
+					type: Types.NameExpression,
+					name: 'boolean'
 				}
 			],
 			nullable: true
@@ -65,12 +79,15 @@ module.exports = [
 		'non-nullable union with 2 types (number and boolean)',
 		'!(number|boolean)',
 		{
-			union: [
+			type: Types.UnionType,
+			elements: [
 				{
-					typeName: 'number'
+					type: Types.NameExpression,
+					name: 'number'
 				},
 				{
-					typeName: 'boolean'
+					type: Types.NameExpression,
+					name: 'boolean'
 				}
 			],
 			nullable: false
@@ -80,12 +97,15 @@ module.exports = [
 		'optional union with 2 types (number and boolean)',
 		'(number|boolean)=',
 		{
-			union: [
+			type: Types.UnionType,
+			elements: [
 				{
-					typeName: 'number'
+					type: Types.NameExpression,
+					name: 'number'
 				},
 				{
-					typeName: 'boolean'
+					type: Types.NameExpression,
+					name: 'boolean'
 				}
 			],
 			optional: true

@@ -1,15 +1,21 @@
 'use strict';
 
+var Types = require('../../lib/types');
+
 module.exports = [
 	[
 		'record type with 1 typed property',
 		'{myNum: number}',
 		{
-			typeName: 'object',
-			properties: [
+			type: Types.RecordType,
+			fields: [
 				{
-					name: 'myNum',
-					typeName: 'number'
+					type: Types.FieldType,
+					key: 'myNum',
+					value: {
+						type: Types.NameExpression,
+						name: 'number'
+					}
 				}
 			]
 		}
@@ -18,11 +24,15 @@ module.exports = [
 		'optional record type with 1 typed property',
 		'{myNum: number}=',
 		{
-			typeName: 'object',
-			properties: [
+			type: Types.RecordType,
+			fields: [
 				{
-					name: 'myNum',
-					typeName: 'number'
+					type: Types.FieldType,
+					key: 'myNum',
+					value: {
+						type: Types.NameExpression,
+						name: 'number'
+					}
 				}
 			],
 			optional: true
@@ -32,15 +42,20 @@ module.exports = [
 		'record type with 1 typed property and 1 untyped property',
 		'{myNum: number, myObject}',
 		{
-			typeName: 'object',
-			properties: [
+			type: Types.RecordType,
+			fields: [
 				{
-					name: 'myNum',
-					typeName: 'number'
+					type: Types.FieldType,
+					key: 'myNum',
+					value: {
+						type: Types.NameExpression,
+						name: 'number'
+					}
 				},
 				{
-					name: 'myObject',
-					typeName: undefined
+					type: Types.FieldType,
+					key: 'myObject',
+					value: undefined
 				}
 			]
 		}
