@@ -1,70 +1,58 @@
 /*global describe: true, it: true */
 'use strict';
 
+var _ = require('underscore');
+var fs = require('fs');
+var helper = require('./helper');
 var parse = require('../lib/parser').parse;
+var path = require('path');
 var should = require('should');
 var util = require('util');
 
 
-function jsonify(obj) {
-	return JSON.parse(JSON.stringify(obj));
+function parseIt(item) {
+	var parsed;
+
+	try {
+		parsed = parse(item[1]);
+	} catch(e) {
+		throw new Error(util.format('unable to parse type expression "%s": %s', item[1],
+			e.message));
+	}
+
+	if (!_.isEqual(parsed, item[2])) {
+		throw new Error(util.format('parse tree should be "%j", NOT "%j"', item[2], parsed));
+	}
 }
 
 // each item in the 'types' array looks like:
 // item[0]: {string} description
 // item[1]: {string} type
 // item[2]: {object} expected parsed type
-function checkTypes(name) {
-	var types = require('./specs/' + name);
+function checkTypes(filepath) {
+	var types = require(filepath);
 
-	types.map(function(item) {
-		var parsed;
+	var errors = [];
 
-		function parseIt() {
-			try {
-				parsed = parse(item[1]);
-			} catch(e) {
-				throw new Error(util.format('unable to parse type expression "%s": %s', item[1],
-					e.message));
-			}
+	types.forEach(function(type) {
+		try {
+			parseIt(type);
+		} catch(e) {
+			errors.push(e.message);
 		}
-
-		parseIt.should.not.throw();
-		
-		// TODO: investigate why some tests fail without the JSON round-trip
-		jsonify(parsed).should.eql(jsonify(item[2]));
 	});
+
+	errors.should.eql([]);
 }
 
 describe('parser', function() {
 	describe('parse()', function() {
-		// TODO: instead of listing each spec, we should read the specs directory and do a foreach()
-		it('can parse basic types', function() {
-			checkTypes('basic');
-		});
-
-		it('can parse type applications', function() {
-			checkTypes('type-application');
-		});
-
-		it('can parse type unions', function() {
-			checkTypes('type-union');
-		});
-
-		it('can parse record types', function() {
-			checkTypes('record-type');
-		});
-
-		it('can parse nullable and non-nullable types', function() {
-			checkTypes('nullable');
-		});
-
-		it('can parse function types', function() {
-			checkTypes('function-type');
-		});
-
-		it('can parse complex combinations of types', function() {
-			checkTypes('combined');
-		});
+		function tester(specPath, basename) {
+			it('can parse types in the "' + basename + '" spec', function() {
+				checkTypes(path.join(specPath, basename));
+			});
+		}
+		
+		helper.testSpecs(tester);
 	});
 });

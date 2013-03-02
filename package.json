@@ -12,7 +12,8 @@
 	"devDependencies": {
 		"mocha": "1.6.0",
 		"pegjs": "0.7.0",
-		"should": "1.2.2"
+		"should": "1.2.2",
+		"underscore": "1.4.4"
 	},
 	"engines": {
 		"node": ">= 0.6"
