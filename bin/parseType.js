@@ -23,7 +23,7 @@ if (!typeExpression) {
 		parsedType = catharsis.parseSync(typeExpression);
 	} catch (e) {
 		console.error(util.format('Unable to parse "%s" (exception follows):', typeExpression));
-		console.error(e.stack);
+		console.error(e.stack || e.message);
 		process.exit(1);
 	}
 
