@@ -53,5 +53,33 @@ module.exports = [
 			name: 'Object',
 			optional: true
 		}
+	],
+	[
+		'null',
+		'null',
+		{
+			type: Types.NullLiteral
+		}
+	],
+	[
+		'undefined',
+		'undefined',
+		{
+			type: Types.UndefinedLiteral
+		}
+	],
+	[
+		'all',
+		'*',
+		{
+			type: Types.AllLiteral
+		}
+	],
+	[
+		'unknown',
+		'?',
+		{
+			type: Types.UnknownLiteral
+		}
 	]
 ];
