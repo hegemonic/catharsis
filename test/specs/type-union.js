@@ -7,7 +7,7 @@ module.exports = [
 		'union with 2 types (number and boolean)',
 		'(number|boolean)',
 		{
-			type: Types.UnionType,
+			type: Types.TypeUnion,
 			elements: [
 				{
 					type: Types.NameExpression,
@@ -24,7 +24,7 @@ module.exports = [
 		'union with 2 types (Object and undefined)',
 		'(Object|undefined)',
 		{
-			type: Types.UnionType,
+			type: Types.TypeUnion,
 			elements: [
 				{
 					type: Types.NameExpression,
@@ -40,7 +40,7 @@ module.exports = [
 		'union with 3 types (number, Window, and goog.ui.Menu)',
 		'(number|Window|goog.ui.Menu)',
 		{
-			type: Types.UnionType,
+			type: Types.TypeUnion,
 			elements: [
 				{
 					type: Types.NameExpression,
@@ -61,7 +61,7 @@ module.exports = [
 		'nullable union with 2 types (number and boolean)',
 		'?(number|boolean)',
 		{
-			type: Types.UnionType,
+			type: Types.TypeUnion,
 			elements: [
 				{
 					type: Types.NameExpression,
@@ -79,7 +79,7 @@ module.exports = [
 		'non-nullable union with 2 types (number and boolean)',
 		'!(number|boolean)',
 		{
-			type: Types.UnionType,
+			type: Types.TypeUnion,
 			elements: [
 				{
 					type: Types.NameExpression,
@@ -97,7 +97,7 @@ module.exports = [
 		'optional union with 2 types (number and boolean)',
 		'(number|boolean)=',
 		{
-			type: Types.UnionType,
+			type: Types.TypeUnion,
 			elements: [
 				{
 					type: Types.NameExpression,
@@ -118,7 +118,7 @@ module.exports = [
 		'union with 2 types (array and object with unknown value type)',
 		'(Array|Object.<string, ?>)',
 		{
-			type: Types.UnionType,
+			type: Types.TypeUnion,
 			elements: [
 				{
 					type: Types.NameExpression,
@@ -147,7 +147,7 @@ module.exports = [
 		'union with 2 type applications',
 		'(Array.<string>|Object.<string, ?>)',
 		{
-			type: Types.UnionType,
+			type: Types.TypeUnion,
 			elements: [
 				{
 					type: Types.TypeApplication,
@@ -185,7 +185,7 @@ module.exports = [
 		'union with 2 types (an error, or a function that returns an error)',
 		'(Error|function(): Error)',
 		{
-			type: Types.UnionType,
+			type: Types.TypeUnion,
 			elements: [
 				{
 					type: Types.NameExpression,

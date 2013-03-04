@@ -189,7 +189,7 @@ module.exports = [
 				{
 					type: Types.FieldType,
 					key: {
-						type: Types.UnionType,
+						type: Types.TypeUnion,
 						elements: [
 							{
 								type: Types.NameExpression,
@@ -226,7 +226,7 @@ module.exports = [
 						name: 'myKey'
 					},
 					value: {
-						type: Types.UnionType,
+						type: Types.TypeUnion,
 						elements: [
 							{
 								type: Types.NameExpression,

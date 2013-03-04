@@ -20,7 +20,7 @@ module.exports = [
 		'optional union with multiple types',
 		'(jQuerySelector|Element|Object|Array.<Element>|jQuery|string|function())=',
 		{
-			type: Types.UnionType,
+			type: Types.TypeUnion,
 			elements: [
 				{
 					type: Types.NameExpression,
@@ -68,7 +68,7 @@ module.exports = [
 		'optional union with multiple types, including a nested union type',
 		'(Element|Object|Document|Object.<string, (string|function(!jQuery.event=))>)=',
 		{
-			type: Types.UnionType,
+			type: Types.TypeUnion,
 			elements: [
 				{
 					type: Types.NameExpression,
@@ -94,7 +94,7 @@ module.exports = [
 							name: 'string'
 						},
 						{
-							type: Types.UnionType,
+							type: Types.TypeUnion,
 							elements: [
 								{
 									type: Types.NameExpression,

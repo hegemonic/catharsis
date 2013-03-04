@@ -209,7 +209,7 @@ module.exports = [
 			type: Types.FunctionType,
 			params: [],
 			result: {
-				type: Types.UnionType,
+				type: Types.TypeUnion,
 				elements: [
 					{
 						type: Types.NameExpression,
@@ -255,7 +255,7 @@ module.exports = [
 				name: 'Object'
 			},
 			result: {
-				type: Types.UnionType,
+				type: Types.TypeUnion,
 				elements: [
 					{
 						type: Types.NameExpression,
@@ -276,7 +276,7 @@ module.exports = [
 			type: Types.FunctionType,
 			params: [],
 			'this': {
-				type: Types.UnionType,
+				type: Types.TypeUnion,
 				elements: [
 					{
 						type: Types.NameExpression,
@@ -289,7 +289,7 @@ module.exports = [
 				]
 			},
 			result: {
-				type: Types.UnionType,
+				type: Types.TypeUnion,
 				elements: [
 					{
 						type: Types.NameExpression,
@@ -381,7 +381,7 @@ module.exports = [
 				name: 'Date'
 			},
 			result: {
-				type: Types.UnionType,
+				type: Types.TypeUnion,
 				elements: [
 					{
 						type: Types.NameExpression,

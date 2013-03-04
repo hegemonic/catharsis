@@ -59,7 +59,7 @@ module.exports = [
 					},
 					applications: [
 						{
-							type: Types.UnionType,
+							type: Types.TypeUnion,
 							elements: [
 								{
 									type: Types.NameExpression,
@@ -86,7 +86,7 @@ module.exports = [
 					]
 				},
 				{
-					type: Types.UnionType,
+					type: Types.TypeUnion,
 					elements: [
 						{
 							type: Types.NameExpression,
