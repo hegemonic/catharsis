@@ -25,12 +25,12 @@ Asynchronous interface:
 		if (error) {
 			console.error('unable to parse %s: %s', type, error);
 		} else {
-			console.log('%j', parsedType);  // {"typeName":"Object","nullable":false}
+			console.log('%j', parsedType);  // {"type":"NameExpression,"name":"Object","nullable":false}
 			catharsis.stringify(parsedType, {}, function(error, expr) {
 				if (error) {
 					console.error('unable to stringify %j: %s', parsedType, error);
 				} else {
-					console.log('%s', expr);  // !Object
+					console.log(expr);  // !Object
 				}
 			});
 		}
@@ -45,14 +45,16 @@ Synchronous interface:
 	var expr;
 
 	try {
-		parsedType = catharsis.parseSync('!Object');  // {"typeName":"Object","nullable":false}
+		parsedType = catharsis.parseSync('!Object');
+		console.log('%j', parsedType);  // {"type":"NameExpression,"name":"Object","nullable":false}
 	}
 	catch(e) {
 		console.error('unable to parse %s: %s', type, e);
 	}
 
 	try {
-		expr = catharsis.stringifySync(parsedType);  // !Object
+		expr = catharsis.stringifySync(parsedType);
+		console.log(expr);  // !Object
 	}
 	catch(e) {
 		console.error('unable to parse %j: %s', parsedType, e);
@@ -145,14 +147,23 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
-+ 0.3.0 (February 2013):
++ 0.3.0 (March 2013):
     + The parse results now use a significantly different format from previous versions. The new
     format is more expressive and is similar, but not identical, to the format used by the
     [doctrine](https://github.com/Constellation/doctrine) parser. **Note**: This change is not
     backwards-compatible with previous versions.
+    + Name expressions that contain a reserved word now include a `reservedWord: true` property.
     + Union types that are optional or nullable, or that can be passed a variable number of times,
     are now parsed and stringified correctly.
     + Optional function types and record types are now parsed and stringified correctly.
+    + Function types now longer include `new` or `this` properties unless the properties are defined
+    in the type expression. In addition, the `new` and `this` properties can now use any type
+    expression.
+    + In record types, the key for a field type can now use any type expression.
+    + Standalone single-character literals, such as ALL (`*`), are now parsed and stringified
+    correctly.
+    + `null` and `undefined` literals with additional properties, such as `repeatable`, are now
+    stringified correctly.
 + 0.2.0 (November 2012):
     + Added `stringify()` and `stringifySync()` methods, which convert a parsed type to a type
     expression.
