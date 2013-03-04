@@ -11,7 +11,7 @@
 	"main": "catharsis.js",
 	"devDependencies": {
 		"mocha": "1.6.0",
-		"pegjs": "0.7.0",
+		"pegjs": "git+ssh://git@github.com:dmajda/pegjs.git#76cc5d55",
 		"should": "1.2.2",
 		"underscore": "1.4.4"
 	},
