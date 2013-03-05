@@ -5,38 +5,14 @@ A JavaScript parser for Google Closure Compiler
 
 Catharsis is designed to be:
 
-+ **Accurate**. Catharsis is based on a [PEG.js](http://pegjs.majda.cz/) grammar that can handle
-any valid type expression, no matter how complex. It uses a
-[Mocha](http://visionmedia.github.com/mocha/) test suite to verify the parser's accuracy.
++ **Accurate**. Catharsis is based on a [PEG.js](http://pegjs.majda.cz/) grammar that's designed to
+handle any valid type expression. It uses a [Mocha](http://visionmedia.github.com/mocha/) test suite
+to verify the parser's accuracy.
 + **Fast**. Parse results are cached, so the parser is invoked only when necessary.
-+ **Flexible**. Catharsis provides both asynchronous and synchronous interfaces. In addition, it can
-convert parse results back into type expressions.
++ **Flexible**. Catharsis can also convert parse results back into type expressions.
 
 
-## Examples ##
-
-Asynchronous interface:
-
-	var catharsis = require('catharsis');
-
-	var type = '!Object';
-
-	catharsis.parse(type, {}, function(error, parsedType) {
-		if (error) {
-			console.error('unable to parse %s: %s', type, error);
-		} else {
-			console.log('%j', parsedType);  // {"type":"NameExpression,"name":"Object","nullable":false}
-			catharsis.stringify(parsedType, {}, function(error, expr) {
-				if (error) {
-					console.error('unable to stringify %j: %s', parsedType, error);
-				} else {
-					console.log(expr);  // !Object
-				}
-			});
-		}
-	});
-
-Synchronous interface:
+## Example ##
 
 	var catharsis = require('catharsis');
 
@@ -45,56 +21,22 @@ Synchronous interface:
 	var expr;
 
 	try {
-		parsedType = catharsis.parseSync('!Object');
+		parsedType = catharsis.parse('!Object');
 		console.log('%j', parsedType);  // {"type":"NameExpression,"name":"Object","nullable":false}
 	}
 	catch(e) {
 		console.error('unable to parse %s: %s', type, e);
 	}
 
-	try {
-		expr = catharsis.stringifySync(parsedType);
-		console.log(expr);  // !Object
-	}
-	catch(e) {
-		console.error('unable to parse %j: %s', parsedType, e);
-	}
+    expr = catharsis.stringify(parsedType);
+    console.log(expr);  // !Object
 
 See the `test/specs/` directory for more examples of Catharsis' parse results.
 
 
-## Asynchronous interface ##
+## Methods ##
 
-### parse(type, opts, callback) ###
-Parse the Closure Compiler type expression `type`, and pass the parse results to the callback.
-
-#### Parameters ####
-+ `type`: A string containing a Closure Compiler type expression.
-+ `opts`: Options for parsing the type expression.
-    + `opts.useCache`: Specifies whether to use the cache of parsed types. Defaults to `true`.
-+ `callback(error, parsedType)`: Parse results.
-    + `error`: A description of the error, if any.
-    + `parsedType`: An object containing the parse results.
-
-### stringify(parsedType, opts, callback) ###
-Stringify the parsed Closure Compiler type expression `parsedType`, and pass the type expression to
-the callback.
-
-#### Parameters ####
-+ `parsedType`: An object containing a parsed Closure Compiler type expression.
-+ `opts`: Options for stringifying the parse results.
-    + `opts.useCache`: Specifies whether to use the cache of stringified parse results. Defaults to
-    `true`.
-    + `opts.validate`: Specifies whether to validate the stringified parse results by attempting to
-    parse them as a type expression. Defaults to `false`.
-+ `callback(error, typeExpr)`: Stringification results.
-    + `error`: A description of the error, if any.
-    + `typeExpr`: A string containing the type expression.
-
-
-## Synchronous interface ##
-
-### parseSync(type, opts) ###
+### parse(type, opts) ###
 Parse the Closure Compiler type `type`, and return the parse results. Throws an error if the type
 cannot be parsed.
 
@@ -106,7 +48,7 @@ cannot be parsed.
 #### Returns ####
 An object containing the parse results.
 
-### stringifySync(parsedType, opts) ###
+### stringify(parsedType, opts) ###
 Stringify the parsed Closure Compiler type expression `parsedType`, and return the type expression.
 If validation is enabled, throws an error if the stringified type expression cannot be parsed.
 
@@ -148,6 +90,9 @@ pull request, please contact me in advance so I can help things go smoothly.
 ## Changelog ##
 
 + 0.3.0 (March 2013):
+    + The `parse()` and `stringify()` methods are now synchronous, and the `parseSync()` and
+    `stringifySync()` methods have been removed. **Note**: This change is not backwards-compatible
+    with previous versions.
     + The parse results now use a significantly different format from previous versions. The new
     format is more expressive and is similar, but not identical, to the format used by the
     [doctrine](https://github.com/Constellation/doctrine) parser. **Note**: This change is not

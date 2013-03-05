@@ -31,69 +31,23 @@ function cachedStringify(parsedType) {
 	return parsedTypeCache[json];
 }
 
-var nextTick = (function() {
-	if (process && process.nextTick) {
-		return process.nextTick;
-	} else if (setTimeout) {
-		return function(callback) {
-			setTimeout(callback, 0);
-		};
-	} else {
-		// better safe than sorry
-		return function(callback) {
-			callback('Your JavaScript environment does not support the Catharsis asynchronous ' +
-				'methods. Please call the synchronous methods instead.');
-		};
-	}
-})();
-
 function Catharsis() {
 	this.Types = require('./lib/types');
 }
 
-Catharsis.prototype.parse = function(type, opts, callback) {
+Catharsis.prototype.parse = function(type, opts) {
 	opts = opts || {};
 
-	nextTick(function() {
-		try {
-			callback(null, opts.useCache !== false ? cachedParse(type) : parse(type));
-		}
-		catch(e) {
-			callback('unable to parse the type ' + type + ': ' + e.message);
-		}
-	});
-};
-
-var parseSync = Catharsis.prototype.parseSync = function(type, opts) {
-	opts = opts || {};
-	
 	return opts.useCache !== false ? cachedParse(type) : parse(type);
 };
 
-Catharsis.prototype.stringify = function(parsedType, opts, callback) {
-	opts = opts || {};
-	var result;
-
-	nextTick(function() {
-		try {
-			result = opts.useCache !== false ? cachedStringify(parsedType) : stringify(parsedType);
-			if (opts.validate) {
-				parseSync(result);
-			}
-			callback(null, result);
-		} catch (e) {
-			callback('the following parsed type is not valid: ' + JSON.stringify(parsedType));
-		}
-	});
-};
-
-Catharsis.prototype.stringifySync = function(parsedType, opts) {
+Catharsis.prototype.stringify = function(parsedType, opts) {
 	opts = opts || {};
 	var result;
 
 	result = opts.useCache !== false ? cachedStringify(parsedType) : stringify(parsedType);
 	if (opts.validate) {
-		parseSync(result);
+		this.parse(result);
 	}
 
 	return result;

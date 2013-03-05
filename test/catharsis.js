@@ -27,46 +27,15 @@ describe('catharsis', function() {
 			catharsis.parse.should.be.a('function');
 		});
 
-		it('should return an object when given basic input', function(done) {
-			catharsis.parse(simpleType, {}, function(error, obj) {
-				should.not.exist(error);
-				should.exist(obj);
-				obj.should.be.a('object');
-				done();
-			});
-		});
-
-		it('should return an error when given an invalid type', function(done) {
-			catharsis.parse(invalidType, {}, function(error) {
-				should.exist(error);
-
-				// now make sure the cache isn't somehow causing the error to be suppressed
-				catharsis.parse(invalidType, {}, function(error) {
-					should.exist(error);
-					done();
-				});
-			});
-		});
-	});
-
-	describe('parseSync()', function() {
-		it('should exist', function() {
-			should.exist(catharsis.parseSync);
-		});
-
-		it('should be a function', function() {
-			catharsis.parseSync.should.be.a('function');
-		});
-
 		it('should return an object when given basic input', function() {
-			catharsis.parseSync(simpleType).should.be.a('object');
+			catharsis.parse(simpleType).should.be.a('object');
 		});
 
 		it('should throw an error when given an invalid type', function() {
 			function invalid() {
-				catharsis.parseSync(invalidType);
+				catharsis.parse(invalidType);
 			}
-			
+
 			invalid.should.throw();
 		});
 	});
@@ -80,42 +49,25 @@ describe('catharsis', function() {
 			catharsis.stringify.should.be.a('function');
 		});
 
-		it('should return a string when given basic input', function(done) {
-			catharsis.stringify(simpleParsedType, {}, function(error, typeExpr) {
-				should.not.exist(error);
-				typeExpr.should.be.a('string');
-				done();
-			});
-		});
-
-		it('should return an error when given invalid input if validation is enabled',
-			function(done) {
-			catharsis.stringify(invalidParsedType, {validate: true}, function(error) {
-				should.exist(error);
-				done();
-			});
-		});
-	});
-
-	describe('stringifySync()', function() {
-		it('should exist', function() {
-			should.exist(catharsis.stringify);
-		});
-
-		it('should be a function', function() {
-			catharsis.stringify.should.be.a('function');
-		});
-
 		it('should return a string when given basic input', function() {
-			catharsis.stringifySync(simpleParsedType).should.be.a('string');
+			catharsis.stringify(simpleParsedType).should.be.a('string');
 		});
 
 		it('should throw an error when given invalid input if validation is enabled', function() {
 			function invalid() {
-				catharsis.stringifySync(invalidParsedType, {validate: true});
+				catharsis.stringify(invalidParsedType, {validate: true});
 			}
 
 			invalid.should.throw();
+		});
+
+		it('should not throw an error when given invalid input if validation is disabled',
+			function() {
+				function invalid() {
+					catharsis.stringify(invalidParsedType);
+				}
+
+				invalid.should.not.throw();
 		});
 	});
 });
