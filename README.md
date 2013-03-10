@@ -89,6 +89,8 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.3.1 (March 2013): Type expressions that begin with a reserved word, such as `integer`, are now
+parsed correctly.
 + 0.3.0 (March 2013):
     + The `parse()` and `stringify()` methods are now synchronous, and the `parseSync()` and
     `stringifySync()` methods have been removed. **Note**: This change is not backwards-compatible

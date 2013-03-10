@@ -81,5 +81,13 @@ module.exports = [
 		{
 			type: Types.UnknownLiteral
 		}
+	],
+	[
+		'name that starts with a reserved word',
+		'forsooth',
+		{
+			type: Types.NameExpression,
+			name: 'forsooth'
+		}
 	]
 ];
