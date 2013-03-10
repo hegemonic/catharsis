@@ -47,12 +47,14 @@ function checkTypes(filepath) {
 
 describe('parser', function() {
 	describe('parse()', function() {
+		var specs = './test/specs';
+
 		function tester(specPath, basename) {
 			it('can parse types in the "' + basename + '" spec', function() {
 				checkTypes(path.join(specPath, basename));
 			});
 		}
 		
-		helper.testSpecs(tester);
+		helper.testSpecs(specs, tester);
 	});
 });

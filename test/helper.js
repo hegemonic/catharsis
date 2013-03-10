@@ -4,13 +4,15 @@ var fs = require('fs');
 var path = require('path');
 
 
-exports.testSpecs = function(tester) {
+exports.testSpecs = function(filepath, tester) {
 	var basename;
-	var specPath = path.resolve('./test/specs');
+	var specPath = path.resolve(filepath);
 	var specs = fs.readdirSync(specPath);
 
 	specs.forEach(function(spec) {
-		basename = path.basename(spec, '.js');
-		tester.call(this, specPath, basename);
+		if (!fs.statSync(path.join(specPath, spec)).isDirectory()) {
+			basename = path.basename(spec, '.js');
+			tester.call(this, specPath, basename);
+		}
 	});
 };

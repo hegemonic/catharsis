@@ -45,11 +45,13 @@ function checkStringifiedTypes(filepath) {
 }
 
 describe('stringify', function() {
+	var specs = './test/specs';
+
 	function tester(specPath, basename) {
 		it('can stringify types in the "' + basename + '" spec', function() {
 			checkStringifiedTypes(path.join(specPath, basename));
 		});
 	}
 	
-	helper.testSpecs(tester);
+	helper.testSpecs(specs, tester);
 });
