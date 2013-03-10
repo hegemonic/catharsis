@@ -3,10 +3,10 @@
 var Types = require('../../lib/types');
 
 module.exports = [
-	[
-		'function with two basic parameters',
-		'function(string, boolean)',
-		{
+	{
+		description: 'function with two basic parameters',
+		expression: 'function(string, boolean)',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -19,11 +19,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'function with two basic parameters and a return value',
-		'function(string, string): boolean',
-		{
+	},
+	{
+		description: 'function with two basic parameters and a return value',
+		expression: 'function(string, string): boolean',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -40,11 +40,11 @@ module.exports = [
 				name: 'boolean'
 			}
 		}
-	],
-	[
-		'optional function with one basic parameter',
-		'function(string)=',
-		{
+	},
+	{
+		description: 'optional function with one basic parameter',
+		expression: 'function(string)=',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -54,11 +54,11 @@ module.exports = [
 			],
 			optional: true
 		}
-	],
-	[
-		'function with no parameters and a return value',
-		'function(): number',
-		{
+	},
+	{
+		description: 'function with no parameters and a return value',
+		expression: 'function(): number',
+		parsed: {
 			type: Types.FunctionType,
 			params: [],
 			result: {
@@ -66,11 +66,11 @@ module.exports = [
 				name: 'number'
 			}
 		}
-	],
-	[
-		'function with a "this" type and one parameter',
-		'function(this:goog.ui.Menu, string)',
-		{
+	},
+	{
+		description: 'function with a "this" type and one parameter',
+		expression: 'function(this:goog.ui.Menu, string)',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -83,11 +83,11 @@ module.exports = [
 				name: 'goog.ui.Menu'
 			}
 		}
-	],
-	[
-		'function with a "new" type and one parameter',
-		'function(new:goog.ui.Menu, string)',
-		{
+	},
+	{
+		description: 'function with a "new" type and one parameter',
+		expression: 'function(new:goog.ui.Menu, string)',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -100,12 +100,12 @@ module.exports = [
 				name: 'goog.ui.Menu'
 			}
 		}
-	],
-	[
-		'function with a fixed parameter, followed by a variable number of parameters, as well ' +
-			'as a return value',
-		'function(string, ...[number]): number',
-		{
+	},
+	{
+		description: 'function with a fixed parameter, followed by a variable number of ' +
+			'parameters, as well as a return value',
+		expression: 'function(string, ...[number]): number',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -123,11 +123,11 @@ module.exports = [
 				name: 'number'
 			}
 		}
-	],
-	[
-		'function with a variable number of parameters containing the value `null`',
-		'function(...[null])',
-		{
+	},
+	{
+		description: 'function with a variable number of parameters containing the value `null`',
+		expression: 'function(...[null])',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -136,11 +136,12 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'function with a variable number of parameters containing the value `undefined`',
-		'function(...[undefined])',
-		{
+	},
+	{
+		description: 'function with a variable number of parameters containing the value ' +
+			'`undefined`',
+		expression: 'function(...[undefined])',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -149,13 +150,13 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'function with a variable number of parameters, a "new" type, a "this" type, and a ' +
-			'return value',
-		'function(new:Master, this:Everyone, string, goog.ui.Menu, Array.<Object>, ...[string]): ' +
-			'boolean',
-		{
+	},
+	{
+		description: 'function with a variable number of parameters, a "new" type, a "this" ' +
+			'type, and a return value',
+		expression: 'function(new:Master, this:Everyone, string, goog.ui.Menu, Array.<Object>, ' +
+			'...[string]): boolean',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -198,14 +199,14 @@ module.exports = [
 				name: 'boolean'
 			}
 		}
-	],
+	},
 
 	// The following type expressions are adapted from the Closure Compiler test suite:
 	// http://goo.gl/rgKSk
-	[
-		'function that returns a type union',
-		'function(): (number|string)',
-		{
+	{
+		description: 'function that returns a type union',
+		expression: 'function(): (number|string)',
+		parsed: {
 			type: Types.FunctionType,
 			params: [],
 			result: {
@@ -222,19 +223,19 @@ module.exports = [
 				]
 			}
 		}
-	],
-	[
-		'function with no parameters and no return value',
-		'function()',
-		{
+	},
+	{
+		description: 'function with no parameters and no return value',
+		expression: 'function()',
+		parsed: {
 			type: Types.FunctionType,
 			params: []
 		}
-	],
-	[
-		'function with a variable number of parameters containing any values',
-		'function(...[*])',
-		{
+	},
+	{
+		description: 'function with a variable number of parameters containing any values',
+		expression: 'function(...[*])',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -243,11 +244,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'function with a "this" type that returns a type union',
-		'function(this:Object): (number|string)',
-		{
+	},
+	{
+		description: 'function with a "this" type that returns a type union',
+		expression: 'function(this:Object): (number|string)',
+		parsed: {
 			type: Types.FunctionType,
 			params: [],
 			'this': {
@@ -268,11 +269,12 @@ module.exports = [
 				]
 			}
 		}
-	],
-	[
-		'function with a "this" type that is a type union, and that returns a type union',
-		'function(this:(Array|Date)): (number|string)',
-		{
+	},
+	{
+		description: 'function with a "this" type that is a type union, and that returns a ' +
+			'type union',
+		expression: 'function(this:(Array|Date)): (number|string)',
+		parsed: {
 			type: Types.FunctionType,
 			params: [],
 			'this': {
@@ -302,12 +304,12 @@ module.exports = [
 				]
 			}
 		}
-	],
-	[
-		'function with a "new" type and a variable number of params that accept all types, ' +
-			'returning a name expression',
-		'function(new:Array, ...[*]): Array',
-		{
+	},
+	{
+		description: 'function with a "new" type and a variable number of params that accept ' +
+			'all types, returning a name expression',
+		expression: 'function(new:Array, ...[*]): Array',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -324,12 +326,12 @@ module.exports = [
 				name: 'Array'
 			}
 		}
-	],
-	[
-		'function with a "new" type that accepts an optional parameter of any type, as well as a ' +
-			'return value',
-		'function(new:Boolean, *=): boolean',
-		{
+	},
+	{
+		description: 'function with a "new" type that accepts an optional parameter of any ' +
+			'type, as well as a return value',
+		expression: 'function(new:Boolean, *=): boolean',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -346,11 +348,11 @@ module.exports = [
 				name: 'boolean'
 			}
 		}
-	],
-	[
-		'function with a variable number of parameters and a return value',
-		'function(...[number]): boolean',
-		{
+	},
+	{
+		description: 'function with a variable number of parameters and a return value',
+		expression: 'function(...[number]): boolean',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -364,11 +366,11 @@ module.exports = [
 				name: 'boolean'
 			}
 		}
-	],
-	[
-		'function with a "this" type and a parameter that returns a type union',
-		'function(this:Date, number): (boolean|number|string)',
-		{
+	},
+	{
+		description: 'function with a "this" type and a parameter that returns a type union',
+		expression: 'function(this:Date, number): (boolean|number|string)',
+		parsed: {
 			type: Types.FunctionType,
 			params: [
 				{
@@ -398,5 +400,5 @@ module.exports = [
 				]
 			}
 		}
-	]
+	}
 ];

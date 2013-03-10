@@ -10,33 +10,29 @@ var should = require('should');
 var util = require('util');
 
 
-function parseIt(item) {
+function parseIt(item, options) {
 	var parsed;
 
 	try {
-		parsed = parse(item[1]);
+		parsed = parse(item.expression, options);
 	} catch(e) {
 		throw new Error(util.format('unable to parse type expression "%s": %s', item[1],
 			e.message));
 	}
 
-	if (!_.isEqual(parsed, item[2])) {
+	if (!_.isEqual(parsed, item.parsed)) {
 		throw new Error(util.format('parse tree should be "%j", NOT "%j"', item[2], parsed));
 	}
 }
 
-// each item in the 'types' array looks like:
-// item[0]: {string} description
-// item[1]: {string} type
-// item[2]: {object} expected parsed type
-function checkTypes(filepath) {
+function checkTypes(filepath, options) {
 	var types = require(filepath);
 
 	var errors = [];
 
 	types.forEach(function(type) {
 		try {
-			parseIt(type);
+			parseIt(type, options);
 		} catch(e) {
 			errors.push(e.message);
 		}
@@ -48,13 +44,21 @@ function checkTypes(filepath) {
 describe('parser', function() {
 	describe('parse()', function() {
 		var specs = './test/specs';
+		var lenientSpecs = path.join(specs, 'lenient');
 
 		function tester(specPath, basename) {
 			it('can parse types in the "' + basename + '" spec', function() {
-				checkTypes(path.join(specPath, basename));
+				checkTypes(path.join(specPath, basename), {});
+			});
+		}
+
+		function lenientTester(specPath, basename) {
+			it('can parse types in the "' + basename + '" spec when in lenient mode', function() {
+				checkTypes(path.join(specPath, basename), {lenient: true});
 			});
 		}
 		
 		helper.testSpecs(specs, tester);
+		//helper.testSpecs(lenientSpecs, lenientTester);
 	});
 });

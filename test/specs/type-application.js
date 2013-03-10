@@ -3,10 +3,10 @@
 var Types = require('../../lib/types');
 
 module.exports = [
-	[
-		'array of strings',
-		'Array.<string>',
-		{
+	{
+		description: 'array of strings',
+		expression: 'Array.<string>',
+		parsed: {
 			type: Types.TypeApplication,
 			expression: {
 				type: Types.NameExpression,
@@ -19,11 +19,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'object whose properties are strings and property values are numbers',
-		'Object.<string, number>',
-		{
+	},
+	{
+		description: 'object whose properties are strings and property values are numbers',
+		expression: 'Object.<string, number>',
+		parsed: {
 			type: Types.TypeApplication,
 			expression: {
 				type: Types.NameExpression,
@@ -40,11 +40,13 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'object whose properties are a type application and property values are a type union',
-		'Object.<Array.<(boolean|{myKey: Error})>, (boolean|string|function(new:foo): string)>',
-		{
+	},
+	{
+		description: 'object whose properties are a type application and property values are a ' +
+			'type union',
+		expression: 'Object.<Array.<(boolean|{myKey: Error})>, ' +
+			'(boolean|string|function(new:foo): string)>',
+		parsed: {
 			type: Types.TypeApplication,
 			expression: {
 				type: Types.NameExpression,
@@ -112,11 +114,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'array of objects that have a length property',
-		'Array.<{length}>',
-		{
+	},
+	{
+		description: 'array of objects that have a length property',
+		expression: 'Array.<{length}>',
+		parsed: {
 			type: Types.TypeApplication,
 			expression: {
 				type: Types.NameExpression,
@@ -138,11 +140,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'array of unknown type',
-		'Array.<?>',
-		{
+	},
+	{
+		description: 'array of unknown type',
+		expression: 'Array.<?>',
+		parsed: {
 			type: Types.TypeApplication,
 			expression: {
 				type: Types.NameExpression,
@@ -154,5 +156,5 @@ module.exports = [
 				}
 			]
 		}
-	]
+	}
 ];

@@ -3,22 +3,22 @@
 var Types = require('../../lib/types');
 
 module.exports = [
-	[
-		'number or null',
-		'?number',
-		{
+	{
+		description: 'number or null',
+		expression: '?number',
+		parsed: {
 			type: Types.NameExpression,
 			name: 'number',
 			nullable: true
 		}
-	],
-	[
-		'object, not null',
-		'!Object',
-		{
+	},
+	{
+		description: 'object, not null',
+		expression: '!Object',
+		parsed: {
 			type: Types.NameExpression,
 			name: 'Object',
 			nullable: false
 		}
-	]
+	}
 ];

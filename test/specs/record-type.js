@@ -3,18 +3,18 @@
 var Types = require('../../lib/types');
 
 module.exports = [
-	[
-		'empty record type',
-		'{}',
-		{
+	{
+		description: 'empty record type',
+		expression: '{}',
+		parsed: {
 			type: Types.RecordType,
 			fields: []
 		}
-	],
-	[
-		'record type with 1 typed property',
-		'{myNum: number}',
-		{
+	},
+	{
+		description: 'record type with 1 typed property',
+		expression: '{myNum: number}',
+		parsed: {
 			type: Types.RecordType,
 			fields: [
 				{
@@ -30,11 +30,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'optional record type with 1 typed property',
-		'{myNum: number}=',
-		{
+	},
+	{
+		description: 'optional record type with 1 typed property',
+		expression: '{myNum: number}=',
+		parsed: {
 			type: Types.RecordType,
 			fields: [
 				{
@@ -51,11 +51,11 @@ module.exports = [
 			],
 			optional: true
 		}
-	],
-	[
-		'nullable record type with 1 typed property',
-		'?{myNum: number}',
-		{
+	},
+	{
+		description: 'nullable record type with 1 typed property',
+		expression: '?{myNum: number}',
+		parsed: {
 			type: Types.RecordType,
 			fields: [
 				{
@@ -72,11 +72,11 @@ module.exports = [
 			],
 			nullable: true
 		}
-	],
-	[
-		'non-nullable record type with 1 typed property',
-		'!{myNum: number}',
-		{
+	},
+	{
+		description: 'non-nullable record type with 1 typed property',
+		expression: '!{myNum: number}',
+		parsed: {
 			type: Types.RecordType,
 			fields: [
 				{
@@ -93,11 +93,11 @@ module.exports = [
 			],
 			nullable: false
 		}
-	],
-	[
-		'record type with 1 typed property and 1 untyped property',
-		'{myNum: number, myObject}',
-		{
+	},
+	{
+		description: 'record type with 1 typed property and 1 untyped property',
+		expression: '{myNum: number, myObject}',
+		parsed: {
 			type: Types.RecordType,
 			fields: [
 				{
@@ -121,11 +121,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'record type with a property that uses a type application as a key',
-		'{Array.<string>: number}',
-		{
+	},
+	{
+		description: 'record type with a property that uses a type application as a key',
+		expression: '{Array.<string>: number}',
+		parsed: {
 			type: Types.RecordType,
 			fields: [
 				{
@@ -150,11 +150,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'record type with a property that uses a type application as a value',
-		'{myArray: Array.<string>}',
-		{
+	},
+	{
+		description: 'record type with a property that uses a type application as a value',
+		expression: '{myArray: Array.<string>}',
+		parsed: {
 			type: Types.RecordType,
 			fields: [
 				{
@@ -179,11 +179,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'record type with a property that uses a type union as a key',
-		'{(number|boolean|string): number}',
-		{
+	},
+	{
+		description: 'record type with a property that uses a type union as a key',
+		expression: '{(number|boolean|string): number}',
+		parsed: {
 			type: Types.RecordType,
 			fields: [
 				{
@@ -212,11 +212,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'record type with a property that uses a type union as a value',
-		'{myKey: (number|boolean|string)}',
-		{
+	},
+	{
+		description: 'record type with a property that uses a type union as a value',
+		expression: '{myKey: (number|boolean|string)}',
+		parsed: {
 			type: Types.RecordType,
 			fields: [
 				{
@@ -245,11 +245,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'record type with a property that uses a JavaScript keyword as a key',
-		'{continue: string}',
-		{
+	},
+	{
+		description: 'record type with a property that uses a JavaScript keyword as a key',
+		expression: '{continue: string}',
+		parsed: {
 			type: Types.RecordType,
 			fields: [
 				{
@@ -266,11 +266,12 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'record type with a property that uses a JavaScript future reserved word as a key',
-		'{class: string}',
-		{
+	},
+	{
+		description: 'record type with a property that uses a JavaScript future reserved word as ' +
+			'a key',
+		expression: '{class: string}',
+		parsed: {
 			type: Types.RecordType,
 			fields: [
 				{
@@ -287,12 +288,12 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'record type with a property that uses a string representation of a JavaScript boolean ' +
-			'literal as a key',
-		'{true: string}',
-		{
+	},
+	{
+		description: 'record type with a property that uses a string representation of a ' +
+			'JavaScript boolean literal as a key',
+		expression: '{true: string}',
+		parsed: {
 			type: Types.RecordType,
 			fields: [
 				{
@@ -309,5 +310,5 @@ module.exports = [
 				}
 			]
 		}
-	]
+	}
 ];

@@ -3,91 +3,91 @@
 var Types = require('../../lib/types');
 
 module.exports = [
-	[
-		'boolean',
-		'boolean',
-		{
+	{
+		description: 'boolean',
+		expression: 'boolean',
+		parsed: {
 			type: Types.NameExpression,
 			name: 'boolean'
 		}
-	],
-	[
-		'object',
-		'Window',
-		{
+	},
+	{
+		description: 'object',
+		expression: 'Window',
+		parsed: {
 			type: Types.NameExpression,
 			name: 'Window'
 		}
-	],
-	[
-		'object with properties',
-		'goog.ui.Menu',
-		{
+	},
+	{
+		description: 'object with properties',
+		expression: 'goog.ui.Menu',
+		parsed: {
 			type: Types.NameExpression,
 			name: 'goog.ui.Menu'
 		}
-	],
-	[
-		'variable number of parameters',
-		'...number',
-		{
+	},
+	{
+		description: 'variable number of parameters',
+		expression: '...number',
+		parsed: {
 			type: Types.NameExpression,
 			name: 'number',
 			repeatable: true
 		}
-	],
-	[
-		'optional number parameter',
-		'number=',
-		{
+	},
+	{
+		description: 'optional number parameter',
+		expression: 'number=',
+		parsed: {
 			type: Types.NameExpression,
 			name: 'number',
 			optional: true
 		}
-	],
-	[
-		'optional Object parameter',
-		'Object=',
-		{
+	},
+	{
+		description: 'optional Object parameter',
+		expression: 'Object=',
+		parsed: {
 			type: Types.NameExpression,
 			name: 'Object',
 			optional: true
 		}
-	],
-	[
-		'null',
-		'null',
-		{
+	},
+	{
+		description: 'null',
+		expression: 'null',
+		parsed: {
 			type: Types.NullLiteral
 		}
-	],
-	[
-		'undefined',
-		'undefined',
-		{
+	},
+	{
+		description: 'undefined',
+		expression: 'undefined',
+		parsed: {
 			type: Types.UndefinedLiteral
 		}
-	],
-	[
-		'all',
-		'*',
-		{
+	},
+	{
+		description: 'all',
+		expression: '*',
+		parsed: {
 			type: Types.AllLiteral
 		}
-	],
-	[
-		'unknown',
-		'?',
-		{
+	},
+	{
+		description: 'unknown',
+		expression: '?',
+		parsed: {
 			type: Types.UnknownLiteral
 		}
-	],
-	[
-		'name that starts with a reserved word',
-		'forsooth',
-		{
+	},
+	{
+		description: 'name that starts with a reserved word',
+		expression: 'forsooth',
+		parsed: {
 			type: Types.NameExpression,
 			name: 'forsooth'
 		}
-	]
+	}
 ];

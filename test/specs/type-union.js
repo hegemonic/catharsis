@@ -3,10 +3,10 @@
 var Types = require('../../lib/types');
 
 module.exports = [
-	[
-		'union with 2 types (number and boolean)',
-		'(number|boolean)',
-		{
+	{
+		description: 'union with 2 types (number and boolean)',
+		expression: '(number|boolean)',
+		parsed: {
 			type: Types.TypeUnion,
 			elements: [
 				{
@@ -19,11 +19,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'union with 2 types (Object and undefined)',
-		'(Object|undefined)',
-		{
+	},
+	{
+		description: 'union with 2 types (Object and undefined)',
+		expression: '(Object|undefined)',
+		parsed: {
 			type: Types.TypeUnion,
 			elements: [
 				{
@@ -35,11 +35,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'union with 3 types (number, Window, and goog.ui.Menu)',
-		'(number|Window|goog.ui.Menu)',
-		{
+	},
+	{
+		description: 'union with 3 types (number, Window, and goog.ui.Menu)',
+		expression: '(number|Window|goog.ui.Menu)',
+		parsed: {
 			type: Types.TypeUnion,
 			elements: [
 				{
@@ -56,11 +56,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'nullable union with 2 types (number and boolean)',
-		'?(number|boolean)',
-		{
+	},
+	{
+		description: 'nullable union with 2 types (number and boolean)',
+		expression: '?(number|boolean)',
+		parsed: {
 			type: Types.TypeUnion,
 			elements: [
 				{
@@ -74,11 +74,11 @@ module.exports = [
 			],
 			nullable: true
 		}
-	],
-	[
-		'non-nullable union with 2 types (number and boolean)',
-		'!(number|boolean)',
-		{
+	},
+	{
+		description: 'non-nullable union with 2 types (number and boolean)',
+		expression: '!(number|boolean)',
+		parsed: {
 			type: Types.TypeUnion,
 			elements: [
 				{
@@ -92,11 +92,11 @@ module.exports = [
 			],
 			nullable: false
 		}
-	],
-	[
-		'optional union with 2 types (number and boolean)',
-		'(number|boolean)=',
-		{
+	},
+	{
+		description: 'optional union with 2 types (number and boolean)',
+		expression: '(number|boolean)=',
+		parsed: {
 			type: Types.TypeUnion,
 			elements: [
 				{
@@ -110,14 +110,14 @@ module.exports = [
 			],
 			optional: true
 		}
-	],
+	},
 
 	// The following type expressions are adapted from the Closure Compiler test suite:
 	// http://goo.gl/vpRTe, http://goo.gl/DVh3f
-	[
-		'union with 2 types (array and object with unknown value type)',
-		'(Array|Object.<string, ?>)',
-		{
+	{
+		description: 'union with 2 types (array and object with unknown value type)',
+		expression: '(Array|Object.<string, ?>)',
+		parsed: {
 			type: Types.TypeUnion,
 			elements: [
 				{
@@ -142,11 +142,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'union with 2 type applications',
-		'(Array.<string>|Object.<string, ?>)',
-		{
+	},
+	{
+		description: 'union with 2 type applications',
+		expression: '(Array.<string>|Object.<string, ?>)',
+		parsed: {
 			type: Types.TypeUnion,
 			elements: [
 				{
@@ -180,11 +180,11 @@ module.exports = [
 				}
 			]
 		}
-	],
-	[
-		'union with 2 types (an error, or a function that returns an error)',
-		'(Error|function(): Error)',
-		{
+	},
+	{
+		description: 'union with 2 types (an error, or a function that returns an error)',
+		expression: '(Error|function(): Error)',
+		parsed: {
 			type: Types.TypeUnion,
 			elements: [
 				{
@@ -201,5 +201,110 @@ module.exports = [
 				}
 			]
 		}
-	]
+	},
+
+	// The following type expressions are adapted from the Doctrine parser:
+	// http://constellation.github.com/doctrine/demo/
+	{
+		description: 'optional union with multiple types',
+		expression: '(jQuerySelector|Element|Object|Array.<Element>|jQuery|string|function())=',
+		parsed: {
+			type: Types.TypeUnion,
+			elements: [
+				{
+					type: Types.NameExpression,
+					name: 'jQuerySelector'
+				},
+				{
+					type: Types.NameExpression,
+					name: 'Element'
+				},
+				{
+					type: Types.NameExpression,
+					name: 'Object'
+				},
+				{
+					type: Types.TypeApplication,
+					expression: {
+						type: Types.NameExpression,
+						name: 'Array'
+					},
+					applications: [
+						{
+							type: Types.NameExpression,
+							name: 'Element'
+						}
+					]
+				},
+				{
+					type: Types.NameExpression,
+					name: 'jQuery'
+				},
+				{
+					type: Types.NameExpression,
+					name: 'string'
+				},
+				{
+					type: Types.FunctionType,
+					params: []
+				}
+			],
+			optional: true
+		}
+	},
+	{
+		description: 'optional union with multiple types, including a nested union type',
+		expression: '(Element|Object|Document|Object.<string, (string|function(!jQuery.event=))>)=',
+		parsed: {
+			type: Types.TypeUnion,
+			elements: [
+				{
+					type: Types.NameExpression,
+					name: 'Element'
+				},
+				{
+					type: Types.NameExpression,
+					name: 'Object'
+				},
+				{
+					type: Types.NameExpression,
+					name: 'Document'
+				},
+				{
+					type: Types.TypeApplication,
+					expression: {
+						type: Types.NameExpression,
+						name: 'Object'
+					},
+					applications: [
+						{
+							type: Types.NameExpression,
+							name: 'string'
+						},
+						{
+							type: Types.TypeUnion,
+							elements: [
+								{
+									type: Types.NameExpression,
+									name: 'string'
+								},
+								{
+									type: Types.FunctionType,
+									params: [
+										{
+											type: Types.NameExpression,
+											name: 'jQuery.event',
+											optional: true,
+											nullable: false
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			optional: true
+		}
+	}
 ];
