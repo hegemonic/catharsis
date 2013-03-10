@@ -16,12 +16,12 @@ function parseIt(item, options) {
 	try {
 		parsed = parse(item.expression, options);
 	} catch(e) {
-		throw new Error(util.format('unable to parse type expression "%s": %s', item[1],
+		throw new Error(util.format('unable to parse type expression "%s": %s', item.expression,
 			e.message));
 	}
 
 	if (!_.isEqual(parsed, item.parsed)) {
-		throw new Error(util.format('parse tree should be "%j", NOT "%j"', item[2], parsed));
+		throw new Error(util.format('parse tree should be "%j", NOT "%j"', item.parsed, parsed));
 	}
 }
 
