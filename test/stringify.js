@@ -10,18 +10,20 @@ var util = require('util');
 
 
 function stringifyIt(item, options) {
-	var string = stringify(item.parsed);
+	var string = stringify(item.parsed, options);
 	var expression = item.newExpression || item.expression;
 	if (string !== expression) {
-		throw new Error(util.format('type expression "%s" was stringified as "%s"', item.expression,
+		throw new Error(util.format('type expression "%s" was stringified as "%s"', expression,
 			string));
 	}
 
-	try {
-		parse(string, options);
-	} catch(e) {
-		throw new Error(util.format('unable to parse string "%s", created from %j: %s', string,
-			item.parsed, e.message));
+	if (options.validate === undefined || options.validate === true) {
+		try {
+			parse(string, options);
+		} catch(e) {
+			throw new Error(util.format('unable to parse string "%s", created from %j: %s', string,
+				item.parsed, e.message));
+		}
 	}
 }
 
@@ -43,20 +45,14 @@ function checkStringifiedTypes(filepath, options) {
 
 describe('stringify', function() {
 	var specs = './test/specs';
-	var lenientSpecs = path.join(specs, 'lenient');
+	var htmlSpecs = './test/specs/html';
 
-	function tester(specPath, basename) {
+	function tester(specPath, basename, options) {
 		it('can stringify types in the "' + basename + '" spec', function() {
-			checkStringifiedTypes(path.join(specPath, basename), {});
+			checkStringifiedTypes(path.join(specPath, basename), options);
 		});
 	}
 
-	function lenientTester(specPath, basename) {
-		it('can stringify types in the "' + basename + '" spec in lenient mode', function() {
-			checkStringifiedTypes(path.join(specPath, basename), {lenient: true});
-		});
-	}
-	
-	helper.testSpecs(specs, tester);
-	helper.testSpecs(lenientSpecs, lenientTester);
+	helper.testSpecs(specs, tester, {});
+	helper.testSpecs(htmlSpecs, tester, {htmlSafe: true, validate: false});
 });
