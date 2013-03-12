@@ -17,8 +17,8 @@ var lenientTypeExpressionCache = {};
 var parsedTypeCache = {};
 var lenientParsedTypeCache = {};
 
-function cachedParse(expr, opts) {
-	var cache = opts.lenient ? lenientTypeExpressionCache : typeExpressionCache;
+function cachedParse(expr, options) {
+	var cache = options.lenient ? lenientTypeExpressionCache : typeExpressionCache;
 	if (!cache[expr]) {
 		cache[expr] = parse(expr);
 	}
@@ -26,8 +26,8 @@ function cachedParse(expr, opts) {
 	return cache[expr];
 }
 
-function cachedStringify(parsedType, opts) {
-	var cache = opts.lenient ? lenientParsedTypeCache : parsedTypeCache;
+function cachedStringify(parsedType, options) {
+	var cache = options.lenient ? lenientParsedTypeCache : parsedTypeCache;
 	var json = JSON.stringify(parsedType);
 	if (!cache[json]) {
 		cache[json] = stringify(parsedType);
@@ -40,20 +40,20 @@ function Catharsis() {
 	this.Types = require('./lib/types');
 }
 
-Catharsis.prototype.parse = function(typeExpr, opts) {
-	opts = opts || {};
+Catharsis.prototype.parse = function(typeExpr, options) {
+	options = options || {};
 
-	return opts.useCache !== false ? cachedParse(typeExpr, opts) : parse(typeExpr, opts);
+	return options.useCache !== false ? cachedParse(typeExpr, options) : parse(typeExpr, options);
 };
 
-Catharsis.prototype.stringify = function(parsedType, opts) {
-	opts = opts || {};
+Catharsis.prototype.stringify = function(parsedType, options) {
+	options = options || {};
 	var result;
 
-	result = opts.useCache !== false ? cachedStringify(parsedType, opts) :
-		stringify(parsedType, opts);
-	if (opts.validate) {
-		this.parse(result, opts);
+	result = options.useCache !== false ? cachedStringify(parsedType, options) :
+		stringify(parsedType, options);
+	if (options.validate) {
+		this.parse(result, options);
 	}
 
 	return result;
