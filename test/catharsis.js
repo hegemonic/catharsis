@@ -39,19 +39,6 @@ describe('catharsis', function() {
 			invalid.should.throw();
 		});
 
-		it('should not throw an error when given an invalid type in lenient mode', function() {
-			function invalid() {
-				return catharsis.parse(invalidType, {lenient: true});
-			}
-
-			invalid.should.not.throw();
-			invalid().should.be.a('object');
-			invalid().should.eql({
-				type: Types.NameExpression,
-				name: invalidType
-			});
-		});
-
 		xit('should use the appropriate cache', function() {
 			// TODO: test normal and lenient mode
 		});

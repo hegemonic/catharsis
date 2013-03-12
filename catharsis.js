@@ -42,23 +42,8 @@ function Catharsis() {
 
 Catharsis.prototype.parse = function(typeExpr, opts) {
 	opts = opts || {};
-	var result;
 
-	try {
-		result = opts.useCache !== false ? cachedParse(typeExpr, opts) : parse(typeExpr, opts);
-	} catch (e) {
-		if (opts.lenient) {
-			// pretend it was a valid name expression
-			result = {
-				type: this.Types.NameExpression,
-				name: typeExpr
-			};
-		} else {
-			throw e;
-		}
-	}
-
-	return result;
+	return opts.useCache !== false ? cachedParse(typeExpr, opts) : parse(typeExpr, opts);
 };
 
 Catharsis.prototype.stringify = function(parsedType, opts) {
