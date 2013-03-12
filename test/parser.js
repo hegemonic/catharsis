@@ -59,6 +59,6 @@ describe('parser', function() {
 		}
 		
 		helper.testSpecs(specs, tester);
-		//helper.testSpecs(lenientSpecs, lenientTester);
+		helper.testSpecs(lenientSpecs, lenientTester);
 	});
 });

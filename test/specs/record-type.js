@@ -123,35 +123,6 @@ module.exports = [
 		}
 	},
 	{
-		description: 'record type with a property that uses a type application as a key',
-		expression: '{Array.<string>: number}',
-		parsed: {
-			type: Types.RecordType,
-			fields: [
-				{
-					type: Types.FieldType,
-					key: {
-						type: Types.TypeApplication,
-						expression: {
-							type: Types.NameExpression,
-							name: 'Array'
-						},
-						applications: [
-							{
-								type: Types.NameExpression,
-								name: 'string'
-							}
-						]
-					},
-					value: {
-						type: Types.NameExpression,
-						name: 'number'
-					}
-				}
-			]
-		}
-	},
-	{
 		description: 'record type with a property that uses a type application as a value',
 		expression: '{myArray: Array.<string>}',
 		parsed: {
@@ -175,39 +146,6 @@ module.exports = [
 								name: 'string'
 							}
 						]
-					}
-				}
-			]
-		}
-	},
-	{
-		description: 'record type with a property that uses a type union as a key',
-		expression: '{(number|boolean|string): number}',
-		parsed: {
-			type: Types.RecordType,
-			fields: [
-				{
-					type: Types.FieldType,
-					key: {
-						type: Types.TypeUnion,
-						elements: [
-							{
-								type: Types.NameExpression,
-								name: 'number'
-							},
-							{
-								type: Types.NameExpression,
-								name: 'boolean'
-							},
-							{
-								type: Types.NameExpression,
-								name: 'string'
-							}
-						]
-					},
-					value: {
-						type: Types.NameExpression,
-						name: 'number'
 					}
 				}
 			]
