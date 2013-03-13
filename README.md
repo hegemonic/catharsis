@@ -9,56 +9,95 @@ Catharsis is designed to be:
 handle any valid type expression. It uses a [Mocha](http://visionmedia.github.com/mocha/) test suite
 to verify the parser's accuracy.
 + **Fast**. Parse results are cached, so the parser is invoked only when necessary.
-+ **Flexible**. Catharsis can also convert parse results back into type expressions.
++ **Flexible**. Catharsis can convert parse results back into type expressions. In addition, it
+provides a lenient mode that can recover from common errors in type expressions.
 
 
 ## Example ##
 
 	var catharsis = require('catharsis');
 
-	var type = '!Object';
+    var type;
+    var malformedType;
 	var parsedType;
-	var expr;
+    var parsedMalformedType;
 
+    // normal parsing
 	try {
-		parsedType = catharsis.parse('!Object');
+        type = '!Object';
+		parsedType = catharsis.parse(type);
 		console.log('%j', parsedType);  // {"type":"NameExpression,"name":"Object","nullable":false}
 	}
 	catch(e) {
 		console.error('unable to parse %s: %s', type, e);
 	}
 
-    expr = catharsis.stringify(parsedType);
-    console.log(expr);  // !Object
+    // lenient parsing
+    try {
+        malformedType = 'number|string';  // should be (number|string)
+        parsedMalformedType = catharsis.parse(malformedType, {lenient: true});
+    }
+    catch (e) {
+        console.error('you will not see this error, thanks to lenient mode!');
+    }
+
+    console.log(catharsis.stringify(parsedType));           // !Object
+    console.log(catharsis.stringify(parsedMalformedType));  // number|string
+    console.log(catharsis.stringify(parsedMalformedType,    // (number|string)
+        {useCache: false}));
+
 
 See the `test/specs/` directory for more examples of Catharsis' parse results.
 
 
 ## Methods ##
 
-### parse(type, opts) ###
+### parse(type, options) ###
 Parse the Closure Compiler type `type`, and return the parse results. Throws an error if the type
 cannot be parsed.
 
+When called without options, Catharsis attempts to parse type expressions in the same way as
+Closure Compiler. When the `lenient` option is enabled, Catharsis can also parse several kinds of
+malformed type expressions:
+
++ The string `function` is treated as a function type with no parameters.
++ The period may be omitted from type applications. For example, `Array.<string>` and
+`Array<string>` will be parsed in the same way.
++ The enclosing parentheses may be omitted from type unions. For example, `(number|string)` and
+`number|string` will be parsed in the same way.
++ Name expressions may contain the characters `#` and `~`.
++ Record types may use types other than name expressions for keys.
+
 #### Parameters ####
 + `type`: A string containing a Closure Compiler type expression.
-+ `opts`: Options for parsing the type expression.
-    + `opts.useCache`: Specifies whether to use the cache of parsed types. Defaults to `true`.
++ `options`: Options for parsing the type expression.
+    + `options.lenient`: Specifies whether to enable lenient mode. Defaults to `false`.
+    + `options.useCache`: Specifies whether to use the cache of parsed types. Defaults to `true`.
 
 #### Returns ####
-An object containing the parse results.
+An object containing the parse results. See the `test/specs/` directory for examples of the parse
+results for different type expressions.
 
-### stringify(parsedType, opts) ###
+The object also includes two non-enumerable properties:
+
++ `lenient`: A boolean indicating whether the type expression was parsed in lenient mode.
++ `typeExpression`: A string containing the type expression that was parsed.
+
+### stringify(parsedType, options) ###
 Stringify the parsed Closure Compiler type expression `parsedType`, and return the type expression.
 If validation is enabled, throws an error if the stringified type expression cannot be parsed.
 
 #### Parameters ####
 + `parsedType`: An object containing a parsed Closure Compiler type expression.
-+ `opts`: Options for stringifying the parse results.
-    + `opts.useCache`: Specifies whether to use the cache of stringified parse results. Defaults to
-    `true`.
-    + `opts.validate`: Specifies whether to validate the stringified parse results by attempting to
-    parse them as a type expression. Defaults to `false`.
++ `options`: Options for stringifying the parse results.
+    + `options.htmlSafe`: Specifies whether to return an HTML-safe string that replaces left angle
+    brackets (`<`) with the corresponding entity (`&lt;`). **Note**: Characters in name expressions
+    are not escaped.
+    + `options.useCache`: Specifies whether to use the cache of stringified parse results. If the
+    cache is enabled, and the parsed type expression includes a `typeExpression` property, the
+    `typeExpression` property will be returned as-is. Defaults to `true`.
+    + `options.validate`: Specifies whether to validate the stringified parse results by attempting
+    to parse them as a type expression. Defaults to `false`.
 
 #### Returns ####
 A string containing the type expression.
@@ -89,6 +128,16 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.4.0 (March 2013):
+    + Catharsis now supports a lenient parsing option that can parse several kinds of malformed type
+    expressions. See the documentation for details.
+    + The objects containing parse results are now frozen.
+    + The objects containing parse results now have two non-enumerable properties:
+        + `lenient`: A boolean indicating whether the type expression was parsed in lenient mode.
+        + `typeExpression`: A string containing the original type expression.
+    + The `stringify()` method now honors the `useCache` option. If a parsed type includes a
+    `typeExpression` property, and `useCache` is not set to `false`, the stringified type will be
+    identical to the original type expression.
 + 0.3.1 (March 2013): Type expressions that begin with a reserved word, such as `integer`, are now
 parsed correctly.
 + 0.3.0 (March 2013):
