@@ -5,7 +5,6 @@ var catharsis = require('../catharsis');
 var should = require('should');
 var Types = catharsis.Types;
 
-var simpleType = 'foo';
 var invalidType = '{*<?';
 var simpleParsedType = {
 	type: Types.NameExpression,
@@ -28,7 +27,25 @@ describe('catharsis', function() {
 		});
 
 		it('should return an object when given basic input', function() {
-			catharsis.parse(simpleType).should.be.a('object');
+			catharsis.parse('foo').should.be.a('object');
+		});
+
+		it('should return a frozen object', function() {
+			Object.isFrozen(catharsis.parse('foo')).should.equal(true);
+		});
+
+		it('should return an object with nonenumerable "typeExpression" and "lenient" properties',
+			function() {
+			var parsedType = catharsis.parse('foo');
+			var descriptor;
+
+			descriptor = Object.getOwnPropertyDescriptor(parsedType, 'typeExpression');
+			descriptor.enumerable.should.equal(false);
+			descriptor.value.should.equal('foo');
+
+			descriptor = Object.getOwnPropertyDescriptor(parsedType, 'lenient');
+			descriptor.enumerable.should.equal(false);
+			descriptor.value.should.equal(false);
 		});
 
 		it('should throw an error when given an invalid type', function() {
@@ -39,8 +56,21 @@ describe('catharsis', function() {
 			invalid.should.throw();
 		});
 
-		xit('should use the appropriate cache', function() {
-			// TODO: test normal and lenient mode
+		it('should use the regular cache when lenient mode is disabled', function() {
+			// parse twice to make sure we're getting a cached version.
+			// there must be a less lame way to do this...
+			var bar = catharsis.parse('bar');
+			bar = catharsis.parse('bar');
+
+			bar.lenient.should.equal(false);	
+		});
+
+		it('should use the lenient cache when lenient mode is enabled', function() {
+			// parse twice to make sure we're getting a cached version
+			var baz = catharsis.parse('baz', {lenient: true});
+			baz = catharsis.parse('baz', {lenient: true});
+
+			baz.lenient.should.equal(true);
 		});
 	});
 
@@ -74,8 +104,27 @@ describe('catharsis', function() {
 				invalid.should.not.throw();
 		});
 
-		xit('should use the appropriate cache', function() {
-			// TODO: test normal and lenient mode
+		it('should return the typeExpression property as-is if the cache is enabled', function() {
+			var quxString = catharsis.stringify({
+				type: Types.NameExpression,
+				name: 'qux',
+				typeExpression: 'fake type expression'
+			});
+
+			quxString.should.equal('fake type expression');
+		});
+
+		it('should not return the typeExpression property if the cache is disabled', function() {
+			var quuxString = catharsis.stringify({
+				type: Types.NameExpression,
+				name: 'quux',
+				typeExpression: 'fake type expression'
+			},
+			{
+				useCache: false
+			});
+
+			quuxString.should.equal('quux');
 		});
 	});
 });

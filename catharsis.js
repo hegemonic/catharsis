@@ -19,21 +19,46 @@ var lenientParsedTypeCache = {};
 
 function cachedParse(expr, options) {
 	var cache = options.lenient ? lenientTypeExpressionCache : typeExpressionCache;
-	if (!cache[expr]) {
-		cache[expr] = parse(expr);
-	}
+	var parsedType;
 
-	return cache[expr];
+	if (options.useCache !== false && cache[expr]) {
+		return cache[expr];
+	} else {
+		parsedType = parse(expr);
+
+		Object.defineProperties(parsedType, {
+			typeExpression: {
+				value: expr
+			},
+			lenient: {
+				value: options.lenient === true ? true : false
+			}
+		});
+		parsedType = Object.freeze(parsedType);
+
+		if (options.useCache !== false) {
+			cache[expr] = parsedType;
+		}
+
+		return parsedType;
+	}
 }
 
 function cachedStringify(parsedType, options) {
 	var cache = options.lenient ? lenientParsedTypeCache : parsedTypeCache;
-	var json = JSON.stringify(parsedType);
-	if (!cache[json]) {
-		cache[json] = stringify(parsedType);
-	}
+	var json;
 
-	return cache[json];
+	if (options.useCache !== false && Object.prototype.hasOwnProperty.call(parsedType,
+		'typeExpression')) {
+		// return the original type expression
+		return parsedType.typeExpression;
+	} else if (options.useCache !== false) {
+		json = JSON.stringify(parsedType);
+		cache[json] = cache[json] || stringify(parsedType);
+		return cache[json];
+	} else {
+		return stringify(parsedType);
+	}
 }
 
 function Catharsis() {
@@ -43,15 +68,14 @@ function Catharsis() {
 Catharsis.prototype.parse = function(typeExpr, options) {
 	options = options || {};
 
-	return options.useCache !== false ? cachedParse(typeExpr, options) : parse(typeExpr, options);
+	return cachedParse(typeExpr, options);
 };
 
 Catharsis.prototype.stringify = function(parsedType, options) {
 	options = options || {};
 	var result;
 
-	result = options.useCache !== false ? cachedStringify(parsedType, options) :
-		stringify(parsedType, options);
+	result = cachedStringify(parsedType, options);
 	if (options.validate) {
 		this.parse(result, options);
 	}
