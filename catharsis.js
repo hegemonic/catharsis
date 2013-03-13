@@ -1,5 +1,5 @@
 /**
- * catharsis 0.4.0
+ * catharsis 0.4.1
  * A parser for Google Closure Compiler type expressions, powered by PEG.js.
  *
  * @author Jeff Williams <jeffrey.l.williams@gmail.com>
@@ -24,7 +24,7 @@ function cachedParse(expr, options) {
 	if (options.useCache !== false && cache[expr]) {
 		return cache[expr];
 	} else {
-		parsedType = parse(expr);
+		parsedType = parse(expr, options);
 
 		Object.defineProperties(parsedType, {
 			typeExpression: {
@@ -54,10 +54,10 @@ function cachedStringify(parsedType, options) {
 		return parsedType.typeExpression;
 	} else if (options.useCache !== false) {
 		json = JSON.stringify(parsedType);
-		cache[json] = cache[json] || stringify(parsedType);
+		cache[json] = cache[json] || stringify(parsedType, options);
 		return cache[json];
 	} else {
-		return stringify(parsedType);
+		return stringify(parsedType, options);
 	}
 }
 

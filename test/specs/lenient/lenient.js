@@ -28,6 +28,15 @@ module.exports = [
 		}
 	},
 	{
+		description: 'name expression containing a reserved word',
+		expression: 'this',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'this',
+			reservedWord: true
+		}
+	},
+	{
 		description: 'type application with no period',
 		expression: 'Array<string>',
 		newExpression: 'Array.<string>',

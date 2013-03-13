@@ -66,6 +66,7 @@ malformed type expressions:
 + The enclosing parentheses may be omitted from type unions. For example, `(number|string)` and
 `number|string` will be parsed in the same way.
 + Name expressions may contain the characters `#` and `~`.
++ Name expressions may contain a reserved word.
 + Record types may use types other than name expressions for keys.
 
 #### Parameters ####
@@ -128,6 +129,9 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.4.1 (March 2013):
+    + The `parse()` and `stringify()` methods now honor all of the specified options.
+    + When lenient parsing is enabled, name expressions can now contain a reserved word.
 + 0.4.0 (March 2013):
     + Catharsis now supports a lenient parsing option that can parse several kinds of malformed type
     expressions. See the documentation for details.

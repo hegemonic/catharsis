@@ -56,6 +56,14 @@ describe('catharsis', function() {
 			invalid.should.throw();
 		});
 
+		it('should pass the specified options to the parser', function() {
+			function lenient() {
+				catharsis.parse('number|string', {lenient: true});
+			}
+
+			lenient.should.not.throw();
+		});
+
 		it('should use the regular cache when lenient mode is disabled', function() {
 			// parse twice to make sure we're getting a cached version.
 			// there must be a less lame way to do this...
@@ -125,6 +133,27 @@ describe('catharsis', function() {
 			});
 
 			quuxString.should.equal('quux');
+		});
+		
+		it('should pass the specified options to the stringifier', function() {
+			var string = catharsis.stringify({
+				type: Types.TypeApplication,
+				expression: {
+					type: Types.NameExpression,
+					name: 'Array'
+				},
+				applications: [
+					{
+						type: Types.NameExpression,
+						name: 'string'
+					}
+				]
+			},
+			{
+				htmlSafe: true
+			});
+
+			string.should.equal('Array.&lt;string>');
 		});
 	});
 });
