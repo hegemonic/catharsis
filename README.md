@@ -10,7 +10,8 @@ handle any valid type expression. It uses a [Mocha](http://visionmedia.github.co
 to verify the parser's accuracy.
 + **Fast**. Parse results are cached, so the parser is invoked only when necessary.
 + **Flexible**. Catharsis can convert parse results back into type expressions. In addition, it
-provides a lenient mode that can recover from common errors in type expressions.
+provides a lenient mode that also accepts [JSDoc](https://github.com/jsdoc3/jsdoc)-style type
+expressions.
 
 
 ## Example ##
@@ -18,9 +19,9 @@ provides a lenient mode that can recover from common errors in type expressions.
 	var catharsis = require('catharsis');
 
     var type;
-    var malformedType;
+    var jsdocType;
 	var parsedType;
-    var parsedMalformedType;
+    var parsedJsdocType;
 
     // normal parsing
 	try {
@@ -34,16 +35,16 @@ provides a lenient mode that can recover from common errors in type expressions.
 
     // lenient parsing
     try {
-        malformedType = 'number|string';  // should be (number|string)
-        parsedMalformedType = catharsis.parse(malformedType, {lenient: true});
+        jsdocType = 'number|string';  // should be (number|string)
+        parsedJsdocType = catharsis.parse(jsdocType, {lenient: true});
     }
     catch (e) {
         console.error('you will not see this error, thanks to lenient mode!');
     }
 
-    console.log(catharsis.stringify(parsedType));           // !Object
-    console.log(catharsis.stringify(parsedMalformedType));  // number|string
-    console.log(catharsis.stringify(parsedMalformedType,    // (number|string)
+    console.log(catharsis.stringify(parsedType));       // !Object
+    console.log(catharsis.stringify(parsedJsdocType));  // number|string
+    console.log(catharsis.stringify(parsedJsdocType,    // (number|string)
         {useCache: false}));
 
 
@@ -58,14 +59,16 @@ cannot be parsed.
 
 When called without options, Catharsis attempts to parse type expressions in the same way as
 Closure Compiler. When the `lenient` option is enabled, Catharsis can also parse several kinds of
-malformed type expressions:
+type expressions that are used in [JSDoc](https://github.com/jsdoc3/jsdoc):
 
 + The string `function` is treated as a function type with no parameters.
 + The period may be omitted from type applications. For example, `Array.<string>` and
 `Array<string>` will be parsed in the same way.
++ You may append `[]` to a name expression (for example, `string[]`) to interpret it as a type
+application with the expression `Array` (for example, `Array.<string>`).
 + The enclosing parentheses may be omitted from type unions. For example, `(number|string)` and
 `number|string` will be parsed in the same way.
-+ Name expressions may contain the characters `#` and `~`.
++ Name expressions may contain the characters `#`, `~`, `:`, and `/`.
 + Name expressions may contain a reserved word.
 + Record types may use types other than name expressions for keys.
 
@@ -129,6 +132,11 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.4.2 (March 2013):
+    + When lenient parsing is enabled, name expressions can now contain the characters `:` and `/`.
+    + When lenient parsing is enabled, a name expression followed by `[]` (for example, `string[]`)
+    will be interpreted as a type application with the expression `Array` (for example,
+    `Array.<string>`).
 + 0.4.1 (March 2013):
     + The `parse()` and `stringify()` methods now honor all of the specified options.
     + When lenient parsing is enabled, name expressions can now contain a reserved word.

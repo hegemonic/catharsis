@@ -46,6 +46,7 @@ function checkStringifiedTypes(filepath, options) {
 describe('stringify', function() {
 	var specs = './test/specs';
 	var htmlSpecs = './test/specs/html';
+	var lenientSpecs = './test/specs/lenient';
 
 	function tester(specPath, basename, options) {
 		it('can stringify types in the "' + basename + '" spec', function() {
@@ -54,5 +55,6 @@ describe('stringify', function() {
 	}
 
 	helper.testSpecs(specs, tester, {});
+	helper.testSpecs(lenientSpecs, tester, {lenient: true});
 	helper.testSpecs(htmlSpecs, tester, {htmlSafe: true, validate: false});
 });

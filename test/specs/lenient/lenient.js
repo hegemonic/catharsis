@@ -28,6 +28,14 @@ module.exports = [
 		}
 	},
 	{
+		description: 'name expression for a class within a module',
+		expression: 'module:foo/bar/baz~Qux',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'module:foo/bar/baz~Qux'
+		}
+	},
+	{
 		description: 'name expression containing a reserved word',
 		expression: 'this',
 		parsed: {
@@ -52,6 +60,24 @@ module.exports = [
 					name: 'string'
 				}
 			]
+		}
+	},
+	{
+		description: 'Jsdoc Toolkit 2-style array notation',
+		expression: 'string[]',
+		newExpression: 'Array.<string>',
+		parsed: {
+			type: Types.TypeApplication,
+			expression: {
+				type: Types.NameExpression,
+				name: 'Array'
+			},
+			applications: [
+				{
+					type: Types.NameExpression,
+					name: 'string'
+				}
+			]			
 		}
 	},
 	{

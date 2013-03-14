@@ -1,5 +1,5 @@
 /**
- * catharsis 0.4.1
+ * catharsis 0.4.2
  * A parser for Google Closure Compiler type expressions, powered by PEG.js.
  *
  * @author Jeff Williams <jeffrey.l.williams@gmail.com>
