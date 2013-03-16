@@ -65,8 +65,7 @@ describe('catharsis', function() {
 		});
 
 		it('should use the regular cache when lenient mode is disabled', function() {
-			// parse twice to make sure we're getting a cached version.
-			// there must be a less lame way to do this...
+			// parse twice to make sure we're getting a cached version
 			var bar = catharsis.parse('bar');
 			bar = catharsis.parse('bar');
 
@@ -112,7 +111,7 @@ describe('catharsis', function() {
 				invalid.should.not.throw();
 		});
 
-		it('should return the typeExpression property as-is if the cache is enabled', function() {
+		it('should return the typeExpression property as-is by default', function() {
 			var quxString = catharsis.stringify({
 				type: Types.NameExpression,
 				name: 'qux',
@@ -122,21 +121,22 @@ describe('catharsis', function() {
 			quxString.should.equal('fake type expression');
 		});
 
-		it('should not return the typeExpression property if the cache is disabled', function() {
+		it('should not return the typeExpression property if restringification is requested',
+			function() {
 			var quuxString = catharsis.stringify({
 				type: Types.NameExpression,
 				name: 'quux',
 				typeExpression: 'fake type expression'
 			},
 			{
-				useCache: false
+				restringify: true
 			});
 
 			quuxString.should.equal('quux');
 		});
-		
-		it('should pass the specified options to the stringifier', function() {
-			var string = catharsis.stringify({
+
+		it('should not return the typeExpression property if htmlSafe is enabled', function() {
+			var typeAppString = catharsis.stringify({
 				type: Types.TypeApplication,
 				expression: {
 					type: Types.NameExpression,
@@ -145,15 +145,44 @@ describe('catharsis', function() {
 				applications: [
 					{
 						type: Types.NameExpression,
-						name: 'string'
+						name: 'boolean'
 					}
-				]
+				],
+				typeExpression: 'Array.<boolean>'
 			},
 			{
 				htmlSafe: true
 			});
 
+			typeAppString.should.equal('Array.&lt;boolean>');
+		});
+
+		// used for multiple tests
+		var typeApp = {
+			type: Types.TypeApplication,
+			expression: {
+				type: Types.NameExpression,
+				name: 'Array'
+			},
+			applications: [
+				{
+					type: Types.NameExpression,
+					name: 'string'
+				}
+			]			
+		};
+
+		it('should pass the specified options to the stringifier', function() {
+			var string = catharsis.stringify(typeApp, {htmlSafe: true});
+
 			string.should.equal('Array.&lt;string>');
+		});
+
+		it('should not cache an HTML-safe expression, then return it when the htmlSafe option ' +
+			'is disabled', function() {
+			var string = catharsis.stringify(typeApp, {});
+
+			string.should.equal('Array.<string>');
 		});
 	});
 });

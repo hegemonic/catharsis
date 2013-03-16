@@ -45,7 +45,7 @@ expressions.
     console.log(catharsis.stringify(parsedType));       // !Object
     console.log(catharsis.stringify(parsedJsdocType));  // number|string
     console.log(catharsis.stringify(parsedJsdocType,    // (number|string)
-        {useCache: false}));
+        {restringify: true}));
 
 
 See the `test/specs/` directory for more examples of Catharsis' parse results.
@@ -97,9 +97,11 @@ If validation is enabled, throws an error if the stringified type expression can
     + `options.htmlSafe`: Specifies whether to return an HTML-safe string that replaces left angle
     brackets (`<`) with the corresponding entity (`&lt;`). **Note**: Characters in name expressions
     are not escaped.
-    + `options.useCache`: Specifies whether to use the cache of stringified parse results. If the
-    cache is enabled, and the parsed type expression includes a `typeExpression` property, the
-    `typeExpression` property will be returned as-is. Defaults to `true`.
+    + `options.restringify`: Forces Catharsis to restringify the parsed type. If this option is not
+    specified, and the parsed type object includes a `typeExpression` property, Catharsis will
+    return the `typeExpression` property without modification. Defaults to `false`.
+    + `options.useCache`: Specifies whether to use the cache of stringified parse results. Defaults
+    to `true`.
     + `options.validate`: Specifies whether to validate the stringified parse results by attempting
     to parse them as a type expression. Defaults to `false`.
 
@@ -132,6 +134,11 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.4.3 (March 2013):
+    + The `stringify()` method no longer caches HTML-safe type expressions as if they were normal
+    type expressions.
+    + The `stringify()` method's options parameter may now include an `options.restringify`
+    property, and the behavior of the `options.useCache` property has changed.
 + 0.4.2 (March 2013):
     + When lenient parsing is enabled, name expressions can now contain the characters `:` and `/`.
     + When lenient parsing is enabled, a name expression followed by `[]` (for example, `string[]`)
