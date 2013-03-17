@@ -1,7 +1,8 @@
 # Catharsis #
 
-A JavaScript parser for Google Closure Compiler
-[type expressions](https://developers.google.com/closure/compiler/docs/js-for-compiler#types).
+A JavaScript parser for
+[Google Closure Compiler](https://developers.google.com/closure/compiler/docs/js-for-compiler#types)
+and [JSDoc](https://github.com/jsdoc3/jsdoc) type expressions.
 
 Catharsis is designed to be:
 
@@ -9,9 +10,8 @@ Catharsis is designed to be:
 handle any valid type expression. It uses a [Mocha](http://visionmedia.github.com/mocha/) test suite
 to verify the parser's accuracy.
 + **Fast**. Parse results are cached, so the parser is invoked only when necessary.
-+ **Flexible**. Catharsis can convert parse results back into type expressions. In addition, it
-provides a lenient mode that also accepts [JSDoc](https://github.com/jsdoc3/jsdoc)-style type
-expressions.
++ **Flexible**. Catharsis can convert parse results back into type expressions. In addition, it can
+parse [JSDoc](https://github.com/jsdoc3/jsdoc)-style type expressions.
 
 
 ## Example ##
@@ -20,26 +20,26 @@ expressions.
 
     var type;
     var jsdocType;
-	var parsedType;
+    var parsedType;
     var parsedJsdocType;
 
-    // normal parsing
-	try {
-        type = '!Object';
-		parsedType = catharsis.parse(type);
-		console.log('%j', parsedType);  // {"type":"NameExpression,"name":"Object","nullable":false}
-	}
-	catch(e) {
-		console.error('unable to parse %s: %s', type, e);
-	}
-
-    // lenient parsing
+    // Google Closure Compiler parsing
     try {
-        jsdocType = 'number|string';  // should be (number|string)
-        parsedJsdocType = catharsis.parse(jsdocType, {lenient: true});
+        type = '!Object';
+        parsedType = catharsis.parse(type);
+        console.log('%j', parsedType);  // {"type":"NameExpression,"name":"Object","nullable":false}
+    }
+    catch(e) {
+        console.error('unable to parse %s: %s', type, e);
+    }
+
+    // JSDoc-style type expressions enabled
+    try {
+        jsdocType = 'number|string';  // Closure Compiler expects (number|string)
+        parsedJsdocType = catharsis.parse(jsdocType, {jsdoc: true});
     }
     catch (e) {
-        console.error('you will not see this error, thanks to lenient mode!');
+        console.error('unable to parse %s: %s', jsdocType, e);
     }
 
     console.log(catharsis.stringify(parsedType));       // !Object
@@ -53,13 +53,13 @@ See the `test/specs/` directory for more examples of Catharsis' parse results.
 
 ## Methods ##
 
-### parse(type, options) ###
-Parse the Closure Compiler type `type`, and return the parse results. Throws an error if the type
-cannot be parsed.
+### parse(typeExpression, options) ###
+Parse `typeExpression`, and return the parse results. Throws an error if the type expression cannot
+be parsed.
 
 When called without options, Catharsis attempts to parse type expressions in the same way as
-Closure Compiler. When the `lenient` option is enabled, Catharsis can also parse several kinds of
-type expressions that are used in [JSDoc](https://github.com/jsdoc3/jsdoc):
+Closure Compiler. When the `jsdoc` option is enabled, Catharsis can also parse several kinds of
+type expressions that are permitted in [JSDoc](https://github.com/jsdoc3/jsdoc):
 
 + The string `function` is treated as a function type with no parameters.
 + The period may be omitted from type applications. For example, `Array.<string>` and
@@ -75,7 +75,8 @@ application with the expression `Array` (for example, `Array.<string>`).
 #### Parameters ####
 + `type`: A string containing a Closure Compiler type expression.
 + `options`: Options for parsing the type expression.
-    + `options.lenient`: Specifies whether to enable lenient mode. Defaults to `false`.
+    + `options.jsdoc`: Specifies whether to enable parsing of JSDoc-style type expressions. Defaults
+    to `false`.
     + `options.useCache`: Specifies whether to use the cache of parsed types. Defaults to `true`.
 
 #### Returns ####
@@ -84,26 +85,34 @@ results for different type expressions.
 
 The object also includes two non-enumerable properties:
 
-+ `lenient`: A boolean indicating whether the type expression was parsed in lenient mode.
++ `jsdoc`: A boolean indicating whether the type expression was parsed with JSDoc support enabled.
 + `typeExpression`: A string containing the type expression that was parsed.
 
 ### stringify(parsedType, options) ###
-Stringify the parsed Closure Compiler type expression `parsedType`, and return the type expression.
-If validation is enabled, throws an error if the stringified type expression cannot be parsed.
+Stringify `parsedType`, and return the type expression. If validation is enabled, throws an error if
+the stringified type expression cannot be parsed.
 
 #### Parameters ####
 + `parsedType`: An object containing a parsed Closure Compiler type expression.
 + `options`: Options for stringifying the parse results.
+    + `options.cssClass`: A CSS class to add to HTML links. Used only if `options.links` is
+    provided. By default, no CSS class is added.
     + `options.htmlSafe`: Specifies whether to return an HTML-safe string that replaces left angle
     brackets (`<`) with the corresponding entity (`&lt;`). **Note**: Characters in name expressions
     are not escaped.
+    + `options.links`: An object whose keys are name expressions and whose values are URIs. If a
+    name expression matches a key in `options.links`, the name expression will be wrapped in an
+    HTML <a> tag that links to the URI. If `options.cssClass` is specified, the <a> tag will include
+    a `class` attribute. **Note**: When using this option, parsed types are always restringified,
+    and the resulting string is not cached.
     + `options.restringify`: Forces Catharsis to restringify the parsed type. If this option is not
     specified, and the parsed type object includes a `typeExpression` property, Catharsis will
-    return the `typeExpression` property without modification. Defaults to `false`.
+    return the `typeExpression` property without modification when possible. Defaults to `false`.
     + `options.useCache`: Specifies whether to use the cache of stringified parse results. Defaults
     to `true`.
     + `options.validate`: Specifies whether to validate the stringified parse results by attempting
-    to parse them as a type expression. Defaults to `false`.
+    to parse them as a type expression. If the stringified results are not parsable by default, you
+    must also provide the appropriate options to pass to the `parse()` method. Defaults to `false`.
 
 #### Returns ####
 A string containing the type expression.
@@ -134,6 +143,11 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.5.0 (March 2013):
+    + The `parse()` method's `lenient` option has been renamed to `jsdoc`. **Note**: This change is
+    not backwards-compatible with previous versions.
+    + The `stringify()` method now accepts `cssClass` and `links` options, which you can use to
+    add HTML links to a type expression.
 + 0.4.3 (March 2013):
     + The `stringify()` method no longer caches HTML-safe type expressions as if they were normal
     type expressions.

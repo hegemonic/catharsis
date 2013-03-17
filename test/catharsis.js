@@ -34,7 +34,7 @@ describe('catharsis', function() {
 			Object.isFrozen(catharsis.parse('foo')).should.equal(true);
 		});
 
-		it('should return an object with nonenumerable "typeExpression" and "lenient" properties',
+		it('should return an object with nonenumerable "typeExpression" and "jsdoc" properties',
 			function() {
 			var parsedType = catharsis.parse('foo');
 			var descriptor;
@@ -43,7 +43,7 @@ describe('catharsis', function() {
 			descriptor.enumerable.should.equal(false);
 			descriptor.value.should.equal('foo');
 
-			descriptor = Object.getOwnPropertyDescriptor(parsedType, 'lenient');
+			descriptor = Object.getOwnPropertyDescriptor(parsedType, 'jsdoc');
 			descriptor.enumerable.should.equal(false);
 			descriptor.value.should.equal(false);
 		});
@@ -57,27 +57,27 @@ describe('catharsis', function() {
 		});
 
 		it('should pass the specified options to the parser', function() {
-			function lenient() {
-				catharsis.parse('number|string', {lenient: true});
+			function jsdoc() {
+				catharsis.parse('number|string', {jsdoc: true});
 			}
 
-			lenient.should.not.throw();
+			jsdoc.should.not.throw();
 		});
 
-		it('should use the regular cache when lenient mode is disabled', function() {
+		it('should use the regular cache when JSDoc mode is disabled', function() {
 			// parse twice to make sure we're getting a cached version
 			var bar = catharsis.parse('bar');
 			bar = catharsis.parse('bar');
 
-			bar.lenient.should.equal(false);	
+			bar.jsdoc.should.equal(false);	
 		});
 
-		it('should use the lenient cache when lenient mode is enabled', function() {
+		it('should use the JSDoc cache when JSDoc mode is enabled', function() {
 			// parse twice to make sure we're getting a cached version
-			var baz = catharsis.parse('baz', {lenient: true});
-			baz = catharsis.parse('baz', {lenient: true});
+			var baz = catharsis.parse('baz', {jsdoc: true});
+			baz = catharsis.parse('baz', {jsdoc: true});
 
-			baz.lenient.should.equal(true);
+			baz.jsdoc.should.equal(true);
 		});
 	});
 
@@ -155,6 +155,20 @@ describe('catharsis', function() {
 			});
 
 			typeAppString.should.equal('Array.&lt;boolean>');
+		});
+
+		it('should not return the typeExpression property if the links option is provided',
+			function() {
+			var typeAppString = catharsis.stringify({
+				type: Types.NameExpression,
+				name: 'string',
+				typeExpression: 'fake type expression'
+			},
+			{
+				links: {}
+			});
+
+			typeAppString.should.equal('string');
 		});
 
 		// used for multiple tests

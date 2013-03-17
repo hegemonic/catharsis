@@ -45,8 +45,15 @@ function checkStringifiedTypes(filepath, options) {
 
 describe('stringify', function() {
 	var specs = './test/specs';
-	var htmlSpecs = './test/specs/html';
-	var lenientSpecs = './test/specs/lenient';
+	var htmlSpecs = path.join(specs, 'html');
+	var jsdocSpecs = path.join(specs, 'jsdoc');
+	var linkSpecs = path.join(specs, 'link');
+	var linkCssSpecs = path.join(specs, 'linkcss');
+
+	var links = {
+		Foo: 'Foo.html',
+		'module:foo/bar/baz~Qux': 'foobarbazqux.html'
+	};
 
 	function tester(specPath, basename, options) {
 		it('can stringify types in the "' + basename + '" spec', function() {
@@ -55,6 +62,19 @@ describe('stringify', function() {
 	}
 
 	helper.testSpecs(specs, tester, {});
-	helper.testSpecs(lenientSpecs, tester, {lenient: true});
+	helper.testSpecs(jsdocSpecs, tester, {jsdoc: true});
 	helper.testSpecs(htmlSpecs, tester, {htmlSafe: true, validate: false});
+	helper.testSpecs(linkSpecs, tester, {
+		htmlSafe: true,
+		jsdoc: true,
+		links: links,
+		validate: false
+	});
+	helper.testSpecs(linkCssSpecs, tester, {
+		cssClass: 'my-class',
+		htmlSafe: true,
+		jsdoc: true,
+		links: links,
+		validate: false
+	});
 });

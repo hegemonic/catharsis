@@ -44,7 +44,7 @@ function checkTypes(filepath, options) {
 describe('parser', function() {
 	describe('parse()', function() {
 		var specs = './test/specs';
-		var lenientSpecs = path.join(specs, 'lenient');
+		var jsdocSpecs = path.join(specs, 'jsdoc');
 
 		function tester(specPath, basename) {
 			it('can parse types in the "' + basename + '" spec', function() {
@@ -52,13 +52,14 @@ describe('parser', function() {
 			});
 		}
 
-		function lenientTester(specPath, basename) {
-			it('can parse types in the "' + basename + '" spec when in lenient mode', function() {
-				checkTypes(path.join(specPath, basename), {lenient: true});
+		function jsdocTester(specPath, basename) {
+			it('can parse types in the "' + basename + '" spec when JSDoc type parsing is enabled',
+				function() {
+				checkTypes(path.join(specPath, basename), {jsdoc: true});
 			});
 		}
 		
 		helper.testSpecs(specs, tester);
-		helper.testSpecs(lenientSpecs, lenientTester);
+		helper.testSpecs(jsdocSpecs, jsdocTester);
 	});
 });
