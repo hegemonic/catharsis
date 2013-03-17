@@ -1,7 +1,7 @@
 {
-	"version": "0.4.3",
+	"version": "0.5.0-dev",
 	"name": "catharsis",
-	"description": "A JavaScript parser for Google Closure Compiler type expressions.",
+	"description": "A JavaScript parser for Google Closure Compiler and JSDoc type expressions.",
 	"author": "Jeff Williams <jeffrey.l.williams@gmail.com>",
 	"repository": {
 		"type": "git",
