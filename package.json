@@ -13,13 +13,15 @@
 		"mocha": "1.6.0",
 		"pegjs": "git+ssh://git@github.com:dmajda/pegjs.git#76cc5d55",
 		"should": "1.2.2",
+		"uglify-js": "2.2.5",
 		"underscore": "1.4.4"
 	},
 	"engines": {
 		"node": ">= 0.6"
 	},
 	"scripts": {
-		"prepublish": "pegjs ./lib/parser.pegjs",
+		"build": "pegjs ./lib/parser.pegjs",
+		"prepublish": "pegjs ./lib/parser.pegjs; uglifyjs ./lib/parser.js -o ./lib/parser.js",
 		"test": "mocha"
 	},
 	"licenses": [
