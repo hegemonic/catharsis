@@ -98,11 +98,11 @@ the stringified type expression cannot be parsed.
     + `options.cssClass`: A CSS class to add to HTML links. Used only if `options.links` is
     provided. By default, no CSS class is added.
     + `options.htmlSafe`: Specifies whether to return an HTML-safe string that replaces left angle
-    brackets (`&lt;`) with the corresponding entity (`&amp;lt;`). **Note**: Characters in name
-    expressions are not escaped.
+    brackets (`<`) with the corresponding entity (`&lt;`). **Note**: Characters in name expressions
+    are not escaped.
     + `options.links`: An object whose keys are name expressions and whose values are URIs. If a
     name expression matches a key in `options.links`, the name expression will be wrapped in an
-    HTML &lt;a> tag that links to the URI. If `options.cssClass` is specified, the &lt;a> tag will
+    HTML `<a>` tag that links to the URI. If `options.cssClass` is specified, the `<a>` tag will
     include a `class` attribute. **Note**: When using this option, parsed types are always
     restringified, and the resulting string is not cached.
     + `options.restringify`: Forces Catharsis to restringify the parsed type. If this option is not
