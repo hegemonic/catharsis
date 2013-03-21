@@ -168,5 +168,23 @@ module.exports = [
 			type: Types.FunctionType,
 			params: []
 		}
+	},
+	{
+		description: 'standard function type (should still parse if JSDoc expressions are allowed)',
+		expression: 'function(this:my.namespace.Class, my.Class)=',
+		parsed: {
+			type: Types.FunctionType,
+			params: [
+				{
+					type: Types.NameExpression,
+					name: 'my.Class'
+				}
+			],
+			'this': {
+				type: Types.NameExpression,
+				name: 'my.namespace.Class'
+			},
+			optional: true
+		}
 	}
 ];

@@ -143,6 +143,8 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.5.2 (March 2013): The `parse()` method now correctly parses function types when JSDoc-style type
+expressions are enabled.
 + 0.5.1 (March 2013): Newlines and extra spaces are now removed from type expressions before they
 are parsed.
 + 0.5.0 (March 2013):

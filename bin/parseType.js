@@ -9,10 +9,15 @@ var util = require('util');
 
 var command = path.basename(process.argv[1]);
 var typeExpression = process.argv[2];
+var jsdoc = process.argv[3] === '--jsdoc' ? true : false;
 var parsedType;
 
+var opts = {
+	jsdoc: jsdoc
+};
+
 function usage() {
-	console.log(util.format('Usage:\n    %s [typeExpression]', command));
+	console.log(util.format('Usage:\n    %s typeExpression [--jsdoc]', command));
 }
 
 if (!typeExpression) {
@@ -20,7 +25,7 @@ if (!typeExpression) {
 	process.exit(1);
 } else {
 	try {
-		parsedType = catharsis.parse(typeExpression);
+		parsedType = catharsis.parse(typeExpression, opts);
 	} catch (e) {
 		console.error(util.format('Unable to parse "%s" (exception follows):', typeExpression));
 		console.error(e.stack || e.message);
