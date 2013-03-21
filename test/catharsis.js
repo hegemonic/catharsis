@@ -79,6 +79,11 @@ describe('catharsis', function() {
 
 			baz.jsdoc.should.equal(true);
 		});
+
+		it('should strip newlines before parsing a type expression', function() {
+			var parsed = catharsis.parse('My\rNew\nClass\r\n');
+			parsed.name.should.equal('MyNewClass');
+		});
 	});
 
 	describe('stringify()', function() {

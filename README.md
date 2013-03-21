@@ -143,6 +143,8 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.5.1 (March 2013): Newlines and extra spaces are now removed from type expressions before they
+are parsed.
 + 0.5.0 (March 2013):
     + The `parse()` method's `lenient` option has been renamed to `jsdoc`. **Note**: This change is
     not backwards-compatible with previous versions.
