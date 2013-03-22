@@ -27,22 +27,22 @@ module.exports = [
 			name: 'MyClass#myMember#yourMember~theirMember'
 		}
 	},
-    {
-   		description: 'name expression for a class within a module',
-   		expression: 'module:foo/bar/baz~Qux',
-   		parsed: {
-   			type: Types.NameExpression,
-   			name: 'module:foo/bar/baz~Qux'
-   		}
-   	},
-    {
-   		description: 'name expression for a class within a module with hyphens',
-   		expression: 'module:foo-bar/baz~Qux',
-   		parsed: {
-   			type: Types.NameExpression,
-   			name: 'module:foo-bar/baz~Qux'
-   		}
-   	},
+	{
+		description: 'name expression for a class within a module',
+		expression: 'module:foo/bar/baz~Qux',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'module:foo/bar/baz~Qux'
+		}
+	},
+	{
+		description: 'name expression for a class within a module with hyphens',
+		expression: 'module:foo-bar/baz~Qux',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'module:foo-bar/baz~Qux'
+		}
+	},
 	{
 		description: 'name expression containing a reserved word',
 		expression: 'this',
