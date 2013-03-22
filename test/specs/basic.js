@@ -89,5 +89,13 @@ module.exports = [
 			type: Types.NameExpression,
 			name: 'forsooth'
 		}
+	},
+	{
+		description: 'name that includes a hyphen and a numeral',
+		expression: 'My-1st-Class',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'My-1st-Class'
+		}
 	}
 ];
