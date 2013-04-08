@@ -1,0 +1,6 @@
+.jshintrc
+CONTRIBUTING.md
+lib/parser.pegjs
+node_modules
+npm-debug.log
+test
