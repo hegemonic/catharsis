@@ -143,6 +143,8 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.5.5 (April 2013): Corrected a parsing issue with name expressions that end with a value enclosed
+in parentheses.
 + 0.5.4 (April 2013):
     + Repeatable literals (for example, `...*`) are now parsed correctly.
     + When JSDoc-style type expressions are enabled, a name expression can now contain a value

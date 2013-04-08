@@ -53,11 +53,43 @@ module.exports = [
 		}
 	},
 	{
-		description: 'name expression for a symbol variation',
+		description: 'name expression for a symbol variation whose name is an empty string',
+		expression: 'MyClass()',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'MyClass()'
+		}
+	},
+	{
+		description: 'name expression for a symbol variation whose name is one numeral',
 		expression: 'MyClass(2)',
 		parsed: {
 			type: Types.NameExpression,
 			name: 'MyClass(2)'
+		}
+	},
+	{
+		description: 'name expression for a symbol variation whose name is multiple numerals',
+		expression: 'MyClass(23456)',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'MyClass(23456)'
+		}
+	},
+	{
+		description: 'name expression for a symbol variation whose name is one letter',
+		expression: 'MyClass(a)',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'MyClass(a)'
+		}
+	},
+	{
+		description: 'name expression for a symbol variation whose name is multiple letters',
+		expression: 'MyClass(abcde)',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'MyClass(abcde)'
 		}
 	},
 	{
