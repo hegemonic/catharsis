@@ -62,10 +62,26 @@ module.exports = [
 		}
 	},
 	{
+		description: 'repeatable null',
+		expression: '...null',
+		parsed: {
+			type: Types.NullLiteral,
+			repeatable: true
+		}
+	},
+	{
 		description: 'undefined',
 		expression: 'undefined',
 		parsed: {
 			type: Types.UndefinedLiteral
+		}
+	},
+	{
+		description: 'repeatable undefined',
+		expression: '...undefined',
+		parsed: {
+			type: Types.UndefinedLiteral,
+			repeatable: true
 		}
 	},
 	{
@@ -76,10 +92,26 @@ module.exports = [
 		}
 	},
 	{
+		description: 'repeatable all',
+		expression: '...*',
+		parsed: {
+			type: Types.AllLiteral,
+			repeatable: true
+		}
+	},
+	{
 		description: 'unknown',
 		expression: '?',
 		parsed: {
 			type: Types.UnknownLiteral
+		}
+	},
+	{
+		description: 'repeatable unknown',
+		expression: '...?',
+		parsed: {
+			type: Types.UnknownLiteral,
+			repeatable: true
 		}
 	},
 	{
