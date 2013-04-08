@@ -53,6 +53,14 @@ module.exports = [
 		}
 	},
 	{
+		description: 'name expression for a symbol variation',
+		expression: 'MyClass(2)',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'MyClass(2)'
+		}
+	},
+	{
 		description: 'type application with no period',
 		expression: 'Array<string>',
 		newExpression: 'Array.<string>',
