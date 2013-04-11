@@ -28,6 +28,38 @@ module.exports = [
 		}
 	},
 	{
+		description: 'object with a single-quoted string-literal property',
+		expression: "myObj.'myProp'.foo",
+		parsed: {
+			type: Types.NameExpression,
+			name: "myObj.'myProp'.foo"
+		}
+	},
+	{
+		description: 'object with a double-quoted string-literal property',
+		expression: 'myObj."myProp".foo',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'myObj."myProp".foo'
+		}
+	},
+	{
+		description: 'object with a string-literal property that includes other punctuation',
+		expression: 'myObj."#weirdProp".foo',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'myObj."#weirdProp".foo'
+		}
+	},
+	{
+		description: 'object with a numeric property',
+		expression: 'myObj.12345',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'myObj.12345'
+		}
+	},
+	{
 		description: 'variable number of parameters',
 		expression: '...number',
 		parsed: {
