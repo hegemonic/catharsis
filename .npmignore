@@ -1,4 +1,6 @@
+.gitignore
 .jshintrc
+.npmignore
 CONTRIBUTING.md
 lib/parser.pegjs
 node_modules
