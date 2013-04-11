@@ -93,6 +93,29 @@ module.exports = [
 		}
 	},
 	{
+		description: 'function signature with a repeatable param that is not enclosed in brackets',
+		expression: 'function(...foo)',
+		newExpression: 'function(...[foo])',
+		parsed: {
+			type: Types.FunctionType,
+			params: [
+				{
+					type: Types.NameExpression,
+					name: 'foo',
+					repeatable: true
+				}
+			]
+		}
+	},
+	{
+		description: 'identifier with a repeatable param that is not enclosed in brackets',
+		expression: 'MyClass(...foo)',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'MyClass(...foo)'
+		}
+	},
+	{
 		description: 'type application with no period',
 		expression: 'Array<string>',
 		newExpression: 'Array.<string>',
