@@ -152,24 +152,6 @@ module.exports = [
 		}
 	},
 	{
-		description: 'type union with no enclosing parentheses',
-		expression: 'number|string',
-		newExpression: '(number|string)',
-		parsed: {
-			type: Types.TypeUnion,
-			elements: [
-				{
-					type: Types.NameExpression,
-					name: 'number'
-				},
-				{
-					type: Types.NameExpression,
-					name: 'string'
-				}
-			]
-		}
-	},
-	{
 		description: 'record type with a property that uses a type application as a key',
 		expression: '{Array.<string>: number}',
 		parsed: {

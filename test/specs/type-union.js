@@ -202,6 +202,24 @@ module.exports = [
 			]
 		}
 	},
+	{
+		description: 'type union with no enclosing parentheses',
+		expression: 'number|string',
+		newExpression: '(number|string)',
+		parsed: {
+			type: Types.TypeUnion,
+			elements: [
+				{
+					type: Types.NameExpression,
+					name: 'number'
+				},
+				{
+					type: Types.NameExpression,
+					name: 'string'
+				}
+			]
+		}
+	},
 
 	// The following type expressions are adapted from the Doctrine parser:
 	// http://constellation.github.com/doctrine/demo/
