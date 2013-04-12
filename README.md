@@ -35,7 +35,7 @@ parse [JSDoc](https://github.com/jsdoc3/jsdoc)-style type expressions.
 
     // JSDoc-style type expressions enabled
     try {
-        jsdocType = 'number|string';  // Closure Compiler expects (number|string)
+        jsdocType = 'string[]';  // Closure Compiler expects Array.<string>
         parsedJsdocType = catharsis.parse(jsdocType, {jsdoc: true});
     }
     catch (e) {
@@ -43,8 +43,8 @@ parse [JSDoc](https://github.com/jsdoc3/jsdoc)-style type expressions.
     }
 
     console.log(catharsis.stringify(parsedType));       // !Object
-    console.log(catharsis.stringify(parsedJsdocType));  // number|string
-    console.log(catharsis.stringify(parsedJsdocType,    // (number|string)
+    console.log(catharsis.stringify(parsedJsdocType));  // string[]
+    console.log(catharsis.stringify(parsedJsdocType,    // Array.<string>
         {restringify: true}));
 
 
@@ -62,13 +62,15 @@ Closure Compiler. When the `jsdoc` option is enabled, Catharsis can also parse s
 type expressions that are permitted in [JSDoc](https://github.com/jsdoc3/jsdoc):
 
 + The string `function` is treated as a function type with no parameters.
++ In a function type with repeatable parameters, the names of repeatable parameters are not required
+to be enclosed in square brackets (for example, `function(...foo)` is allowed).
 + The period may be omitted from type applications. For example, `Array.<string>` and
 `Array<string>` will be parsed in the same way.
 + You may append `[]` to a name expression (for example, `string[]`) to interpret it as a type
 application with the expression `Array` (for example, `Array.<string>`).
-+ The enclosing parentheses may be omitted from type unions. For example, `(number|string)` and
-`number|string` will be parsed in the same way.
 + Name expressions may contain the characters `#`, `~`, `:`, and `/`.
++ Name expressions may contain a suffix that is similar to a function signature (for example,
+`MyClass(foo, bar)`).
 + Name expressions may contain a reserved word.
 + Record types may use types other than name expressions for keys.
 
@@ -143,6 +145,14 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.5.6 (April 2013):
+    + For consistency with Google Closure Library, parentheses are no longer required around type
+    unions. (In previous versions, the parentheses could be omitted when JSDoc support was enabled.)
+    + For consistency with Google Closure Library, you can now use postfix notation for the `?`
+    (nullable) and `!` (non-nullable) modifiers. For example, `?string` and `string?` are now
+    treated as equivalent.
+    + String literals and numeric literals are now allowed as property names within name
+    expressions. For example, the name expression `Foo."bar"` is now parsed correctly.
 + 0.5.5 (April 2013): Corrected a parsing issue with name expressions that end with a value enclosed
 in parentheses.
 + 0.5.4 (April 2013):
