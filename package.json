@@ -10,11 +10,11 @@
 	"bugs": "https://github.com/hegemonic/catharsis/issues",
 	"main": "catharsis.js",
 	"devDependencies": {
-		"mocha": "1.6.0",
+		"mocha": "1.13.0",
 		"pegjs": "git+ssh://git@github.com:dmajda/pegjs.git#76cc5d55",
-		"should": "1.2.2",
-		"uglify-js": "2.2.5",
-		"underscore": "1.4.4"
+		"should": "1.3.0",
+		"uglify-js": "2.4.0",
+		"underscore": "1.5.2"
 	},
 	"engines": {
 		"node": ">= 0.6"
