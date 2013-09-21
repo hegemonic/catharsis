@@ -145,6 +145,8 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.6.0 (September 2013): Added support for the type expression `function[]` when JSDoc-style type
+expressions are enabled.
 + 0.5.6 (April 2013):
     + For consistency with Google Closure Library, parentheses are no longer required around type
     unions. (In previous versions, the parentheses could be omitted when JSDoc support was enabled.)
