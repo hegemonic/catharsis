@@ -134,7 +134,7 @@ module.exports = [
 		}
 	},
 	{
-		description: 'Jsdoc Toolkit 2-style array notation',
+		description: 'Jsdoc Toolkit 2-style array notation for an array of strings',
 		expression: 'string[]',
 		newExpression: 'Array.<string>',
 		parsed: {
@@ -147,6 +147,24 @@ module.exports = [
 				{
 					type: Types.NameExpression,
 					name: 'string'
+				}
+			]
+		}
+	},
+	{
+		description: 'Jsdoc Toolkit 2-style array notation for an array of functions',
+		expression: 'function[]',
+		newExpression: 'Array.<function()>',
+		parsed: {
+			type: Types.TypeApplication,
+			expression: {
+				type: Types.NameExpression,
+				name: 'Array'
+			},
+			applications: [
+				{
+					type: Types.FunctionType,
+					params: []
 				}
 			]
 		}
