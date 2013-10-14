@@ -1,24 +1,38 @@
 'use strict';
 
+var _ = require('underscore');
+
 var Types = require('../../lib/types');
+
+var repeatable = {
+	repeatable: true
+};
+
+var numberBoolean = {
+	type: Types.TypeUnion,
+	elements: [
+		{
+			type: Types.NameExpression,
+			name: 'number'
+		},
+		{
+			type: Types.NameExpression,
+			name: 'boolean'
+		}
+	]
+};
+var numberBooleanRepeatable = _.extend({}, numberBoolean, repeatable);
 
 module.exports = [
 	{
 		description: 'union with 2 types (number and boolean)',
 		expression: '(number|boolean)',
-		parsed: {
-			type: Types.TypeUnion,
-			elements: [
-				{
-					type: Types.NameExpression,
-					name: 'number'
-				},
-				{
-					type: Types.NameExpression,
-					name: 'boolean'
-				}
-			]
-		}
+		parsed: numberBoolean
+	},
+	{
+		description: 'repeatable union with 2 types (number and boolean)',
+		expression: '...(number|boolean)',
+		parsed: numberBooleanRepeatable
 	},
 	{
 		description: 'union with 2 types (Object and undefined)',

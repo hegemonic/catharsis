@@ -1,6 +1,30 @@
 'use strict';
 
+var _ = require('underscore');
+
 var Types = require('../../lib/types');
+
+var repeatable = {
+	repeatable: true
+};
+
+var simpleRecordType = {
+	type: Types.RecordType,
+	fields: [
+		{
+			type: Types.FieldType,
+			key: {
+				type: Types.NameExpression,
+				name: 'myNum'
+			},
+			value: {
+				type: Types.NameExpression,
+				name: 'number'
+			}
+		}
+	]
+};
+var simpleRecordTypeRepeatable = _.extend({}, simpleRecordType, repeatable);
 
 module.exports = [
 	{
@@ -14,22 +38,12 @@ module.exports = [
 	{
 		description: 'record type with 1 typed property',
 		expression: '{myNum: number}',
-		parsed: {
-			type: Types.RecordType,
-			fields: [
-				{
-					type: Types.FieldType,
-					key: {
-						type: Types.NameExpression,
-						name: 'myNum'
-					},
-					value: {
-						type: Types.NameExpression,
-						name: 'number'
-					}
-				}
-			]
-		}
+		parsed: simpleRecordType
+	},
+	{
+		description: 'repeatable record type with 1 typed property',
+		expression: '...{myNum: number}',
+		parsed: simpleRecordTypeRepeatable
 	},
 	{
 		description: 'optional record type with 1 typed property',

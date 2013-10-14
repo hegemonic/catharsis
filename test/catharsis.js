@@ -6,6 +6,7 @@ var should = require('should');
 var Types = catharsis.Types;
 
 var invalidType = '{*<?';
+var invalidRepeatableType = '!...string';
 var simpleParsedType = {
 	type: Types.NameExpression,
 	name: 'string'
@@ -55,6 +56,14 @@ describe('catharsis', function() {
 		it('should throw an error when given an invalid type', function() {
 			function invalid() {
 				catharsis.parse(invalidType);
+			}
+
+			invalid.should.throw();
+		});
+
+		it('should throw an error when given an invalid repeatable type', function() {
+			function invalid() {
+				catharsis.parse(invalidRepeatableType);
 			}
 
 			invalid.should.throw();

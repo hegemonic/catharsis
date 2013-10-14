@@ -1,24 +1,39 @@
 'use strict';
 
+var _ = require('underscore');
+
 var Types = require('../../lib/types');
+var extend = require('util')._extend;
+
+var repeatable = {
+	repeatable: true
+};
+
+var stringArray = {
+	type: Types.TypeApplication,
+	expression: {
+		type: Types.NameExpression,
+		name: 'Array'
+	},
+	applications: [
+		{
+			type: Types.NameExpression,
+			name: 'string'
+		}
+	]
+};
+var stringArrayRepeatable = _.extend({}, stringArray, repeatable);
 
 module.exports = [
 	{
 		description: 'array of strings',
 		expression: 'Array.<string>',
-		parsed: {
-			type: Types.TypeApplication,
-			expression: {
-				type: Types.NameExpression,
-				name: 'Array'
-			},
-			applications: [
-				{
-					type: Types.NameExpression,
-					name: 'string'
-				}
-			]
-		}
+		parsed: stringArray
+	},
+	{
+		description: 'repeatable array of strings',
+		expression: '...Array.<string>',
+		parsed: stringArrayRepeatable
 	},
 	{
 		description: 'object whose properties are strings and property values are numbers',

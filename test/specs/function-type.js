@@ -1,45 +1,57 @@
 'use strict';
 
+var _ = require('underscore');
+
 var Types = require('../../lib/types');
+
+var repeatable = {
+	repeatable: true
+};
+
+var basicFunction = {
+	type: Types.FunctionType,
+	params: [
+		{
+			type: Types.NameExpression,
+			name: 'string'
+		},
+		{
+			type: Types.NameExpression,
+			name: 'boolean'
+		}
+	]
+};
+var basicFunctionRepeatable = _.extend({}, basicFunction, repeatable);
+
+var booleanResult = {
+	result: {
+		type: Types.NameExpression,
+		name: 'boolean'
+	}
+};
+var basicFunctionWithResult = _.extend({}, basicFunction, booleanResult);
+var basicFunctionRepeatableWithResult = _.extend({}, basicFunctionRepeatable, booleanResult);
 
 module.exports = [
 	{
 		description: 'function with two basic parameters',
 		expression: 'function(string, boolean)',
-		parsed: {
-			type: Types.FunctionType,
-			params: [
-				{
-					type: Types.NameExpression,
-					name: 'string'
-				},
-				{
-					type: Types.NameExpression,
-					name: 'boolean'
-				}
-			]
-		}
+		parsed: basicFunction
+	},
+	{
+		description: 'repeatable function with two basic parameters',
+		expression: '...function(string, boolean)',
+		parsed: basicFunctionRepeatable
 	},
 	{
 		description: 'function with two basic parameters and a return value',
-		expression: 'function(string, string): boolean',
-		parsed: {
-			type: Types.FunctionType,
-			params: [
-				{
-					type: Types.NameExpression,
-					name: 'string'
-				},
-				{
-					type: Types.NameExpression,
-					name: 'string'
-				}
-			],
-			result: {
-				type: Types.NameExpression,
-				name: 'boolean'
-			}
-		}
+		expression: 'function(string, boolean): boolean',
+		parsed: basicFunctionWithResult
+	},
+	{
+		description: 'repeatable function with two basic parameters and a return value',
+		expression: '...function(string, boolean): boolean',
+		parsed: basicFunctionRepeatableWithResult
 	},
 	{
 		description: 'optional function with one basic parameter',
