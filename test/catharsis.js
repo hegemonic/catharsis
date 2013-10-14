@@ -34,6 +34,10 @@ describe('catharsis', function() {
 			Object.isFrozen(catharsis.parse('foo')).should.equal(true);
 		});
 
+		it('should only return its own properties', function() {
+			catharsis.parse('constructor').should.be.a('object');
+		});
+
 		it('should return an object with nonenumerable "typeExpression" and "jsdoc" properties',
 			function() {
 			var parsedType = catharsis.parse('foo');
