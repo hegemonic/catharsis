@@ -145,6 +145,13 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.7.0 (October 2013):
+    + Repeatable type expressions other than name expressions (for example, `...function()`) are now
+    parsed and stringified correctly.
+    + Type expressions that are both repeatable and either nullable or non-nullable (for example,
+    `...!number`) are now parsed and stringified correctly.
+    + Name expressions are now parsed correctly when they match a property name in an object
+    instance (for example, `constructor`).
 + 0.6.0 (September 2013): Added support for the type expression `function[]` when JSDoc-style type
 expressions are enabled.
 + 0.5.6 (April 2013):

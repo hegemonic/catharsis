@@ -1,5 +1,5 @@
 {
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"name": "catharsis",
 	"description": "A JavaScript parser for Google Closure Compiler and JSDoc type expressions.",
 	"author": "Jeff Williams <jeffrey.l.williams@gmail.com>",
@@ -20,8 +20,8 @@
 		"node": ">= 0.6"
 	},
 	"scripts": {
-		"build": "pegjs ./lib/parser.pegjs",
-		"prepublish": "pegjs ./lib/parser.pegjs; uglifyjs ./lib/parser.js -o ./lib/parser.js",
+		"build": "./node_modules/.bin/pegjs ./lib/parser.pegjs",
+		"prepublish": "./node_modules/.bin/pegjs ./lib/parser.pegjs; ./node_modules/.bin/uglifyjs ./lib/parser.js -o ./lib/parser.js",
 		"test": "mocha"
 	},
 	"licenses": [
