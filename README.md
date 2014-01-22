@@ -16,37 +16,31 @@ parse [JSDoc](https://github.com/jsdoc3/jsdoc)-style type expressions.
 
 ## Example ##
 
-	var catharsis = require('catharsis');
+```js
+var catharsis = require('catharsis');
 
-    var type;
-    var jsdocType;
-    var parsedType;
-    var parsedJsdocType;
+// Google Closure Compiler parsing
+var type = '!Object';
+var parsedType;
+try {
+    parsedType = catharsis.parse(type); // {"type":"NameExpression,"name":"Object","nullable":false}
+} catch(e) {
+    console.error('unable to parse %s: %s', type, e);
+}
 
-    // Google Closure Compiler parsing
-    try {
-        type = '!Object';
-        parsedType = catharsis.parse(type);
-        console.log('%j', parsedType);  // {"type":"NameExpression,"name":"Object","nullable":false}
-    }
-    catch(e) {
-        console.error('unable to parse %s: %s', type, e);
-    }
+// JSDoc-style type expressions enabled
+var jsdocType = 'string[]';  // Closure Compiler expects Array.<string>
+var parsedJsdocType;
+try {
+    parsedJsdocType = catharsis.parse(jsdocType, {jsdoc: true});
+} catch (e) {
+    console.error('unable to parse %s: %s', jsdocType, e);
+}
 
-    // JSDoc-style type expressions enabled
-    try {
-        jsdocType = 'string[]';  // Closure Compiler expects Array.<string>
-        parsedJsdocType = catharsis.parse(jsdocType, {jsdoc: true});
-    }
-    catch (e) {
-        console.error('unable to parse %s: %s', jsdocType, e);
-    }
-
-    console.log(catharsis.stringify(parsedType));       // !Object
-    console.log(catharsis.stringify(parsedJsdocType));  // string[]
-    console.log(catharsis.stringify(parsedJsdocType,    // Array.<string>
-        {restringify: true}));
-
+catharsis.stringify(parsedType);                              // !Object
+catharsis.stringify(parsedJsdocType);                         // string[]
+catharsis.stringify(parsedJsdocType, {restringify: true});   // Array.<string>
+```
 
 See the `test/specs/` directory for more examples of Catharsis' parse results.
 
