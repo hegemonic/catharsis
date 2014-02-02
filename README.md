@@ -39,7 +39,7 @@ try {
 
 catharsis.stringify(parsedType);                              // !Object
 catharsis.stringify(parsedJsdocType);                         // string[]
-catharsis.stringify(parsedJsdocType, {restringify: true});   // Array.<string>
+catharsis.stringify(parsedJsdocType, {restringify: true});    // Array.<string>
 ```
 
 See the `test/specs/` directory for more examples of Catharsis' parse results.
