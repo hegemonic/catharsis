@@ -201,7 +201,7 @@ describe('catharsis', function() {
 					type: Types.NameExpression,
 					name: 'string'
 				}
-			]			
+			]
 		};
 
 		it('should pass the specified options to the stringifier', function() {

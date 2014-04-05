@@ -58,7 +58,7 @@ describe('parser', function() {
 				checkTypes(path.join(specPath, basename), {jsdoc: true});
 			});
 		}
-		
+
 		helper.testSpecs(specs, tester);
 		helper.testSpecs(jsdocSpecs, jsdocTester);
 	});
