@@ -232,6 +232,34 @@ module.exports = [
 		}
 	},
 	{
+		description: 'record type with a property name that starts with a literal',
+		expression: '{undefinedHTML: (string|undefined)}',
+		parsed: {
+			type: Types.RecordType,
+			fields: [
+				{
+					type: Types.FieldType,
+					key: {
+						type: Types.NameExpression,
+						name: 'undefinedHTML'
+					},
+					value: {
+						type: Types.TypeUnion,
+						elements: [
+							{
+								type: Types.NameExpression,
+								name: 'string'
+							},
+							{
+								type: Types.UndefinedLiteral
+							}
+						]
+					}
+				}
+			]
+		}
+	},
+	{
 		description: 'function type with no trailing pathentheses',
 		expression: 'function',
 		newExpression: 'function()',
