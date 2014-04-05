@@ -139,6 +139,8 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.7.1 (April 2014): In record types, property names that begin with a keyword (for example,
+`undefinedHTML`) are now parsed correctly when JSDoc-style type expressions are enabled.
 + 0.7.0 (October 2013):
     + Repeatable type expressions other than name expressions (for example, `...function()`) are now
     parsed and stringified correctly.
