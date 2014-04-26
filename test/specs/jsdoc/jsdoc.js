@@ -4,6 +4,14 @@ var Types = require('../../../lib/types');
 
 module.exports = [
 	{
+		description: 'name expression that starts with the word "function"',
+		expression: 'functional',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'functional'
+		}
+	},
+	{
 		description: 'name expression with instance scope punctuation',
 		expression: 'MyClass#myMember',
 		parsed: {
