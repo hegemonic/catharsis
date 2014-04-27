@@ -24,11 +24,11 @@ describe('catharsis', function() {
 		});
 
 		it('should be a function', function() {
-			catharsis.parse.should.be.a('function');
+			catharsis.parse.should.be.a.Function;
 		});
 
 		it('should return an object when given basic input', function() {
-			catharsis.parse('foo').should.be.a('object');
+			catharsis.parse('foo').should.be.an.Object;
 		});
 
 		it('should return a frozen object', function() {
@@ -36,7 +36,7 @@ describe('catharsis', function() {
 		});
 
 		it('should only return its own properties', function() {
-			catharsis.parse('constructor').should.be.a('object');
+			catharsis.parse('constructor').should.be.an.Object;
 		});
 
 		it('should return an object with nonenumerable "typeExpression" and "jsdoc" properties',
@@ -105,11 +105,11 @@ describe('catharsis', function() {
 		});
 
 		it('should be a function', function() {
-			catharsis.stringify.should.be.a('function');
+			catharsis.stringify.should.be.a.Function;
 		});
 
 		it('should return a string when given basic input', function() {
-			catharsis.stringify(simpleParsedType).should.be.a('string');
+			catharsis.stringify(simpleParsedType).should.be.a.String;
 		});
 
 		it('should throw an error when given invalid input if validation is enabled', function() {
