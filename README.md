@@ -48,8 +48,7 @@ catharsis.describe(parsedType).simple;                        // non-null Object
 catharsis.describe(parsedJsdocType).simple;                   // Array of string
 ```
 
-See the [test/specs directory](tree/master/test/specs) for more examples of Catharsis' parse
-results.
+See the [test/specs directory](test/specs) for more examples of Catharsis' parse results.
 
 
 ## Methods ##
@@ -83,8 +82,8 @@ application with the expression `Array` (for example, `Array.<string>`).
     + `options.useCache`: Specifies whether to use the cache of parsed types. Defaults to `true`.
 
 #### Returns ####
-An object containing the parse results. See the [test/specs directory](tree/master/test/specs) for
-examples of the parse results for different type expressions.
+An object containing the parse results. See the [test/specs directory](test/specs) for examples of
+the parse results for different type expressions.
 
 The object also includes two non-enumerable properties:
 
@@ -176,8 +175,8 @@ object:
     + `options.resources`: An object that specifies how to describe type expressions for a given
     language. The object's property names should use the same format as `options.language`. Each
     property should contain an object in the same format as the translation resources in
-    [res/en.json](tree/master/res/en.json). If you specify a value for `options.resources.en`, it
-    will override the defaults in [res/en.json](tree/master/res/en.json).
+    [res/en.json](res/en.json). If you specify a value for `options.resources.en`, it will override
+    the defaults in [res/en.json](res/en.json).
     + `options.useCache`: Specifies whether to use the cache of descriptions. Defaults to `true`.
 
 ### Returns ###
