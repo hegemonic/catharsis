@@ -1,5 +1,8 @@
 'use strict';
 
+var en = {
+	modifiers: require('../../res/en').modifiers
+};
 var _ = require('underscore');
 
 var Types = require('../../lib/types');
@@ -28,12 +31,34 @@ module.exports = [
 	{
 		description: 'array of strings',
 		expression: 'Array.<string>',
-		parsed: stringArray
+		parsed: stringArray,
+		described: {
+			en: {
+				simple: 'Array of string',
+				extended: {
+					description: 'Array of string',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'repeatable array of strings',
 		expression: '...Array.<string>',
-		parsed: stringArrayRepeatable
+		parsed: stringArrayRepeatable,
+		described: {
+			en: {
+				simple: 'repeatable Array of string',
+				extended: {
+					description: 'Array of string',
+					modifiers: {
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'object whose properties are strings and property values are numbers',
@@ -54,6 +79,16 @@ module.exports = [
 					name: 'number'
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: 'Object with number properties',
+				extended: {
+					description: 'Object with number properties',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -128,6 +163,18 @@ module.exports = [
 					]
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: 'Object with Array of (boolean or {myKey: Error}) keys and ' +
+					'(boolean, string, or function(constructs foo) returns string) properties',
+				extended: {
+					description: 'Object with Array of (boolean or {myKey: Error}) keys and ' +
+						'(boolean, string, or function(constructs foo) returns string) properties',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -154,6 +201,16 @@ module.exports = [
 					]
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: 'Array of {length}',
+				extended: {
+					description: 'Array of {length}',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -170,6 +227,16 @@ module.exports = [
 					type: Types.UnknownLiteral
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: 'Array of unknown type',
+				extended: {
+					description: 'Array of unknown type',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	}
 ];

@@ -1,5 +1,8 @@
 'use strict';
 
+var en = {
+	modifiers: require('../../res/en').modifiers
+};
 var Types = require('../../lib/types');
 
 module.exports = [
@@ -9,6 +12,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'boolean'
+		},
+		described: {
+			en: {
+				simple: 'boolean',
+				extended: {
+					description: 'boolean',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -17,6 +30,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'Window'
+		},
+		described: {
+			en: {
+				simple: 'Window',
+				extended: {
+					description: 'Window',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -25,6 +48,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'goog.ui.Menu'
+		},
+		described: {
+			en: {
+				simple: 'goog.ui.Menu',
+				extended: {
+					description: 'goog.ui.Menu',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -33,6 +66,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: "myObj.'myProp'.foo"
+		},
+		described: {
+			en: {
+				simple: "myObj.'myProp'.foo",
+				extended: {
+					description: "myObj.'myProp'.foo",
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -41,6 +84,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'myObj."myProp".foo'
+		},
+		described: {
+			en: {
+				simple: 'myObj."myProp".foo',
+				extended: {
+					description: 'myObj."myProp".foo',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -49,6 +102,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'myObj."#weirdProp".foo'
+		},
+		described: {
+			en: {
+				simple: 'myObj."#weirdProp".foo',
+				extended: {
+					description: 'myObj."#weirdProp".foo',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -57,6 +120,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'myObj.12345'
+		},
+		described: {
+			en: {
+				simple: 'myObj.12345',
+				extended: {
+					description: 'myObj.12345',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -66,6 +139,18 @@ module.exports = [
 			type: Types.NameExpression,
 			name: 'number',
 			repeatable: true
+		},
+		described: {
+			en: {
+				simple: 'repeatable number',
+				extended: {
+					description: 'number',
+					modifiers: {
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -75,6 +160,18 @@ module.exports = [
 			type: Types.NameExpression,
 			name: 'number',
 			optional: true
+		},
+		described: {
+			en: {
+				simple: 'optional number',
+				extended: {
+					description: 'number',
+					modifiers: {
+						optional: en.modifiers.extended.optional
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -84,6 +181,18 @@ module.exports = [
 			type: Types.NameExpression,
 			name: 'Object',
 			optional: true
+		},
+		described: {
+			en: {
+				simple: 'optional Object',
+				extended: {
+					description: 'Object',
+					modifiers: {
+						optional: en.modifiers.extended.optional
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -91,6 +200,16 @@ module.exports = [
 		expression: 'null',
 		parsed: {
 			type: Types.NullLiteral
+		},
+		described: {
+			en: {
+				simple: 'null',
+				extended: {
+					description: 'null',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -99,6 +218,18 @@ module.exports = [
 		parsed: {
 			type: Types.NullLiteral,
 			repeatable: true
+		},
+		described: {
+			en: {
+				simple: 'repeatable null',
+				extended: {
+					description: 'null',
+					modifiers: {
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -106,6 +237,16 @@ module.exports = [
 		expression: 'undefined',
 		parsed: {
 			type: Types.UndefinedLiteral
+		},
+		described: {
+			en: {
+				simple: 'undefined',
+				extended: {
+					description: 'undefined',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -114,6 +255,18 @@ module.exports = [
 		parsed: {
 			type: Types.UndefinedLiteral,
 			repeatable: true
+		},
+		described: {
+			en: {
+				simple: 'repeatable undefined',
+				extended: {
+					description: 'undefined',
+					modifiers: {
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -121,6 +274,16 @@ module.exports = [
 		expression: '*',
 		parsed: {
 			type: Types.AllLiteral
+		},
+		described: {
+			en: {
+				simple: 'any type',
+				extended: {
+					description: 'any type',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -129,6 +292,18 @@ module.exports = [
 		parsed: {
 			type: Types.AllLiteral,
 			repeatable: true
+		},
+		described: {
+			en: {
+				simple: 'repeatable any type',
+				extended: {
+					description: 'any type',
+					modifiers: {
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -136,6 +311,16 @@ module.exports = [
 		expression: '?',
 		parsed: {
 			type: Types.UnknownLiteral
+		},
+		described: {
+			en: {
+				simple: 'unknown type',
+				extended: {
+					description: 'unknown type',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -144,6 +329,18 @@ module.exports = [
 		parsed: {
 			type: Types.UnknownLiteral,
 			repeatable: true
+		},
+		described: {
+			en: {
+				simple: 'repeatable unknown type',
+				extended: {
+					description: 'unknown type',
+					modifiers: {
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -152,6 +349,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'forsooth'
+		},
+		described: {
+			en: {
+				simple: 'forsooth',
+				extended: {
+					description: 'forsooth',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -160,6 +367,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'My-1st-Class'
+		},
+		described: {
+			en: {
+				simple: 'My-1st-Class',
+				extended: {
+					description: 'My-1st-Class',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	}
 ];

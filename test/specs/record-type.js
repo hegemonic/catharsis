@@ -1,5 +1,8 @@
 'use strict';
 
+var en = {
+	modifiers: require('../../res/en').modifiers
+};
 var _ = require('underscore');
 
 var Types = require('../../lib/types');
@@ -33,17 +36,49 @@ module.exports = [
 		parsed: {
 			type: Types.RecordType,
 			fields: []
+		},
+		described: {
+			en: {
+				simple: '{}',
+				extended: {
+					description: '{}',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
 		description: 'record type with 1 typed property',
 		expression: '{myNum: number}',
-		parsed: simpleRecordType
+		parsed: simpleRecordType,
+		described: {
+			en: {
+				simple: '{myNum: number}',
+				extended: {
+					description: '{myNum: number}',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'repeatable record type with 1 typed property',
 		expression: '...{myNum: number}',
-		parsed: simpleRecordTypeRepeatable
+		parsed: simpleRecordTypeRepeatable,
+		described: {
+			en: {
+				simple: 'repeatable {myNum: number}',
+				extended: {
+					description: '{myNum: number}',
+					modifiers: {
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'optional record type with 1 typed property',
@@ -64,6 +99,18 @@ module.exports = [
 				}
 			],
 			optional: true
+		},
+		described: {
+			en: {
+				simple: 'optional {myNum: number}',
+				extended: {
+					description: '{myNum: number}',
+					modifiers: {
+						optional: en.modifiers.extended.optional
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -85,6 +132,18 @@ module.exports = [
 				}
 			],
 			nullable: true
+		},
+		described: {
+			en: {
+				simple: 'nullable {myNum: number}',
+				extended: {
+					description: '{myNum: number}',
+					modifiers: {
+						nullable: en.modifiers.extended.nullable
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -106,6 +165,18 @@ module.exports = [
 				}
 			],
 			nullable: false
+		},
+		described: {
+			en: {
+				simple: 'non-null {myNum: number}',
+				extended: {
+					description: '{myNum: number}',
+					modifiers: {
+						nullable: en.modifiers.extended.nonNullable
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -134,6 +205,16 @@ module.exports = [
 					value: undefined
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '{myNum: number, myObject}',
+				extended: {
+					description: '{myNum: number, myObject}',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -163,6 +244,16 @@ module.exports = [
 					}
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '{myArray: Array of string}',
+				extended: {
+					description: '{myArray: Array of string}',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -196,6 +287,16 @@ module.exports = [
 					}
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '{myKey: (number, boolean, or string)}',
+				extended: {
+					description: '{myKey: (number, boolean, or string)}',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -217,6 +318,16 @@ module.exports = [
 					}
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '{continue: string}',
+				extended: {
+					description: '{continue: string}',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -239,6 +350,16 @@ module.exports = [
 					}
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '{class: string}',
+				extended: {
+					description: '{class: string}',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -261,6 +382,16 @@ module.exports = [
 					}
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '{true: string}',
+				extended: {
+					description: '{true: string}',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	}
 ];

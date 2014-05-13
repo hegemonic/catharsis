@@ -2,6 +2,9 @@
 
 var _ = require('underscore');
 
+var en = {
+	modifiers: require('../../res/en').modifiers
+};
 var Types = require('../../lib/types');
 
 var repeatable = {
@@ -26,45 +29,145 @@ module.exports = [
 	{
 		description: 'nullable number',
 		expression: '?number',
-		parsed: nullableNumber
+		parsed: nullableNumber,
+		described: {
+			en: {
+				simple: 'nullable number',
+				extended: {
+					description: 'number',
+					modifiers: {
+						nullable: en.modifiers.extended.nullable
+					},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'postfix nullable number',
 		expression: 'number?',
 		newExpression: '?number',
-		parsed: nullableNumber
+		parsed: nullableNumber,
+		described: {
+			en: {
+				simple: 'nullable number',
+				extended: {
+					description: 'number',
+					modifiers: {
+						nullable: en.modifiers.extended.nullable
+					},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'non-nullable object',
 		expression: '!Object',
-		parsed: nonNullableObject
+		parsed: nonNullableObject,
+		described: {
+			en: {
+				simple: 'non-null Object',
+				extended: {
+					description: 'Object',
+					modifiers: {
+						nullable: en.modifiers.extended.nonNullable
+					},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'postfix non-nullable object',
 		expression: 'Object!',
 		newExpression: '!Object',
-		parsed: nonNullableObject
+		parsed: nonNullableObject,
+		described: {
+			en: {
+				simple: 'non-null Object',
+				extended: {
+					description: 'Object',
+					modifiers: {
+						nullable: en.modifiers.extended.nonNullable
+					},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'repeatable nullable number',
 		expression: '...?number',
-		parsed: nullableNumberRepeatable
+		parsed: nullableNumberRepeatable,
+		described: {
+			en: {
+				simple: 'nullable repeatable number',
+				extended: {
+					description: 'number',
+					modifiers: {
+						nullable: en.modifiers.extended.nullable,
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'postfix repeatable nullable number',
 		expression: '...number?',
 		newExpression: '...?number',
-		parsed: nullableNumberRepeatable
+		parsed: nullableNumberRepeatable,
+		described: {
+			en: {
+				simple: 'nullable repeatable number',
+				extended: {
+					description: 'number',
+					modifiers: {
+						nullable: en.modifiers.extended.nullable,
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'repeatable non-nullable object',
 		expression: '...!Object',
-		parsed: nonNullableObjectRepeatable
+		parsed: nonNullableObjectRepeatable,
+		described: {
+			en: {
+				simple: 'non-null repeatable Object',
+				extended: {
+					description: 'Object',
+					modifiers: {
+						nullable: en.modifiers.extended.nonNullable,
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'postfix repeatable non-nullable object',
 		expression: '...Object!',
 		newExpression: '...!Object',
-		parsed: nonNullableObjectRepeatable
+		parsed: nonNullableObjectRepeatable,
+		described: {
+			en: {
+				simple: 'non-null repeatable Object',
+				extended: {
+					description: 'Object',
+					modifiers: {
+						nullable: en.modifiers.extended.nonNullable,
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
+		}
 	}
 ];

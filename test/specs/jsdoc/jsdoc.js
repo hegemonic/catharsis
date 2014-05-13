@@ -1,5 +1,8 @@
 'use strict';
 
+var en = {
+	modifiers: require('../../../res/en').modifiers
+};
 var Types = require('../../../lib/types');
 
 module.exports = [
@@ -9,6 +12,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'functional'
+		},
+		described: {
+			en: {
+				simple: 'functional',
+				extended: {
+					description: 'functional',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -17,6 +30,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'MyClass#myMember'
+		},
+		described: {
+			en: {
+				simple: 'MyClass#myMember',
+				extended: {
+					description: 'MyClass#myMember',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -25,6 +48,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'MyClass~myMember'
+		},
+		described: {
+			en: {
+				simple: 'MyClass~myMember',
+				extended: {
+					description: 'MyClass~myMember',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -33,6 +66,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'MyClass#myMember#yourMember~theirMember'
+		},
+		described: {
+			en: {
+				simple: 'MyClass#myMember#yourMember~theirMember',
+				extended: {
+					description: 'MyClass#myMember#yourMember~theirMember',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -41,6 +84,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'module:foo/bar/baz~Qux'
+		},
+		described: {
+			en: {
+				simple: 'module:foo/bar/baz~Qux',
+				extended: {
+					description: 'module:foo/bar/baz~Qux',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -49,6 +102,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'module:foo-bar/baz~Qux'
+		},
+		described: {
+			en: {
+				simple: 'module:foo-bar/baz~Qux',
+				extended: {
+					description: 'module:foo-bar/baz~Qux',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -58,6 +121,16 @@ module.exports = [
 			type: Types.NameExpression,
 			name: 'this',
 			reservedWord: true
+		},
+		described: {
+			en: {
+				simple: 'this',
+				extended: {
+					description: 'this',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -66,6 +139,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'MyClass()'
+		},
+		described: {
+			en: {
+				simple: 'MyClass()',
+				extended: {
+					description: 'MyClass()',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -74,6 +157,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'MyClass(2)'
+		},
+		described: {
+			en: {
+				simple: 'MyClass(2)',
+				extended: {
+					description: 'MyClass(2)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -82,6 +175,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'MyClass(23456)'
+		},
+		described: {
+			en: {
+				simple: 'MyClass(23456)',
+				extended: {
+					description: 'MyClass(23456)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -90,6 +193,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'MyClass(a)'
+		},
+		described: {
+			en: {
+				simple: 'MyClass(a)',
+				extended: {
+					description: 'MyClass(a)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -98,6 +211,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'MyClass(abcde)'
+		},
+		described: {
+			en: {
+				simple: 'MyClass(abcde)',
+				extended: {
+					description: 'MyClass(abcde)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -113,6 +236,16 @@ module.exports = [
 					repeatable: true
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: 'function(repeatable foo)',
+				extended: {
+					description: 'function(repeatable foo)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -121,6 +254,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'MyClass(...foo)'
+		},
+		described: {
+			en: {
+				simple: 'MyClass(...foo)',
+				extended: {
+					description: 'MyClass(...foo)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -139,6 +282,16 @@ module.exports = [
 					name: 'string'
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: 'Array of string',
+				extended: {
+					description: 'Array of string',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -157,6 +310,16 @@ module.exports = [
 					name: 'string'
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: 'Array of string',
+				extended: {
+					description: 'Array of string',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -175,6 +338,16 @@ module.exports = [
 					params: []
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: 'Array of function()',
+				extended: {
+					description: 'Array of function()',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -204,6 +377,16 @@ module.exports = [
 					}
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '{Array of string: number}',
+				extended: {
+					description: '{Array of string: number}',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -237,6 +420,16 @@ module.exports = [
 					}
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '{(number, boolean, or string): number}',
+				extended: {
+					description: '{(number, boolean, or string): number}',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -265,6 +458,16 @@ module.exports = [
 					}
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '{undefinedHTML: (string or undefined)}',
+				extended: {
+					description: '{undefinedHTML: (string or undefined)}',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -274,6 +477,16 @@ module.exports = [
 		parsed: {
 			type: Types.FunctionType,
 			params: []
+		},
+		described: {
+			en: {
+				simple: 'function()',
+				extended: {
+					description: 'function()',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -292,6 +505,19 @@ module.exports = [
 				name: 'my.namespace.Class'
 			},
 			optional: true
+		},
+		described: {
+			en: {
+				simple: 'optional function(this = my.namespace.Class, my.Class)',
+				extended: {
+					description: 'function(my.Class)',
+					modifiers: {
+						functionThis: 'Within the function, this refers to my.namespace.Class.',
+						optional: en.modifiers.extended.optional
+					},
+					returns: ''
+				}
+			}
 		}
 	}
 ];

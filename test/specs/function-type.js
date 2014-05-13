@@ -2,6 +2,9 @@
 
 var _ = require('underscore');
 
+var en = {
+	modifiers: require('../../res/en').modifiers
+};
 var Types = require('../../lib/types');
 
 var repeatable = {
@@ -36,22 +39,66 @@ module.exports = [
 	{
 		description: 'function with two basic parameters',
 		expression: 'function(string, boolean)',
-		parsed: basicFunction
+		parsed: basicFunction,
+		described: {
+			en: {
+				simple: 'function(string, boolean)',
+				extended: {
+					description: 'function(string, boolean)',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'repeatable function with two basic parameters',
 		expression: '...function(string, boolean)',
-		parsed: basicFunctionRepeatable
+		parsed: basicFunctionRepeatable,
+		described: {
+			en: {
+				simple: 'repeatable function(string, boolean)',
+				extended: {
+					description: 'function(string, boolean)',
+					modifiers: {
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'function with two basic parameters and a return value',
 		expression: 'function(string, boolean): boolean',
-		parsed: basicFunctionWithResult
+		parsed: basicFunctionWithResult,
+		described: {
+			en: {
+				simple: 'function(string, boolean) returns boolean',
+				extended: {
+					description: 'function(string, boolean)',
+					modifiers: {},
+					returns: 'Returns boolean.'
+				}
+			}
+		}
 	},
 	{
 		description: 'repeatable function with two basic parameters and a return value',
 		expression: '...function(string, boolean): boolean',
-		parsed: basicFunctionRepeatableWithResult
+		parsed: basicFunctionRepeatableWithResult,
+		described: {
+			en: {
+				simple: 'repeatable function(string, boolean) returns boolean',
+				extended: {
+					description: 'function(string, boolean)',
+					modifiers: {
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: 'Returns boolean.'
+				}
+			}
+		}
 	},
 	{
 		description: 'optional function with one basic parameter',
@@ -65,6 +112,18 @@ module.exports = [
 				}
 			],
 			optional: true
+		},
+		described: {
+			en: {
+				simple: 'optional function(string)',
+				extended: {
+					description: 'function(string)',
+					modifiers: {
+						optional: en.modifiers.extended.optional
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -76,6 +135,40 @@ module.exports = [
 			result: {
 				type: Types.NameExpression,
 				name: 'number'
+			}
+		},
+		described: {
+			en: {
+				simple: 'function() returns number',
+				extended: {
+					description: 'function()',
+					modifiers: {},
+					returns: 'Returns number.'
+				}
+			}
+		}
+	},
+	{
+		description: 'function with a "this" type and no parameters',
+		expression: 'function(this:goog.ui.Menu)',
+		parsed: {
+			type: Types.FunctionType,
+			params: [],
+			'this': {
+				type: Types.NameExpression,
+				name: 'goog.ui.Menu'
+			}
+		},
+		described: {
+			en: {
+				simple: 'function(this = goog.ui.Menu)',
+				extended: {
+					description: 'function()',
+					modifiers: {
+						functionThis: 'Within the function, this refers to goog.ui.Menu.'
+					},
+					returns: ''
+				}
 			}
 		}
 	},
@@ -94,6 +187,42 @@ module.exports = [
 				type: Types.NameExpression,
 				name: 'goog.ui.Menu'
 			}
+		},
+		described: {
+			en: {
+				simple: 'function(this = goog.ui.Menu, string)',
+				extended: {
+					description: 'function(string)',
+					modifiers: {
+						functionThis: 'Within the function, this refers to goog.ui.Menu.'
+					},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'function with a "new" type and no parameters',
+		expression: 'function(new:goog.ui.Menu)',
+		parsed: {
+			type: Types.FunctionType,
+			params: [],
+			'new': {
+				type: Types.NameExpression,
+				name: 'goog.ui.Menu'
+			}
+		},
+		described: {
+			en: {
+				simple: 'function(constructs goog.ui.Menu)',
+				extended: {
+					description: 'function()',
+					modifiers: {
+						functionNew: 'Returns goog.ui.Menu when called with new.'
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -110,6 +239,47 @@ module.exports = [
 			'new': {
 				type: Types.NameExpression,
 				name: 'goog.ui.Menu'
+			}
+		},
+		described: {
+			en: {
+				simple: 'function(constructs goog.ui.Menu, string)',
+				extended: {
+					description: 'function(string)',
+					modifiers: {
+						functionNew: 'Returns goog.ui.Menu when called with new.'
+					},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'function with a "new" and "this" type and no parameters',
+		expression: 'function(new:goog.ui.Menu, this:goog.ui)',
+		parsed: {
+			type: Types.FunctionType,
+			params: [],
+			'new': {
+				type: Types.NameExpression,
+				name: 'goog.ui.Menu'
+			},
+			'this': {
+				type: Types.NameExpression,
+				name: 'goog.ui'
+			}
+		},
+		described: {
+			en: {
+				simple: 'function(constructs goog.ui.Menu, this = goog.ui)',
+				extended: {
+					description: 'function()',
+					modifiers: {
+						functionNew: 'Returns goog.ui.Menu when called with new.',
+						functionThis: 'Within the function, this refers to goog.ui.'
+					},
+					returns: ''
+				}
 			}
 		}
 	},
@@ -134,6 +304,16 @@ module.exports = [
 				type: Types.NameExpression,
 				name: 'number'
 			}
+		},
+		described: {
+			en: {
+				simple: 'function(string, repeatable number) returns number',
+				extended: {
+					description: 'function(string, repeatable number)',
+					modifiers: {},
+					returns: 'Returns number.'
+				}
+			}
 		}
 	},
 	{
@@ -147,6 +327,16 @@ module.exports = [
 					repeatable: true
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: 'function(repeatable null)',
+				extended: {
+					description: 'function(repeatable null)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -161,6 +351,16 @@ module.exports = [
 					repeatable: true
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: 'function(repeatable undefined)',
+				extended: {
+					description: 'function(repeatable undefined)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -210,6 +410,21 @@ module.exports = [
 				type: Types.NameExpression,
 				name: 'boolean'
 			}
+		},
+		described: {
+			en: {
+				simple: 'function(constructs Master, this = Everyone, string, goog.ui.Menu, ' +
+					'Array of Object, repeatable string) returns boolean',
+				extended: {
+					description: 'function(string, goog.ui.Menu, Array of Object, ' +
+					'repeatable string)',
+					modifiers: {
+						functionNew: 'Returns Master when called with new.',
+						functionThis: 'Within the function, this refers to Everyone.'
+					},
+					returns: 'Returns boolean.'
+				}
+			}
 		}
 	},
 
@@ -234,6 +449,16 @@ module.exports = [
 					}
 				]
 			}
+		},
+		described: {
+			en: {
+				simple: 'function() returns (number or string)',
+				extended: {
+					description: 'function()',
+					modifiers: {},
+					returns: 'Returns (number or string).'
+				}
+			}
 		}
 	},
 	{
@@ -242,6 +467,16 @@ module.exports = [
 		parsed: {
 			type: Types.FunctionType,
 			params: []
+		},
+		described: {
+			en: {
+				simple: 'function()',
+				extended: {
+					description: 'function()',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -255,6 +490,16 @@ module.exports = [
 					repeatable: true
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: 'function(repeatable any type)',
+				extended: {
+					description: 'function(repeatable any type)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -279,6 +524,18 @@ module.exports = [
 						name: 'string'
 					}
 				]
+			}
+		},
+		described: {
+			en: {
+				simple: 'function(this = Object) returns (number or string)',
+				extended: {
+					description: 'function()',
+					modifiers: {
+						functionThis: 'Within the function, this refers to Object.'
+					},
+					returns: 'Returns (number or string).'
+				}
 			}
 		}
 	},
@@ -315,6 +572,18 @@ module.exports = [
 					}
 				]
 			}
+		},
+		described: {
+			en: {
+				simple: 'function(this = (Array or Date)) returns (number or string)',
+				extended: {
+					description: 'function()',
+					modifiers: {
+						functionThis: 'Within the function, this refers to (Array or Date).'
+					},
+					returns: 'Returns (number or string).'
+				}
+			}
 		}
 	},
 	{
@@ -336,6 +605,18 @@ module.exports = [
 			result: {
 				type: Types.NameExpression,
 				name: 'Array'
+			}
+		},
+		described: {
+			en: {
+				simple: 'function(constructs Array, repeatable any type) returns Array',
+				extended: {
+					description: 'function(repeatable any type)',
+					modifiers: {
+						functionNew: 'Returns Array when called with new.'
+					},
+					returns: 'Returns Array.'
+				}
 			}
 		}
 	},
@@ -359,6 +640,18 @@ module.exports = [
 				type: Types.NameExpression,
 				name: 'boolean'
 			}
+		},
+		described: {
+			en: {
+				simple: 'function(constructs Boolean, optional any type) returns boolean',
+				extended: {
+					description: 'function(optional any type)',
+					modifiers: {
+						functionNew: 'Returns Boolean when called with new.'
+					},
+					returns: 'Returns boolean.'
+				}
+			}
 		}
 	},
 	{
@@ -376,6 +669,16 @@ module.exports = [
 			result: {
 				type: Types.NameExpression,
 				name: 'boolean'
+			}
+		},
+		described: {
+			en: {
+				simple: 'function(repeatable number) returns boolean',
+				extended: {
+					description: 'function(repeatable number)',
+					modifiers: {},
+					returns: 'Returns boolean.'
+				}
 			}
 		}
 	},
@@ -410,6 +713,18 @@ module.exports = [
 						name: 'string'
 					}
 				]
+			}
+		},
+		described: {
+			en: {
+				simple: 'function(this = Date, number) returns (boolean, number, or string)',
+				extended: {
+					description: 'function(number)',
+					modifiers: {
+						functionThis: 'Within the function, this refers to Date.'
+					},
+					returns: 'Returns (boolean, number, or string).'
+				}
 			}
 		}
 	}

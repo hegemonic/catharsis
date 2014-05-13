@@ -1,4 +1,4 @@
-/*global describe: true, it: true */
+/*global describe, it */
 'use strict';
 
 var helper = require('./helper');
@@ -71,7 +71,7 @@ describe('stringify', function() {
 		validate: false
 	});
 	helper.testSpecs(linkCssSpecs, tester, {
-		cssClass: 'my-class',
+		linkClass: 'my-class',
 		htmlSafe: true,
 		jsdoc: true,
 		links: links,

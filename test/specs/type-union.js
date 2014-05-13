@@ -1,5 +1,8 @@
 'use strict';
 
+var en = {
+	modifiers: require('../../res/en').modifiers
+};
 var _ = require('underscore');
 
 var Types = require('../../lib/types');
@@ -27,12 +30,34 @@ module.exports = [
 	{
 		description: 'union with 2 types (number and boolean)',
 		expression: '(number|boolean)',
-		parsed: numberBoolean
+		parsed: numberBoolean,
+		described: {
+			en: {
+				simple: '(number or boolean)',
+				extended: {
+					description: '(number or boolean)',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'repeatable union with 2 types (number and boolean)',
 		expression: '...(number|boolean)',
-		parsed: numberBooleanRepeatable
+		parsed: numberBooleanRepeatable,
+		described: {
+			en: {
+				simple: 'repeatable (number or boolean)',
+				extended: {
+					description: '(number or boolean)',
+					modifiers: {
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
+		}
 	},
 	{
 		description: 'union with 2 types (Object and undefined)',
@@ -48,6 +73,16 @@ module.exports = [
 					type: Types.UndefinedLiteral
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '(Object or undefined)',
+				extended: {
+					description: '(Object or undefined)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -69,6 +104,16 @@ module.exports = [
 					name: 'goog.ui.Menu'
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '(number, Window, or goog.ui.Menu)',
+				extended: {
+					description: '(number, Window, or goog.ui.Menu)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -87,6 +132,18 @@ module.exports = [
 				}
 			],
 			nullable: true
+		},
+		described: {
+			en: {
+				simple: 'nullable (number or boolean)',
+				extended: {
+					description: '(number or boolean)',
+					modifiers: {
+						nullable: en.modifiers.extended.nullable
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -105,6 +162,18 @@ module.exports = [
 				}
 			],
 			nullable: false
+		},
+		described: {
+			en: {
+				simple: 'non-null (number or boolean)',
+				extended: {
+					description: '(number or boolean)',
+					modifiers: {
+						nullable: en.modifiers.extended.nonNullable
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -123,6 +192,18 @@ module.exports = [
 				}
 			],
 			optional: true
+		},
+		described: {
+			en: {
+				simple: 'optional (number or boolean)',
+				extended: {
+					description: '(number or boolean)',
+					modifiers: {
+						optional: en.modifiers.extended.optional
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 
@@ -155,6 +236,16 @@ module.exports = [
 					]
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '(Array or Object with unknown type properties)',
+				extended: {
+					description: '(Array or Object with unknown type properties)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -193,6 +284,16 @@ module.exports = [
 					]
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '(Array of string or Object with unknown type properties)',
+				extended: {
+					description: '(Array of string or Object with unknown type properties)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -214,6 +315,16 @@ module.exports = [
 					}
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '(Error or function() returns Error)',
+				extended: {
+					description: '(Error or function() returns Error)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -232,6 +343,16 @@ module.exports = [
 					name: 'string'
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: '(number or string)',
+				extended: {
+					description: '(number or string)',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 
@@ -282,6 +403,20 @@ module.exports = [
 				}
 			],
 			optional: true
+		},
+		described: {
+			en: {
+				simple: 'optional (jQuerySelector, Element, Object, Array of Element, jQuery, ' +
+					'string, or function())',
+				extended: {
+					description: '(jQuerySelector, Element, Object, Array of Element, jQuery, ' +
+					'string, or function())',
+					modifiers: {
+						optional: en.modifiers.extended.optional
+					},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -337,6 +472,20 @@ module.exports = [
 				}
 			],
 			optional: true
+		},
+		described: {
+			en: {
+				simple: 'optional (Element, Object, Document, or Object with ' +
+					'(string or function(optional non-null jQuery.event)) properties)',
+				extended: {
+					description: '(Element, Object, Document, or Object with (string or ' +
+					'function(optional non-null jQuery.event)) properties)',
+					modifiers: {
+						optional: en.modifiers.extended.optional
+					},
+					returns: ''
+				}
+			}
 		}
 	}
 ];

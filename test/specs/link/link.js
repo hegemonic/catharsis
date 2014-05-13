@@ -19,6 +19,16 @@ module.exports = [
 					name: 'Foo'
 				}
 			]
+		},
+		described: {
+			en: {
+				simple: 'Array of <a href="Foo.html">Foo</a>',
+				extended: {
+					description: 'Array of <a href="Foo.html">Foo</a>',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	},
 	{
@@ -28,6 +38,16 @@ module.exports = [
 		parsed: {
 			type: Types.NameExpression,
 			name: 'module:foo/bar/baz~Qux'
+		},
+		described: {
+			en: {
+				simple: '<a href="foobarbazqux.html">module:foo/bar/baz~Qux</a>',
+				extended: {
+					description: '<a href="foobarbazqux.html">module:foo/bar/baz~Qux</a>',
+					modifiers: {},
+					returns: ''
+				}
+			}
 		}
 	}
 ];

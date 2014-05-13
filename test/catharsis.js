@@ -1,4 +1,5 @@
-/*global describe: true, it: true, xit: true */
+/*global describe, it, xit */
+/*eslint no-unused-expressions: 0 */
 'use strict';
 
 var catharsis = require('../catharsis');
@@ -16,6 +17,25 @@ var invalidParsedType = {
 	applications: {},
 	params: 'whatever'
 };
+var nullParsedType = {
+	type: Types.NullLiteral
+};
+
+function dummyResources() {
+	return {
+		modifiers: {
+			extended: {
+				prefix: '',
+				suffix: ''
+			},
+			simple: {
+				prefix: '',
+				suffix: ''
+			}
+		},
+		type: '<%= type %>'
+	};
+}
 
 describe('catharsis', function() {
 	describe('parse()', function() {
@@ -82,7 +102,7 @@ describe('catharsis', function() {
 			var bar = catharsis.parse('bar');
 			bar = catharsis.parse('bar');
 
-			bar.jsdoc.should.equal(false);	
+			bar.jsdoc.should.equal(false);
 		});
 
 		it('should use the JSDoc cache when JSDoc mode is enabled', function() {
@@ -215,6 +235,66 @@ describe('catharsis', function() {
 			var string = catharsis.stringify(typeApp, {});
 
 			string.should.equal('Array.<string>');
+		});
+	});
+
+	describe('describe()', function() {
+		it('should exist', function() {
+			should.exist(catharsis.describe);
+		});
+
+		it('should be a function', function() {
+			catharsis.describe.should.be.a.Function;
+		});
+
+		it('should return an object when given basic input', function() {
+			catharsis.describe(simpleParsedType).should.be.an.Object;
+		});
+
+		it('should return a frozen object', function() {
+			Object.isFrozen(catharsis.describe(simpleParsedType)).should.equal(true);
+		});
+
+		it('should return an object with a nonenumerable "jsdoc" property', function() {
+			var description = catharsis.describe(simpleParsedType);
+			var descriptor = Object.getOwnPropertyDescriptor(description, 'jsdoc');
+
+			descriptor.enumerable.should.equal(false);
+			descriptor.value.should.equal(false);
+		});
+
+		it('should throw an error when given bad input', function() {
+			function badInput() {
+				catharsis.describe(invalidType);
+			}
+
+			badInput.should.throw();
+		});
+
+		it('should use options.language and options.resources when provided', function() {
+			var description;
+			var language = 'de';
+			var nullString = 'nichtig';
+			var options = {
+				language: language,
+				resources: {
+					de: dummyResources()
+				}
+			};
+
+			options.resources.de.null = nullString;
+
+			description = catharsis.describe(nullParsedType, options);
+			description.simple.should.equal(nullString);
+			description.extended.description.should.equal(nullString);
+		});
+
+		it('should throw an error when a language with no resources is specified', function() {
+			function noResources() {
+				catharsis.describe(nullParsedType, {language: 'qq'});
+			}
+
+			noResources.should.throw();
 		});
 	});
 });
