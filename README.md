@@ -226,6 +226,8 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.8.1 (June 2014): Added support for type unions that are not enclosed in parentheses, and that
+contain nullable or non-nullable modifiers (for example, `!string|!number`).
 + 0.8.0 (May 2014):
     + Added a `describe()` method, which converts a parsed type to a description of the type.
     + Added a `linkClass` option to the `stringify()` method, and deprecated the existing `cssClass`
