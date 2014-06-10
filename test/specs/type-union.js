@@ -355,6 +355,36 @@ module.exports = [
 			}
 		}
 	},
+	{
+		description: 'type union with modifiers and no enclosing parentheses',
+		expression: '!number|!string',
+		newExpression: '(!number|!string)',
+		parsed: {
+			type: Types.TypeUnion,
+			elements: [
+				{
+					type: Types.NameExpression,
+					name: 'number',
+					nullable: false
+				},
+				{
+					type: Types.NameExpression,
+					name: 'string',
+					nullable: false
+				}
+			]
+		},
+		described: {
+			en: {
+				simple: '(non-null number or non-null string)',
+				extended: {
+					description: '(non-null number or non-null string)',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+	},
 
 	// The following type expressions are adapted from the Doctrine parser:
 	// http://constellation.github.com/doctrine/demo/
