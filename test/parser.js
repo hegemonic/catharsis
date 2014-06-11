@@ -1,7 +1,7 @@
 /*global describe, it */
 'use strict';
 
-var _ = require('underscore');
+var _ = require('underscore-contrib');
 var fs = require('fs');
 var helper = require('./helper');
 var parse = require('../lib/parser').parse;

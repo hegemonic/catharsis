@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('underscore');
+var _ = require('underscore-contrib');
 
 var en = {
 	modifiers: require('../../res/en').modifiers

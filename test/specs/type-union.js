@@ -1,10 +1,10 @@
 'use strict';
 
+var _ = require('underscore-contrib');
+
 var en = {
 	modifiers: require('../../res/en').modifiers
 };
-var _ = require('underscore');
-
 var Types = require('../../lib/types');
 
 var repeatable = {

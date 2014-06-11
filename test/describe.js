@@ -1,7 +1,7 @@
 /*global describe, it */
 'use strict';
 
-var _ = require('underscore');
+var _ = require('underscore-contrib');
 var describer = require('../lib/describe');
 var eql = require('should/lib/eql');
 var helper = require('./helper');
