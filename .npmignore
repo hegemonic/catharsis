@@ -1,5 +1,5 @@
+.eslintrc
 .gitignore
-.jshintrc
 .npmignore
 CONTRIBUTING.md
 lib/parser.pegjs
