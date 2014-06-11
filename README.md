@@ -226,6 +226,7 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.8.2 (June 2014): Fixed a compatibility issue with the JSDoc fork of Mozilla Rhino.
 + 0.8.1 (June 2014): Added support for type unions that are not enclosed in parentheses, and that
 contain nullable or non-nullable modifiers (for example, `!string|!number`).
 + 0.8.0 (May 2014):
