@@ -13,10 +13,10 @@
     "underscore-contrib": "~0.3.0"
   },
   "devDependencies": {
-    "mocha": "~1.18.2",
-    "pegjs": "git+ssh://git@github.com:dmajda/pegjs.git#76cc5d55",
-    "should": "~3.3.1",
-    "uglify-js": "~2.4.13"
+    "mocha": "~1.21.3",
+    "pegjs": "https://github.com/dmajda/pegjs/tarball/76cc5d55b47ff3d5bbe1d435c6f843e2688cb729",
+    "should": "~4.0.4",
+    "uglify-js": "~2.4.15"
   },
   "engines": {
     "node": ">= 0.8"
