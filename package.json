@@ -16,6 +16,7 @@
     "mocha": "~1.21.3",
     "pegjs": "https://github.com/dmajda/pegjs/tarball/76cc5d55b47ff3d5bbe1d435c6f843e2688cb729",
     "should": "~4.0.4",
+    "tv4": "https://github.com/geraintluff/tv4/tarball/eb7561072d44943306e5fd88b55b4a4c98cb6c75",
     "uglify-js": "~2.4.15"
   },
   "engines": {
