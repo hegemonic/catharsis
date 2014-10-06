@@ -519,5 +519,43 @@ module.exports = [
 				}
 			}
 		}
+	},
+	{
+		description: 'type union with no parentheses, a repeatable param, and a JSDoc-style array',
+		expression: '...string|string[]',
+		newExpression: '(...string|Array.<string>)',
+		parsed: {
+			"type": "TypeUnion",
+			"elements": [
+				{
+					"type": "NameExpression",
+					"name": "string",
+					"repeatable": true
+				},
+				{
+					"type": "TypeApplication",
+					"expression": {
+						"type": "NameExpression",
+						"name": "Array"
+					},
+					"applications": [
+						{
+							"name": "string",
+							"type": "NameExpression"
+						}
+					]
+				}
+			]
+		},
+		described: {
+			en: {
+				simple: '(repeatable string or Array of string)',
+				extended: {
+					description: '(repeatable string or Array of string)',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
 	}
 ];
