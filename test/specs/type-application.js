@@ -29,7 +29,23 @@ var stringArrayRepeatable = _.extend({}, stringArray, repeatable);
 
 module.exports = [
 	{
-		description: 'array of strings',
+		description: 'array of strings, without a dot separator',
+		expression: 'Array<string>',
+		newExpression: 'Array.<string>',
+		parsed: stringArray,
+		described: {
+			en: {
+				simple: 'Array of string',
+				extended: {
+					description: 'Array of string',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'array of strings, with a dot separator',
 		expression: 'Array.<string>',
 		parsed: stringArray,
 		described: {
