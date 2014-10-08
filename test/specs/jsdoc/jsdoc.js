@@ -224,6 +224,78 @@ module.exports = [
 		}
 	},
 	{
+		description: 'name expression enclosed in double quotes',
+		expression: '"foo.bar.baz"',
+		parsed: {
+			type: Types.NameExpression,
+			name: '"foo.bar.baz"'
+		},
+		described: {
+			en: {
+				simple: '"foo.bar.baz"',
+				extended: {
+					description: '"foo.bar.baz"',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'name expression enclosed in single quotes',
+		expression: "'foo.bar.baz'",
+		parsed: {
+			type: Types.NameExpression,
+			name: "'foo.bar.baz'"
+		},
+		described: {
+			en: {
+				simple: "'foo.bar.baz'",
+				extended: {
+					description: "'foo.bar.baz'",
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'name expression partially enclosed in double quotes',
+		expression: 'foo."bar.baz".qux',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'foo."bar.baz".qux'
+		},
+		described: {
+			en: {
+				simple: 'foo."bar.baz".qux',
+				extended: {
+					description: 'foo."bar.baz".qux',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'name expression partially enclosed in single quotes',
+		expression: "foo.'bar.baz'.qux",
+		parsed: {
+			type: Types.NameExpression,
+			name: "foo.'bar.baz'.qux"
+		},
+		described: {
+			en: {
+				simple: "foo.'bar.baz'.qux",
+				extended: {
+					description: "foo.'bar.baz'.qux",
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
 		description: 'function signature with a repeatable param that is not enclosed in brackets',
 		expression: 'function(...foo)',
 		newExpression: 'function(...[foo])',
