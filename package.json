@@ -1,5 +1,5 @@
 {
-  "version": "0.8.3",
+  "version": "0.8.4-dev",
   "name": "catharsis",
   "description": "A JavaScript parser for Google Closure Compiler and JSDoc type expressions.",
   "author": "Jeff Williams <jeffrey.l.williams@gmail.com>",
@@ -16,15 +16,13 @@
     "mocha": "~1.21.3",
     "pegjs": "https://github.com/dmajda/pegjs/tarball/76cc5d55b47ff3d5bbe1d435c6f843e2688cb729",
     "should": "~4.0.4",
-    "tv4": "https://github.com/geraintluff/tv4/tarball/eb7561072d44943306e5fd88b55b4a4c98cb6c75",
-    "uglify-js": "~2.4.15"
+    "tv4": "https://github.com/geraintluff/tv4/tarball/eb7561072d44943306e5fd88b55b4a4c98cb6c75"
   },
   "engines": {
     "node": ">= 0.8"
   },
   "scripts": {
-    "build": "./node_modules/.bin/pegjs ./lib/parser.pegjs",
-    "prepublish": "./node_modules/.bin/pegjs ./lib/parser.pegjs; ./node_modules/.bin/uglifyjs ./lib/parser.js -o ./lib/parser.js",
+    "prepublish": "./node_modules/.bin/pegjs ./lib/parser.pegjs",
     "test": "mocha"
   },
   "licenses": [
