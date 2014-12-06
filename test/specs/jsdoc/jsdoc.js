@@ -423,6 +423,90 @@ module.exports = [
 		}
 	},
 	{
+		description: 'Jsdoc Toolkit 2-style nested array (two levels)',
+		expression: 'number[][]',
+		newExpression: 'Array.<Array.<number>>',
+		parsed: {
+			type: Types.TypeApplication,
+			expression: {
+				type: Types.NameExpression,
+				name: 'Array'
+			},
+			applications: [
+				{
+					type: Types.TypeApplication,
+					expression: {
+						type: Types.NameExpression,
+						name: 'Array'
+					},
+					applications: [
+						{
+							type: Types.NameExpression,
+							name: 'number'
+						}
+					]
+				}
+			]
+		},
+		described: {
+			en: {
+				simple: 'Array of Array of number',
+				extended: {
+					description: 'Array of Array of number',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'Jsdoc Toolkit 2-style nested array (three levels)',
+		expression: 'number[][][]',
+		newExpression: 'Array.<Array.<Array.<number>>>',
+		parsed: {
+			type: Types.TypeApplication,
+			expression: {
+				type: Types.NameExpression,
+				name: 'Array'
+			},
+			applications: [
+				{
+					type: Types.TypeApplication,
+					expression: {
+						type: Types.NameExpression,
+						name: 'Array'
+					},
+					applications: [
+						{
+							type: Types.TypeApplication,
+							expression: {
+								type: Types.NameExpression,
+								name: 'Array'
+							},
+							applications: [
+								{
+									type: Types.NameExpression,
+									name: 'number'
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		described: {
+			en: {
+				simple: 'Array of Array of Array of number',
+				extended: {
+					description: 'Array of Array of Array of number',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+
+	},
+	{
 		description: 'record type with a property that uses a type application as a key',
 		expression: '{Array.<string>: number}',
 		parsed: {
