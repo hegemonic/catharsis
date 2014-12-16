@@ -7,6 +7,9 @@ var en = {
 };
 var Types = require('../../lib/types');
 
+var optional = {
+	optional: true
+};
 var repeatable = {
 	repeatable: true
 };
@@ -16,6 +19,8 @@ var nullableNumber = {
 	name: 'number',
 	nullable: true
 };
+var nullableNumberOptional = _.extend({}, nullableNumber, optional);
+var nullableNumberOptionalRepeatable = _.extend({}, nullableNumber, optional, repeatable);
 var nullableNumberRepeatable = _.extend({}, nullableNumber, repeatable);
 
 var nonNullableObject = {
@@ -23,6 +28,8 @@ var nonNullableObject = {
 	name: 'Object',
 	nullable: false
 };
+var nonNullableObjectOptional = _.extend({}, nonNullableObject, optional);
+var nonNullableObjectOptionalRepeatable = _.extend({}, nonNullableObject, optional, repeatable);
 var nonNullableObjectRepeatable = _.extend({}, nonNullableObject, repeatable);
 
 module.exports = [
@@ -163,6 +170,122 @@ module.exports = [
 					description: 'Object',
 					modifiers: {
 						nullable: en.modifiers.extended.nonNullable,
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'postfix optional nullable number',
+		expression: 'number=?',
+		newExpression: '?number=',
+		parsed: nullableNumberOptional,
+		described: {
+			en: {
+				simple: 'optional nullable number',
+				extended: {
+					description: 'number',
+					modifiers: {
+						nullable: en.modifiers.extended.nullable,
+						optional: en.modifiers.extended.optional
+					},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'postfix nullable optional number',
+		expression: 'number?=',
+		newExpression: '?number=',
+		parsed: nullableNumberOptional,
+		described: {
+			en: {
+				simple: 'optional nullable number',
+				extended: {
+					description: 'number',
+					modifiers: {
+						nullable: en.modifiers.extended.nullable,
+						optional: en.modifiers.extended.optional
+					},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'postfix repeatable nullable optional number',
+		expression: '...number?=',
+		newExpression: '...?number=',
+		parsed: nullableNumberOptionalRepeatable,
+		described: {
+			en: {
+				simple: 'optional nullable repeatable number',
+				extended: {
+					description: 'number',
+					modifiers: {
+						nullable: en.modifiers.extended.nullable,
+						optional: en.modifiers.extended.optional,
+						repeatable: en.modifiers.extended.repeatable
+					},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'postfix optional non-nullable object',
+		expression: 'Object=!',
+		newExpression: '!Object=',
+		parsed: nonNullableObjectOptional,
+		described: {
+			en: {
+				simple: 'optional non-null Object',
+				extended: {
+					description: 'Object',
+					modifiers: {
+						nullable: en.modifiers.extended.nonNullable,
+						optional: en.modifiers.extended.optional
+					},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'postfix non-nullable optional object',
+		expression: 'Object!=',
+		newExpression: '!Object=',
+		parsed: nonNullableObjectOptional,
+		described: {
+			en: {
+				simple: 'optional non-null Object',
+				extended: {
+					description: 'Object',
+					modifiers: {
+						nullable: en.modifiers.extended.nonNullable,
+						optional: en.modifiers.extended.optional
+					},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'postfix repeatable non-nullable optional object',
+		expression: '...Object!=',
+		newExpression: '...!Object=',
+		parsed: nonNullableObjectOptionalRepeatable,
+		described: {
+			en: {
+				simple: 'optional non-null repeatable Object',
+				extended: {
+					description: 'Object',
+					modifiers: {
+						nullable: en.modifiers.extended.nonNullable,
+						optional: en.modifiers.extended.optional,
 						repeatable: en.modifiers.extended.repeatable
 					},
 					returns: ''
