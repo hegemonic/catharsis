@@ -1,5 +1,5 @@
 {
-  "version": "0.8.5-dev",
+  "version": "0.8.5",
   "name": "catharsis",
   "description": "A JavaScript parser for Google Closure Compiler and JSDoc type expressions.",
   "author": "Jeff Williams <jeffrey.l.williams@gmail.com>",
@@ -13,7 +13,7 @@
     "underscore-contrib": "~0.3.0"
   },
   "devDependencies": {
-    "mocha": "~1.21.3",
+    "mocha": "~2.0.1",
     "pegjs": "https://github.com/dmajda/pegjs/tarball/76cc5d55b47ff3d5bbe1d435c6f843e2688cb729",
     "should": "~4.0.4",
     "tv4": "https://github.com/geraintluff/tv4/tarball/eb7561072d44943306e5fd88b55b4a4c98cb6c75"
