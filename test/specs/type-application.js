@@ -230,7 +230,7 @@ module.exports = [
 		}
 	},
 	{
-		description: 'array of unknown type',
+		description: 'array of unknown',
 		expression: 'Array.<?>',
 		parsed: {
 			type: Types.TypeApplication,
@@ -246,9 +246,9 @@ module.exports = [
 		},
 		described: {
 			en: {
-				simple: 'Array of unknown type',
+				simple: 'Array of unknown',
 				extended: {
-					description: 'Array of unknown type',
+					description: 'Array of unknown',
 					modifiers: {},
 					returns: ''
 				}

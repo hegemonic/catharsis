@@ -314,9 +314,9 @@ module.exports = [
 		},
 		described: {
 			en: {
-				simple: 'unknown type',
+				simple: 'unknown',
 				extended: {
-					description: 'unknown type',
+					description: 'unknown',
 					modifiers: {},
 					returns: ''
 				}
@@ -332,9 +332,9 @@ module.exports = [
 		},
 		described: {
 			en: {
-				simple: 'repeatable unknown type',
+				simple: 'repeatable unknown',
 				extended: {
-					description: 'unknown type',
+					description: 'unknown',
 					modifiers: {
 						repeatable: en.modifiers.extended.repeatable
 					},

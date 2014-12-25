@@ -239,9 +239,9 @@ module.exports = [
 		},
 		described: {
 			en: {
-				simple: '(Array or Object with unknown type properties)',
+				simple: '(Array or Object with unknown properties)',
 				extended: {
-					description: '(Array or Object with unknown type properties)',
+					description: '(Array or Object with unknown properties)',
 					modifiers: {},
 					returns: ''
 				}
@@ -287,9 +287,9 @@ module.exports = [
 		},
 		described: {
 			en: {
-				simple: '(Array of string or Object with unknown type properties)',
+				simple: '(Array of string or Object with unknown properties)',
 				extended: {
-					description: '(Array of string or Object with unknown type properties)',
+					description: '(Array of string or Object with unknown properties)',
 					modifiers: {},
 					returns: ''
 				}
