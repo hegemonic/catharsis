@@ -296,31 +296,6 @@ module.exports = [
 		}
 	},
 	{
-		description: 'function signature with a repeatable param that is not enclosed in brackets',
-		expression: 'function(...foo)',
-		newExpression: 'function(...[foo])',
-		parsed: {
-			type: Types.FunctionType,
-			params: [
-				{
-					type: Types.NameExpression,
-					name: 'foo',
-					repeatable: true
-				}
-			]
-		},
-		described: {
-			en: {
-				simple: 'function(repeatable foo)',
-				extended: {
-					description: 'function(repeatable foo)',
-					modifiers: {},
-					returns: ''
-				}
-			}
-		}
-	},
-	{
 		description: 'identifier with a repeatable param that is not enclosed in brackets',
 		expression: 'MyClass(...foo)',
 		parsed: {
@@ -681,23 +656,23 @@ module.exports = [
 		expression: '...string|string[]',
 		newExpression: '(...string|Array.<string>)',
 		parsed: {
-			"type": "TypeUnion",
-			"elements": [
+			type: 'TypeUnion',
+			elements: [
 				{
-					"type": "NameExpression",
-					"name": "string",
-					"repeatable": true
+					type: 'NameExpression',
+					name: 'string',
+					repeatable: true
 				},
 				{
-					"type": "TypeApplication",
-					"expression": {
-						"type": "NameExpression",
-						"name": "Array"
+					type: 'TypeApplication',
+					expression: {
+						type: 'NameExpression',
+						name: 'Array'
 					},
-					"applications": [
+					applications: [
 						{
-							"name": "string",
-							"type": "NameExpression"
+							name: 'string',
+							type: 'NameExpression'
 						}
 					]
 				}

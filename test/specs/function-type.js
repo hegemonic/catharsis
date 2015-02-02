@@ -287,6 +287,7 @@ module.exports = [
 		description: 'function with a fixed parameter, followed by a variable number of ' +
 			'parameters, as well as a return value',
 		expression: 'function(string, ...[number]): number',
+		newExpression: 'function(string, ...number): number',
 		parsed: {
 			type: Types.FunctionType,
 			params: [
@@ -319,6 +320,7 @@ module.exports = [
 	{
 		description: 'function with a variable number of parameters containing the value `null`',
 		expression: 'function(...[null])',
+		newExpression: 'function(...null)',
 		parsed: {
 			type: Types.FunctionType,
 			params: [
@@ -343,6 +345,7 @@ module.exports = [
 		description: 'function with a variable number of parameters containing the value ' +
 			'`undefined`',
 		expression: 'function(...[undefined])',
+		newExpression: 'function(...undefined)',
 		parsed: {
 			type: Types.FunctionType,
 			params: [
@@ -368,6 +371,8 @@ module.exports = [
 			'type, and a return value',
 		expression: 'function(new:Master, this:Everyone, string, goog.ui.Menu, Array.<Object>, ' +
 			'...[string]): boolean',
+		newExpression: 'function(new:Master, this:Everyone, string, goog.ui.Menu, Array.<Object>, ' +
+			'...string): boolean',
 		parsed: {
 			type: Types.FunctionType,
 			params: [
@@ -427,6 +432,30 @@ module.exports = [
 			}
 		}
 	},
+	{
+		description: 'function with a repeatable param that is not enclosed in brackets',
+		expression: 'function(...foo)',
+		parsed: {
+			type: Types.FunctionType,
+			params: [
+				{
+					type: Types.NameExpression,
+					name: 'foo',
+					repeatable: true
+				}
+			]
+		},
+		described: {
+			en: {
+				simple: 'function(repeatable foo)',
+				extended: {
+					description: 'function(repeatable foo)',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+	},
 
 	// The following type expressions are adapted from the Closure Compiler test suite:
 	// http://goo.gl/rgKSk
@@ -482,6 +511,7 @@ module.exports = [
 	{
 		description: 'function with a variable number of parameters containing any values',
 		expression: 'function(...[*])',
+		newExpression: 'function(...*)',
 		parsed: {
 			type: Types.FunctionType,
 			params: [
@@ -590,6 +620,7 @@ module.exports = [
 		description: 'function with a "new" type and a variable number of params that accept ' +
 			'all types, returning a name expression',
 		expression: 'function(new:Array, ...[*]): Array',
+		newExpression: 'function(new:Array, ...*): Array',
 		parsed: {
 			type: Types.FunctionType,
 			params: [
@@ -657,6 +688,7 @@ module.exports = [
 	{
 		description: 'function with a variable number of parameters and a return value',
 		expression: 'function(...[number]): boolean',
+		newExpression: 'function(...number): boolean',
 		parsed: {
 			type: Types.FunctionType,
 			params: [
