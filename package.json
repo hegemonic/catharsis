@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "mocha": "~2.0.1",
-    "pegjs": "https://github.com/dmajda/pegjs/tarball/76cc5d55b47ff3d5bbe1d435c6f843e2688cb729",
+    "pegjs": "https://github.com/dmajda/pegjs/tarball/73795a65ccda02da106691dd3f35abe320714b65",
     "should": "~4.0.4",
     "tv4": "https://github.com/geraintluff/tv4/tarball/eb7561072d44943306e5fd88b55b4a4c98cb6c75"
   },
