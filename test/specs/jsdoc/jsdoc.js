@@ -602,6 +602,37 @@ module.exports = [
 		}
 	},
 	{
+		description: 'record type with a property that contains a function with no preceding space',
+		expression: '{foo:function()}',
+		newExpression: '{foo: function()}',
+		parsed: {
+			type: 'RecordType',
+			fields: [
+				{
+					type: 'FieldType',
+					key: {
+						type: 'NameExpression',
+						name: 'foo'
+					},
+					value: {
+						type: 'FunctionType',
+						params: []
+					}
+				}
+			]
+		},
+		described: {
+			en: {
+				simple: '{foo: function()}',
+				extended: {
+					description: '{foo: function()}',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
 		description: 'function type with no trailing pathentheses',
 		expression: 'function',
 		newExpression: 'function()',
