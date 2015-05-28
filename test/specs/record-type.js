@@ -394,5 +394,35 @@ module.exports = [
 				}
 			}
 		}
+	},
+	{
+		description: 'record type with a property that uses a numeric key',
+		expression: '{0: string}',
+		parsed: {
+			type: Types.RecordType,
+			fields: [
+				{
+					type: Types.FieldType,
+					key: {
+						type: Types.NameExpression,
+						name: '0'
+					},
+					value: {
+						type: Types.NameExpression,
+						name: 'string'
+					}
+				}
+			]
+		},
+		described: {
+			en: {
+				simple: '{0: string}',
+				extended: {
+					description: '{0: string}',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
 	}
 ];
