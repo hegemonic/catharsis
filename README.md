@@ -203,7 +203,7 @@ With [npm](http://npmjs.org):
 
     npm install catharsis
 
-Or without:
+Or by cloning the git repo:
 
     git clone git://github.com/hegemonic/catharsis.git
     cd catharsis
@@ -224,6 +224,8 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.8.8 (April 2016): Corrected the description of type applications other than arrays that contain
+a single type (for example, `Promise.<string>`).
 + 0.8.7 (June 2015):
     + Record types that use numeric literals as property names (for example, `{0: string}`) are now
     parsed correctly.
