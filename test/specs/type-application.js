@@ -254,5 +254,59 @@ module.exports = [
 				}
 			}
 		}
+	},
+	{
+		description: 'Promise containing string',
+		expression: 'Promise.<string>',
+		parsed: {
+			type: Types.TypeApplication,
+			expression: {
+				type: Types.NameExpression,
+				name: 'Promise'
+			},
+			applications: [
+				{
+					type: Types.NameExpression,
+					name: 'string'
+				}
+			]
+		},
+		described: {
+			en: {
+				simple: 'Promise containing string',
+				extended: {
+					description: 'Promise containing string',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'foo.Promise containing string',
+		expression: 'foo.Promise.<string>',
+		parsed: {
+			type: Types.TypeApplication,
+			expression: {
+				type: Types.NameExpression,
+				name: 'foo.Promise'
+			},
+			applications: [
+				{
+					type: Types.NameExpression,
+					name: 'string'
+				}
+			]
+		},
+		described: {
+			en: {
+				simple: 'foo.Promise containing string',
+				extended: {
+					description: 'foo.Promise containing string',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
 	}
 ];

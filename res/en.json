@@ -3,7 +3,8 @@
 	"application": {
 		"array": "<%= prefix %> <%= codeTagOpen %>Array<%= codeTagClose %> of <%= application %> <%= suffix %>",
 		"object": "<%= prefix %> <%= codeTagOpen %>Object<%= codeTagClose %> with <%= application %> properties <%= suffix %>",
-		"objectNonString": "<%= prefix %> <%= codeTagOpen %>Object<%= codeTagClose %> with <%= keyApplication %> keys and <%= application %> properties <%= suffix %>"
+		"objectNonString": "<%= prefix %> <%= codeTagOpen %>Object<%= codeTagClose %> with <%= keyApplication %> keys and <%= application %> properties <%= suffix %>",
+		"other": "<%= prefix %> <%= codeTagOpen %><%= type %> containing <%= application %> <%= suffix %>"
 	},
 	"function": {
 		"extended": {
