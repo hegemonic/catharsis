@@ -378,5 +378,23 @@ module.exports = [
 				}
 			}
 		}
+	},
+	{
+		description: 'name that includes an @ sign',
+		expression: 'module:@prefix/my-module~myCallback',
+		parsed: {
+			type: Types.NameExpression,
+			name: 'module:@prefix/my-module~myCallback'
+		},
+		described: {
+			en: {
+				simple: 'module:@prefix/my-module~myCallback',
+				extended: {
+					description: 'module:@prefix/my-module~myCallback',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
 	}
 ];
