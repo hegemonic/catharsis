@@ -224,6 +224,8 @@ pull request, please contact me in advance so I can help things go smoothly.
 
 ## Changelog ##
 
++ 0.8.9 (July 2017): Type expressions that include an `@` sign (for example,
+`module:@prefix/mymodule~myCallback`) are now supported.
 + 0.8.8 (April 2016): Corrected the description of type applications other than arrays that contain
 a single type (for example, `Promise.<string>`).
 + 0.8.7 (June 2015):
