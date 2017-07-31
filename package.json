@@ -15,7 +15,7 @@
   "devDependencies": {
     "ajv": "~5.2.2",
     "mocha": "~2.0.1",
-    "pegjs": "https://github.com/dmajda/pegjs/tarball/eaca5f0acf97b66ef141fed84aa95d4e72e33757",
+    "pegjs": "~0.10.0",
     "should": "~4.0.4"
   },
   "engines": {
