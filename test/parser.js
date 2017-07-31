@@ -2,15 +2,20 @@
 'use strict';
 
 var _ = require('underscore-contrib');
+var Ajv = require('ajv');
 var fs = require('fs');
 var helper = require('./helper');
 var parse = require('../lib/parser').parse;
 var path = require('path');
 var schema = require('../lib/schema');
 var should = require('should');
-var tv4 = require('tv4');
 var util = require('util');
-var validate = tv4.validateMultiple;
+
+var ajv = new Ajv({
+	allErrors: true,
+	ownProperties: true
+});
+var validate = ajv.compile(schema);
 
 function parseIt(item, options) {
 	var parsed;
@@ -41,11 +46,11 @@ function checkTypes(filepath, options) {
 	types.forEach(function(type) {
 		try {
 			parsedType = parseIt(type, options);
-			validationResult = validate(parsedType, schema, { banUnknownProperties: true });
-			if (validationResult.errors && validationResult.errors.length) {
+			validationResult = validate(parsedType);
+			if (validationResult === false) {
 				validationErrors.push({
 					expression: type.expression,
-					errors: validationResult.errors
+					errors: validate.errors.slice(0)
 				});
 			}
 		} catch(e) {
@@ -61,9 +66,6 @@ describe('parser', function() {
 	describe('parse()', function() {
 		var specs = './test/specs';
 		var jsdocSpecs = path.join(specs, 'jsdoc');
-
-		// register schema with the validator
-		tv4.addSchema(schema.id, schema);
 
 		function tester(specPath, basename) {
 			it('can parse types in the "' + basename + '" spec', function() {

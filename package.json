@@ -13,17 +13,17 @@
     "underscore-contrib": "~0.3.0"
   },
   "devDependencies": {
+    "ajv": "~5.2.2",
     "mocha": "~2.0.1",
     "pegjs": "https://github.com/dmajda/pegjs/tarball/eaca5f0acf97b66ef141fed84aa95d4e72e33757",
-    "should": "~4.0.4",
-    "tv4": "https://github.com/geraintluff/tv4/tarball/eb7561072d44943306e5fd88b55b4a4c98cb6c75"
+    "should": "~4.0.4"
   },
   "engines": {
     "node": ">= 0.10"
   },
   "scripts": {
     "prepublish": "./node_modules/pegjs/bin/pegjs ./lib/parser.pegjs",
-    "test": "mocha"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "license": "MIT"
 }
