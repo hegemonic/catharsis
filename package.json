@@ -10,7 +10,7 @@
   "bugs": "https://github.com/hegemonic/catharsis/issues",
   "main": "catharsis.js",
   "dependencies": {
-    "underscore-contrib": "~0.3.0"
+    "lodash": "~4.17.4"
   },
   "devDependencies": {
     "ajv": "~5.2.2",

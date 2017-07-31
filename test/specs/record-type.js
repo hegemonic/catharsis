@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('underscore-contrib');
+var _ = require('lodash');
 var fs = require('fs');
 
 var en = {

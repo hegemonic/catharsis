@@ -1,7 +1,7 @@
 /*global describe, it */
 'use strict';
 
-var _ = require('underscore-contrib');
+var _ = require('lodash');
 var Ajv = require('ajv');
 var fs = require('fs');
 var helper = require('./helper');

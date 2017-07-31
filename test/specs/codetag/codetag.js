@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('underscore-contrib');
 var util = require('util');
 
 var Types = require('../../../lib/types');
