@@ -115,6 +115,42 @@ module.exports = [
 		}
 	},
 	{
+		description: 'name expression for a path type (level up)',
+		expression: '../foo/bar.baz',
+		parsed: {
+			type: Types.NameExpression,
+			name: '../foo/bar.baz'
+		},
+		described: {
+			en: {
+				simple: '../foo/bar.baz',
+				extended: {
+					description: '../foo/bar.baz',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
+		description: 'name expression for a path type (same level)',
+		expression: './foo/bar',
+		parsed: {
+			type: Types.NameExpression,
+			name: './foo/bar'
+		},
+		described: {
+			en: {
+				simple: './foo/bar',
+				extended: {
+					description: './foo/bar',
+					modifiers: {},
+					returns: ''
+				}
+			}
+		}
+	},
+	{
 		description: 'name expression containing a reserved word',
 		expression: 'this',
 		parsed: {
