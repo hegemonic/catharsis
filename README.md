@@ -77,6 +77,9 @@ application with the expression `Array` (for example, `Array.<string>`).
 + `options`: Options for parsing the type expression.
     + `options.jsdoc`: Specifies whether to enable parsing of JSDoc-style type expressions. Defaults
     to `false`.
+    + `options.modulePath`: Specifies the module path for Closure Compiler path type resolution.
+    For `@module foo/bar`, the `modulePath` would be `foo`. When provided, Closure Compiler path
+    types will be converted to JSDoc `module:` types.
     + `options.useCache`: Specifies whether to use the cache of parsed types. Defaults to `true`.
 
 #### Returns ####
