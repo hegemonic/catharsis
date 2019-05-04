@@ -10,19 +10,20 @@
   "bugs": "https://github.com/hegemonic/catharsis/issues",
   "main": "catharsis.js",
   "dependencies": {
-    "lodash": "~4.17.4"
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "ajv": "~5.2.2",
-    "mocha": "~2.0.1",
-    "pegjs": "~0.10.0",
-    "should": "~4.0.4"
+    "ajv": "^6.10.0",
+    "mocha": "^6.1.4",
+    "pegjs": "^0.10.0",
+    "should": "^13.2.3",
+    "should-equal": "^2.0.0"
   },
   "engines": {
-    "node": ">= 0.10"
+    "node": ">= 8"
   },
   "scripts": {
-    "prepublish": "./node_modules/pegjs/bin/pegjs ./lib/parser.pegjs",
+    "prepare": "./node_modules/pegjs/bin/pegjs ./lib/parser.pegjs",
     "test": "./node_modules/mocha/bin/mocha"
   },
   "license": "MIT"
