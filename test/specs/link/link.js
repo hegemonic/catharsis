@@ -1,6 +1,4 @@
-'use strict';
-
-var Types = require('../../../lib/types');
+const Types = require('../../../lib/types');
 
 module.exports = [
     {

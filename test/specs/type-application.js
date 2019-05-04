@@ -1,17 +1,15 @@
-'use strict';
+const _ = require('lodash');
 
-var _ = require('lodash');
-
-var en = {
+const en = {
     modifiers: require('../../res/en').modifiers
 };
-var Types = require('../../lib/types');
+const Types = require('../../lib/types');
 
-var repeatable = {
+const repeatable = {
     repeatable: true
 };
 
-var stringArray = {
+const stringArray = {
     type: Types.TypeApplication,
     expression: {
         type: Types.NameExpression,
@@ -24,7 +22,7 @@ var stringArray = {
         }
     ]
 };
-var stringArrayRepeatable = _.extend({}, stringArray, repeatable);
+const stringArrayRepeatable = _.extend({}, stringArray, repeatable);
 
 module.exports = [
     {

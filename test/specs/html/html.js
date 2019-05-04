@@ -1,5 +1,3 @@
-'use strict';
-
 /*
 var Types = require('../../../lib/types');
 

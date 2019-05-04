@@ -1,36 +1,34 @@
-'use strict';
+const _ = require('lodash');
 
-var _ = require('lodash');
-
-var en = {
+const en = {
     modifiers: require('../../res/en').modifiers
 };
-var Types = require('../../lib/types');
+const Types = require('../../lib/types');
 
-var optional = {
+const optional = {
     optional: true
 };
-var repeatable = {
+const repeatable = {
     repeatable: true
 };
 
-var nullableNumber = {
+const nullableNumber = {
     type: Types.NameExpression,
     name: 'number',
     nullable: true
 };
-var nullableNumberOptional = _.extend({}, nullableNumber, optional);
-var nullableNumberOptionalRepeatable = _.extend({}, nullableNumber, optional, repeatable);
-var nullableNumberRepeatable = _.extend({}, nullableNumber, repeatable);
+const nullableNumberOptional = _.extend({}, nullableNumber, optional);
+const nullableNumberOptionalRepeatable = _.extend({}, nullableNumber, optional, repeatable);
+const nullableNumberRepeatable = _.extend({}, nullableNumber, repeatable);
 
-var nonNullableObject = {
+const nonNullableObject = {
     type: Types.NameExpression,
     name: 'Object',
     nullable: false
 };
-var nonNullableObjectOptional = _.extend({}, nonNullableObject, optional);
-var nonNullableObjectOptionalRepeatable = _.extend({}, nonNullableObject, optional, repeatable);
-var nonNullableObjectRepeatable = _.extend({}, nonNullableObject, repeatable);
+const nonNullableObjectOptional = _.extend({}, nonNullableObject, optional);
+const nonNullableObjectOptionalRepeatable = _.extend({}, nonNullableObject, optional, repeatable);
+const nonNullableObjectRepeatable = _.extend({}, nonNullableObject, repeatable);
 
 module.exports = [
     {

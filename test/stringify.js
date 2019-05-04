@@ -1,16 +1,14 @@
 /* global describe, it */
-'use strict';
-
-var helper = require('./helper');
-var parse = require('../lib/parser').parse;
-var path = require('path');
-var stringify = require('../lib/stringify');
-var util = require('util');
+const helper = require('./helper');
+const parse = require('../lib/parser').parse;
+const path = require('path');
+const stringify = require('../lib/stringify');
+const util = require('util');
 
 
 function stringifyIt(item, options) {
-    var string = stringify(item.parsed, options);
-    var expression = item.newExpression || item.expression;
+    const string = stringify(item.parsed, options);
+    const expression = item.newExpression || item.expression;
 
     if (string !== expression) {
         throw new Error(util.format('type expression "%s" was stringified as "%s"', expression,
@@ -28,11 +26,11 @@ function stringifyIt(item, options) {
 }
 
 function checkStringifiedTypes(filepath, options) {
-    var types = require(filepath);
+    const types = require(filepath);
 
-    var errors = [];
+    const errors = [];
 
-    types.forEach(function(type) {
+    types.forEach(type => {
         try {
             stringifyIt(type, options);
         } catch (e) {
@@ -43,20 +41,20 @@ function checkStringifiedTypes(filepath, options) {
     errors.should.eql([]);
 }
 
-describe('stringify', function() {
-    var specs = './test/specs';
-    var htmlSpecs = path.join(specs, 'html');
-    var jsdocSpecs = path.join(specs, 'jsdoc');
-    var linkSpecs = path.join(specs, 'link');
-    var linkCssSpecs = path.join(specs, 'linkcss');
+describe('stringify', () => {
+    const specs = './test/specs';
+    const htmlSpecs = path.join(specs, 'html');
+    const jsdocSpecs = path.join(specs, 'jsdoc');
+    const linkSpecs = path.join(specs, 'link');
+    const linkCssSpecs = path.join(specs, 'linkcss');
 
-    var links = {
+    const links = {
         Foo: 'Foo.html',
         'module:foo/bar/baz~Qux': 'foobarbazqux.html'
     };
 
     function tester(specPath, basename, options) {
-        it('can stringify types in the "' + basename + '" spec', function() {
+        it(`can stringify types in the "${basename}" spec`, () => {
             checkStringifiedTypes(path.join(specPath, basename), options);
         });
     }
@@ -70,14 +68,14 @@ describe('stringify', function() {
     helper.testSpecs(linkSpecs, tester, {
         htmlSafe: true,
         jsdoc: true,
-        links: links,
+        links,
         validate: false
     });
     helper.testSpecs(linkCssSpecs, tester, {
         linkClass: 'my-class',
         htmlSafe: true,
         jsdoc: true,
-        links: links,
+        links,
         validate: false
     });
 });

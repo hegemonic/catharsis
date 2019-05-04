@@ -1,19 +1,17 @@
 #!/usr/bin/env node
 
-'use strict';
-
 // Command-line tool that parses a type expression and dumps a JSON version of the parse tree.
-var catharsis = require('../catharsis');
-var path = require('path');
-var util = require('util');
+const catharsis = require('../catharsis');
+const path = require('path');
+const util = require('util');
 
-var command = path.basename(process.argv[1]);
-var typeExpression = process.argv[2];
-var opts = {
+const command = path.basename(process.argv[1]);
+const typeExpression = process.argv[2];
+const opts = {
     describe: false,
     jsdoc: false
 };
-var parsedType;
+let parsedType;
 
 function usage() {
     console.log(util.format('Usage:\n    %s typeExpression [--jsdoc] [--describe]', command));
@@ -25,8 +23,8 @@ function done(err) {
     /* eslint-enable no-process-exit */
 }
 
-process.argv.slice(3).forEach(function(arg) {
-    var parsedArg = arg.replace(/^-{2}/, '');
+process.argv.slice(3).forEach(arg => {
+    const parsedArg = arg.replace(/^-{2}/, '');
 
     if (opts[parsedArg] !== undefined) {
         opts[parsedArg] = true;

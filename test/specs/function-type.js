@@ -1,17 +1,15 @@
-'use strict';
+const _ = require('lodash');
 
-var _ = require('lodash');
-
-var en = {
+const en = {
     modifiers: require('../../res/en').modifiers
 };
-var Types = require('../../lib/types');
+const Types = require('../../lib/types');
 
-var repeatable = {
+const repeatable = {
     repeatable: true
 };
 
-var basicFunction = {
+const basicFunction = {
     type: Types.FunctionType,
     params: [
         {
@@ -24,16 +22,16 @@ var basicFunction = {
         }
     ]
 };
-var basicFunctionRepeatable = _.extend({}, basicFunction, repeatable);
+const basicFunctionRepeatable = _.extend({}, basicFunction, repeatable);
 
-var booleanResult = {
+const booleanResult = {
     result: {
         type: Types.NameExpression,
         name: 'boolean'
     }
 };
-var basicFunctionWithResult = _.extend({}, basicFunction, booleanResult);
-var basicFunctionRepeatableWithResult = _.extend({}, basicFunctionRepeatable, booleanResult);
+const basicFunctionWithResult = _.extend({}, basicFunction, booleanResult);
+const basicFunctionRepeatableWithResult = _.extend({}, basicFunctionRepeatable, booleanResult);
 
 module.exports = [
     {

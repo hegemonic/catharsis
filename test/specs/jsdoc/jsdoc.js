@@ -1,9 +1,7 @@
-'use strict';
-
-var en = {
+const en = {
     modifiers: require('../../../res/en').modifiers
 };
-var Types = require('../../../lib/types');
+const Types = require('../../../lib/types');
 
 module.exports = [
     {

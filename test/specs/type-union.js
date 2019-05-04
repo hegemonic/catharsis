@@ -1,17 +1,15 @@
-'use strict';
+const _ = require('lodash');
 
-var _ = require('lodash');
-
-var en = {
+const en = {
     modifiers: require('../../res/en').modifiers
 };
-var Types = require('../../lib/types');
+const Types = require('../../lib/types');
 
-var repeatable = {
+const repeatable = {
     repeatable: true
 };
 
-var numberBoolean = {
+const numberBoolean = {
     type: Types.TypeUnion,
     elements: [
         {
@@ -24,7 +22,7 @@ var numberBoolean = {
         }
     ]
 };
-var numberBooleanRepeatable = _.extend({}, numberBoolean, repeatable);
+const numberBooleanRepeatable = _.extend({}, numberBoolean, repeatable);
 
 module.exports = [
     {

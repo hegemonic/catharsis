@@ -1,22 +1,20 @@
 /* global describe, it */
-'use strict';
+const _ = require('lodash');
+const Ajv = require('ajv');
+const helper = require('./helper');
+const parse = require('../lib/parser').parse;
+const path = require('path');
+const schema = require('../lib/schema');
+const util = require('util');
 
-var _ = require('lodash');
-var Ajv = require('ajv');
-var helper = require('./helper');
-var parse = require('../lib/parser').parse;
-var path = require('path');
-var schema = require('../lib/schema');
-var util = require('util');
-
-var ajv = new Ajv({
+const ajv = new Ajv({
     allErrors: true,
     ownProperties: true
 });
-var validate = ajv.compile(schema);
+const validate = ajv.compile(schema);
 
 function parseIt(item, options) {
-    var parsed;
+    let parsed;
 
     try {
         parsed = parse(item.expression, options);
@@ -33,14 +31,14 @@ function parseIt(item, options) {
 }
 
 function checkTypes(filepath, options) {
-    var types = require(filepath);
+    const types = require(filepath);
 
-    var errors = [];
-    var parsedType;
-    var validationErrors = [];
-    var validationResult;
+    const errors = [];
+    let parsedType;
+    const validationErrors = [];
+    let validationResult;
 
-    types.forEach(function(type) {
+    types.forEach(type => {
         try {
             parsedType = parseIt(type, options);
             validationResult = validate(parsedType);
@@ -59,20 +57,20 @@ function checkTypes(filepath, options) {
     validationErrors.should.eql([]);
 }
 
-describe('parser', function() {
-    describe('parse()', function() {
-        var specs = './test/specs';
-        var jsdocSpecs = path.join(specs, 'jsdoc');
+describe('parser', () => {
+    describe('parse()', () => {
+        const specs = './test/specs';
+        const jsdocSpecs = path.join(specs, 'jsdoc');
 
         function tester(specPath, basename) {
-            it('can parse types in the "' + basename + '" spec', function() {
+            it(`can parse types in the "${basename}" spec`, () => {
                 checkTypes(path.join(specPath, basename), {});
             });
         }
 
         function jsdocTester(specPath, basename) {
-            it('can parse types in the "' + basename + '" spec when JSDoc type parsing is enabled',
-                function() {
+            it(`can parse types in the "${basename}" spec when JSDoc type parsing is enabled`,
+                () => {
                     checkTypes(path.join(specPath, basename), {jsdoc: true});
                 });
         }

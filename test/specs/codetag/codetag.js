@@ -1,27 +1,23 @@
-'use strict';
+const util = require('util');
 
-var util = require('util');
-
-var Types = require('../../../lib/types');
-
-var TAG_OPEN = '<foo class="code-class">';
-var TAG_CLOSE = '</foo>';
+const TAG_OPEN = '<foo class="code-class">';
+const TAG_CLOSE = '</foo>';
 
 function addTags(string) {
-    var formatParams = [string];
-    var matches = string.match(/\%s/g);
+    const formatParams = [string];
+    const matches = string.match(/%s/g);
 
     // tags must be balanced
     if (matches.length % 2 !== 0) {
-        throw new Error(util.format('Unable to add tags to %s because the placeholders are not ' +
-            'balanced.', string));
+        throw new Error(`Unable to add tags to ${string} because the placeholders are not ` +
+            'balanced.');
     }
 
-    for (var i = 0, l = matches.length / 2; i < l; i++) {
+    for (let i = 0, l = matches.length / 2; i < l; i++) {
         formatParams.push(TAG_OPEN, TAG_CLOSE);
     }
 
-    return util.format.apply(util, formatParams);
+    return util.format(...formatParams);
 }
 
 module.exports = [
