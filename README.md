@@ -233,6 +233,7 @@ expression.
 
 ## Changelog
 
++ 0.8.11 (July 2019): Updated dependencies.
 + 0.8.10 (May 2019): Updated dependencies.
 + 0.8.9 (July 2017): Type expressions that include an `@` sign (for example,
 `module:@prefix/mymodule~myCallback`) are now supported.

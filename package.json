@@ -1,5 +1,5 @@
 {
-  "version": "0.8.10",
+  "version": "0.8.11",
   "name": "catharsis",
   "description": "A JavaScript parser for Google Closure Compiler and JSDoc type expressions.",
   "author": "Jeff Williams <jeffrey.l.williams@gmail.com>",
@@ -10,10 +10,10 @@
   "bugs": "https://github.com/hegemonic/catharsis/issues",
   "main": "catharsis.js",
   "dependencies": {
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.14"
   },
   "devDependencies": {
-    "ajv": "^6.10.0",
+    "ajv": "^6.10.2",
     "mocha": "^6.1.4",
     "pegjs": "^0.10.0",
     "should": "^13.2.3",
