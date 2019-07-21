@@ -1,5 +1,7 @@
 # Catharsis
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/hegemonic/catharsis.svg)](https://greenkeeper.io/)
+
 A JavaScript parser for
 [Google Closure Compiler](https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler#type-expressions)
 and [JSDoc](https://github.com/jsdoc/jsdoc) type expressions.
