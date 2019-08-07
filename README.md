@@ -1,5 +1,10 @@
 # Catharsis
 
+[![Build Status][travis-img]][travis-url]
+
+[travis-img]: https://travis-ci.com/hegemonic/catharsis.svg?branch=master
+[travis-url]: https://travis-ci.com/hegemonic/catharsis
+
 A JavaScript parser for
 [Google Closure Compiler](https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler#type-expressions)
 and [JSDoc](https://github.com/jsdoc/jsdoc) type expressions.
