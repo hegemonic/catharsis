@@ -1,9 +1,11 @@
-{
+module.exports = {
     "env": {
+        "es6": true,
         "node": true
     },
 
     "parserOptions": {
+        ecmaVersion: 2015,
         "sourceType": "module"
     },
 
@@ -153,7 +155,7 @@
         "array-bracket-newline": "off",
         "array-bracket-spacing": ["error", "never"],
         "array-element-newline": "off",
-        "block-spacing": ["error", "always"], "off", // TODO: enable with "stroustrup" (or "1tbsp" + lots of cleanup)
+        "block-spacing": "off", // ["error", "always"] // TODO: enable with "stroustrup" (or "1tbsp" + lots of cleanup)
         "brace-style": ["error", "1tbs"],
         "camelcase": "error",
         "capitalized-comments": "off",
@@ -312,4 +314,4 @@
         "template-curly-spacing": ["error", "never"],
         "yield-star-spacing": ["error", "before"]
     }
-}
+};
