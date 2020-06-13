@@ -11,10 +11,9 @@ and [JSDoc](https://github.com/jsdoc/jsdoc) type expressions.
 
 Catharsis is designed to be:
 
-+ **Accurate**. Catharsis is based on a [PEG.js](http://pegjs.majda.cz/) grammar
-that's designed to handle any valid type expression. It uses a
-[Mocha](http://visionmedia.github.com/mocha/) test suite to verify the parser's
-accuracy.
++ **Accurate**. Catharsis is based on a [PEG.js](https://pegjs.org/) grammar
+that's designed to handle any valid type expression. It uses a thorough test
+suite to verify the parser's accuracy.
 + **Fast**. Parse results are cached, so the parser is invoked only when
 necessary.
 + **Flexible**. Catharsis can convert a parse result back into a type
@@ -25,11 +24,11 @@ can parse [JSDoc](https://github.com/jsdoc/jsdoc)-style type expressions.
 ## Example
 
 ```js
-var catharsis = require('catharsis');
+const catharsis = require('catharsis');
 
 // Closure Compiler parsing
-var type = '!Object';
-var parsedType;
+const type = '!Object';
+let parsedType;
 try {
     parsedType = catharsis.parse(type); // {"type":"NameExpression,"name":"Object","nullable":false}
 } catch(e) {
@@ -37,8 +36,8 @@ try {
 }
 
 // JSDoc-style type expressions enabled
-var jsdocType = 'string[]';  // Closure Compiler expects Array.<string>
-var parsedJsdocType;
+const jsdocType = 'string[]';  // Closure Compiler expects Array.<string>
+let parsedJsdocType;
 try {
     parsedJsdocType = catharsis.parse(jsdocType, {jsdoc: true});
 } catch (e) {
@@ -95,8 +94,8 @@ interpreted as a type application with the expression `Array` (for example,
 #### Returns
 
 An object containing the parse results. See the
-[`test/specs` directory](test/specs) for examples of the parse results for
-different type expressions.
+[`test/specs` directory](https://github.com/hegemonic/catharsis/tree/master/test/specs)
+for examples of the parse results for different type expressions.
 
 The object also includes two non-enumerable properties:
 
@@ -358,8 +357,8 @@ expressions before they are parsed.
     + The parse results now use a significantly different format from previous
     versions. The new format is more expressive and is similar, but not
     identical, to the format used by the
-    [doctrine](https://github.com/Constellation/doctrine) parser. **Note**: This
-    change is not backwards-compatible with previous versions.
+    [doctrine](https://github.com/eslint/doctrine) parser. **Note**: This change
+    is not backwards-compatible with previous versions.
     + Name expressions that contain a reserved word now include a
     `reservedWord: true` property.
     + Union types that are optional or nullable, or that can be repeated, are
