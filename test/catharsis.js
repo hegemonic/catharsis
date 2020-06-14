@@ -311,5 +311,19 @@ describe('catharsis', () => {
 
             noResources.should.throw();
         });
+
+        it('should accept a `Map` object that contains links', () => {
+            const nameExpDescribe = catharsis.describe({
+                type: Types.NameExpression,
+                name: 'string'
+            },
+            {
+                links: new Map([
+                    ['string', 'https://example.org/']
+                ])
+            });
+
+            nameExpDescribe.simple.should.equal('<a href="https://example.org/">string</a>');
+        });
     });
 });

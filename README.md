@@ -118,12 +118,12 @@ enabled, throws an error if the stringified type expression cannot be parsed.
     **Note**: Characters in name expressions are not escaped.
     + `options.linkClass`: A CSS class to add to HTML links. Used only if
     `options.links` is provided. By default, no CSS class is added.
-    + `options.links`: An object whose keys are name expressions and whose
-    values are URIs. If a name expression matches a key in `options.links`, the
-    name expression is wrapped in an HTML `<a>` tag that links to the URI. If
-    `options.linkClass` is specified, the `<a>` tag includes a `class`
-    attribute. **Note**: When using this option, parsed types are always
-    restringified, and the resulting string is not cached.
+    + `options.links`: An object or map whose keys are name expressions and
+    whose values are URIs. If a name expression matches a key in
+    `options.links`, the name expression will be wrapped in an HTML `<a>` tag
+    that links to the URI. If you also specify `options.linkClass`, the `<a>`
+    tag includes a `class` attribute. **Note**: When using this option, parsed
+    types are always restringified, and the resulting string is not cached.
     + `options.restringify`: Forces Catharsis to restringify the parsed type. If
     this option is not specified, and the parsed type object includes a
     `typeExpression` property, Catharsis returns the `typeExpression` property
