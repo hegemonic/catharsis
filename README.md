@@ -237,6 +237,10 @@ expression.
 
 ## Changelog
 
++ 0.9.0 (June 2020):
+    + For the `describe()` and `stringify()` methods, the `options.links`
+    parameter now accepts either a map or an object.
+    + Catharsis now requires Node.js 10 or later.
 + 0.8.11 (July 2019): Updated dependencies.
 + 0.8.10 (May 2019): Updated dependencies.
 + 0.8.9 (July 2017): Type expressions that include an `@` sign (for example,
