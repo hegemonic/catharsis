@@ -1,6 +1,9 @@
+.eslintignore
 .eslintrc
 .gitignore
 .npmignore
+.renovaterc.json
+.travis.yml
 CONTRIBUTING.md
 lib/parser.pegjs
 node_modules
