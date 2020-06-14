@@ -198,7 +198,7 @@ describe('catharsis', () => {
 
         it('should not return the typeExpression property if the links option is provided',
             () => {
-                const typeAppString = catharsis.stringify({
+                const nameExpString = catharsis.stringify({
                     type: Types.NameExpression,
                     name: 'string',
                     typeExpression: 'fake type expression'
@@ -207,8 +207,22 @@ describe('catharsis', () => {
                     links: {}
                 });
 
-                typeAppString.should.equal('string');
+                nameExpString.should.equal('string');
             });
+
+        it('should accept a `Map` object that contains links', () => {
+            const nameExpString = catharsis.stringify({
+                type: Types.NameExpression,
+                name: 'string'
+            },
+            {
+                links: new Map([
+                    ['string', 'https://example.org/']
+                ])
+            });
+
+            nameExpString.should.equal('<a href="https://example.org/">string</a>');
+        });
 
         // used for multiple tests
         const typeApp = {

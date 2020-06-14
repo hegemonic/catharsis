@@ -193,12 +193,12 @@ method returns the following data:
     translation resources in `options.resources`. Defaults to `en`.
     + `options.linkClass`: A CSS class to add to HTML links. Used only if
     `options.links` is provided. By default, no CSS class is added.
-    + `options.links`: An object whose keys are name expressions and whose
-    values are URIs. If a name expression matches a key in `options.links`, the
-    name expression will be wrapped in an HTML `<a>` tag that links to the URI.
-    If you also specify `options.linkClass`, the `<a>` tag includes a `class`
-    attribute. **Note**: When you use this option, the description is not
-    cached.
+    + `options.links`: An object or map whose keys are name expressions and
+    whose values are URIs. If a name expression matches a key in
+    `options.links`, the name expression will be wrapped in an HTML `<a>` tag
+    that links to the URI. If you also specify `options.linkClass`, the `<a>`
+    tag includes a `class` attribute. **Note**: When you use this option, the
+    description is not cached.
     + `options.resources`: An object that specifies how to describe type
     expressions for a given language. The object's property names should use the
     same format as `options.language`. Each property should contain an object in
