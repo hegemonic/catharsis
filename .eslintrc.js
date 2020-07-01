@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     'env': {
         'es6': true,
@@ -6,8 +8,19 @@ module.exports = {
 
     'parserOptions': {
         ecmaVersion: 2015,
+        // Todo: Change this to `'script'` and get rid of `overrides` or
+        //   actually convert source to ESM
         'sourceType': 'module'
     },
+
+    'overrides': [
+        {
+            files: ['.eslintrc.js'],
+            'parserOptions': {
+                'sourceType': 'script'
+            }
+        }
+    ],
 
     'rules': {
         // Possible errors
@@ -123,7 +136,7 @@ module.exports = {
         'yoda': 'error',
 
         // Strict mode
-        // 'strict': ['error', 'global'],
+        'strict': ['error', 'global'],
 
         // Variables
         'init-declarations': 'off',
