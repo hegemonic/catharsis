@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "ajv": "^6.12.4",
-    "mocha": "^8.1.1",
+    "mocha": "^8.1.2",
     "pegjs": "^0.10.0",
     "should": "^13.2.3",
     "should-equal": "^2.0.0"
