@@ -13,7 +13,7 @@
     "lodash": "^4.17.20"
   },
   "devDependencies": {
-    "ajv": "^6.12.6",
+    "ajv": "^7.1.0",
     "mocha": "^8.2.1",
     "pegjs": "^0.10.0",
     "should": "^13.2.3",
