@@ -1,18 +1,48 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
-
-pids
+# Logs
 logs
-results
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
 
-node_modules
-npm-debug.log
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Tool-specific files and directories
+.eslintcache
+.node_repl_history
+.npm
+.nyc_output
+.tool-versions
+.vscode/
+.yarn-integrity
+bower_components/
+coverage/
+tmp/
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Output of 'npm pack'
+*.tgz
+
+# dotenv environment variables file
+.env
+.env.test
+
+# Dotfile detritus
 .DS_Store
-.tern-port

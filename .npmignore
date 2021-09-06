@@ -1,11 +1,11 @@
+.editorconfig
 .eslintignore
 .eslintrc
 .gitignore
-.npmignore
+.github/
 .renovaterc.json
 .travis.yml
 CONTRIBUTING.md
 lib/parser.pegjs
-node_modules
-npm-debug.log
-test
+packages/
+test/
