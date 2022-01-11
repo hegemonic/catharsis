@@ -20,7 +20,7 @@
     "should-equal": "^2.0.0"
   },
   "engines": {
-    "node": ">= v16.13.1"
+    "node": ">= v16.13.2"
   },
   "scripts": {
     "prepare": "./node_modules/pegjs/bin/pegjs ./lib/parser.pegjs",
