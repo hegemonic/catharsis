@@ -15,7 +15,7 @@
   "devDependencies": {
     "ajv": "^8.12.0",
     "mocha": "^10.2.0",
-    "pegjs": "^0.10.0",
+    "peggy": "^4.0.0",
     "should": "^13.2.3",
     "should-equal": "^2.0.0"
   },
@@ -23,7 +23,7 @@
     "node": ">= v18.17.1"
   },
   "scripts": {
-    "prepare": "npx pegjs ./lib/parser.pegjs",
+    "prepare": "npx peggy ./lib/parser.pegjs",
     "test": "npx mocha"
   },
   "license": "MIT"
