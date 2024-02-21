@@ -23,7 +23,7 @@
     "node": ">= v18.17.1"
   },
   "scripts": {
-    "prepare": "npx peggy ./lib/parser.pegjs",
+    "build": "npx peggy ./lib/parser.pegjs",
     "test": "npx mocha"
   },
   "license": "MIT"
