@@ -1,10 +1,12 @@
 .editorconfig
 .eslintignore
-.eslintrc
+.eslintrc.cjs
+.git-blame-ignore-revs
 .gitignore
 .github/
+.prettierignore
+.prettierrc.cjs
 .renovaterc.json
-.travis.yml
 CONTRIBUTING.md
 lib/parser.pegjs
 packages/
