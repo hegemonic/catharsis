@@ -1,4 +1,3 @@
-/* global describe, it */
 const _ = require('lodash');
 const Ajv = require('ajv');
 const helper = require('./helper');
@@ -8,74 +7,74 @@ const schema = require('../lib/schema');
 const util = require('util');
 
 const ajv = new Ajv({
-    allErrors: true,
-    ownProperties: true
+  allErrors: true,
+  ownProperties: true,
 });
 const validate = ajv.compile(schema);
 
 function parseIt(item, options) {
-    let parsed;
+  let parsed;
 
-    try {
-        parsed = parse(item.expression, options);
-    } catch (e) {
-        throw new Error(util.format('unable to parse type expression "%s": %s', item.expression,
-            e.message));
-    }
+  try {
+    parsed = parse(item.expression, options);
+  } catch (e) {
+    throw new Error(
+      util.format('unable to parse type expression "%s": %s', item.expression, e.message)
+    );
+  }
 
-    if (!_.isEqual(parsed, item.parsed)) {
-        throw new Error(util.format('parse tree should be "%j", NOT "%j"', item.parsed, parsed));
-    }
+  if (!_.isEqual(parsed, item.parsed)) {
+    throw new Error(util.format('parse tree should be "%j", NOT "%j"', item.parsed, parsed));
+  }
 
-    return parsed;
+  return parsed;
 }
 
 function checkTypes(filepath, options) {
-    const types = require(filepath);
+  const types = require(filepath);
 
-    const errors = [];
-    let parsedType;
-    const validationErrors = [];
-    let validationResult;
+  const errors = [];
+  let parsedType;
+  const validationErrors = [];
+  let validationResult;
 
-    types.forEach(type => {
-        try {
-            parsedType = parseIt(type, options);
-            validationResult = validate(parsedType);
-            if (validationResult === false) {
-                validationErrors.push({
-                    expression: type.expression,
-                    errors: validate.errors.slice(0)
-                });
-            }
-        } catch (e) {
-            errors.push(e.message);
-        }
-    });
+  types.forEach((type) => {
+    try {
+      parsedType = parseIt(type, options);
+      validationResult = validate(parsedType);
+      if (validationResult === false) {
+        validationErrors.push({
+          expression: type.expression,
+          errors: validate.errors.slice(0),
+        });
+      }
+    } catch (e) {
+      errors.push(e.message);
+    }
+  });
 
-    errors.should.eql([]);
-    validationErrors.should.eql([]);
+  errors.should.eql([]);
+  validationErrors.should.eql([]);
 }
 
 describe('parser', () => {
-    describe('parse()', () => {
-        const specs = './test/specs';
-        const jsdocSpecs = path.join(specs, 'jsdoc');
+  describe('parse()', () => {
+    const specs = './test/specs';
+    const jsdocSpecs = path.join(specs, 'jsdoc');
 
-        function tester(specPath, basename) {
-            it(`can parse types in the "${basename}" spec`, () => {
-                checkTypes(path.join(specPath, basename), {});
-            });
-        }
+    function tester(specPath, basename) {
+      it(`can parse types in the "${basename}" spec`, () => {
+        checkTypes(path.join(specPath, basename), {});
+      });
+    }
 
-        function jsdocTester(specPath, basename) {
-            it(`can parse types in the "${basename}" spec when JSDoc type parsing is enabled`,
-                () => {
-                    checkTypes(path.join(specPath, basename), {jsdoc: true});
-                });
-        }
+    function jsdocTester(specPath, basename) {
+      it(`can parse types in the "${basename}" spec when JSDoc type parsing is enabled`, () => {
+        checkTypes(path.join(specPath, basename), { jsdoc: true });
+      });
+    }
 
-        helper.testSpecs(specs, tester);
-        helper.testSpecs(jsdocSpecs, jsdocTester);
-    });
+    helper.testSpecs(specs, tester);
+    helper.testSpecs(jsdocSpecs, jsdocTester);
+  });
 });
