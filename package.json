@@ -15,7 +15,7 @@
   "devDependencies": {
     "@jsdoc/eslint-config": "^2.0.0",
     "@jsdoc/prettier-config": "^0.2.8",
-    "ajv": "^8.13.0",
+    "ajv": "^8.14.0",
     "eslint": "^9.3.0",
     "mocha": "^10.4.0",
     "peggy": "^4.0.2",
