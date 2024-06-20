@@ -24,7 +24,7 @@
     "should-equal": "^2.0.0"
   },
   "engines": {
-    "node": ">= 20.14.0"
+    "node": ">= 20.15.0"
   },
   "scripts": {
     "build": "npx peggy ./lib/parser.pegjs",
