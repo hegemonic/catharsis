@@ -16,7 +16,7 @@
     "@jsdoc/eslint-config": "^2.0.0",
     "@jsdoc/prettier-config": "^0.2.8",
     "ajv": "^8.17.1",
-    "eslint": "^9.15.0",
+    "eslint": "^9.16.0",
     "mocha": "^10.8.2",
     "peggy": "^4.2.0",
     "prettier": "^3.4.1",
