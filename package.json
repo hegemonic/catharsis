@@ -19,7 +19,7 @@
     "eslint": "^9.16.0",
     "mocha": "^11.0.1",
     "peggy": "^4.2.0",
-    "prettier": "^3.4.1",
+    "prettier": "^3.4.2",
     "should": "^13.2.3",
     "should-equal": "^2.0.0"
   },
