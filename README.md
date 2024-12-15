@@ -1,9 +1,6 @@
 # Catharsis
 
-[![Build Status][travis-img]][travis-url]
-
-[travis-img]: https://travis-ci.com/hegemonic/catharsis.svg?branch=master
-[travis-url]: https://travis-ci.com/hegemonic/catharsis
+![Build status](https://github.com/hegemonic/catharsis/workflows/build/badge.svg)
 
 A JavaScript parser for
 [Google Closure Compiler](https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler#type-expressions)
@@ -30,18 +27,18 @@ const catharsis = require('catharsis');
 const type = '!Object';
 let parsedType;
 try {
-    parsedType = catharsis.parse(type); // {"type":"NameExpression,"name":"Object","nullable":false}
+  parsedType = catharsis.parse(type); // {"type":"NameExpression,"name":"Object","nullable":false}
 } catch(e) {
-    console.error('unable to parse %s: %s', type, e);
+  console.error('unable to parse %s: %s', type, e);
 }
 
 // JSDoc-style type expressions enabled
 const jsdocType = 'string[]';  // Closure Compiler expects Array.<string>
 let parsedJsdocType;
 try {
-    parsedJsdocType = catharsis.parse(jsdocType, {jsdoc: true});
+  parsedJsdocType = catharsis.parse(jsdocType, { jsdoc: true });
 } catch (e) {
-    console.error('unable to parse %s: %s', jsdocType, e);
+  console.error('unable to parse %s: %s', jsdocType, e);
 }
 
 // Converting parse results back to type expressions
@@ -55,7 +52,7 @@ catharsis.describe(parsedJsdocType).simple;                   // Array of string
 ```
 
 See the
-[`test/specs` directory](https://github.com/hegemonic/catharsis/tree/master/test/specs)
+[`test/specs` directory](https://github.com/hegemonic/catharsis/tree/main/test/specs)
 for more examples of Catharsis' parse results.
 
 ## Methods
@@ -71,9 +68,7 @@ also parse several kinds of type expressions that are permitted in
 [JSDoc](https://github.com/jsdoc/jsdoc):
 
 + The string `function` is treated as a function type with no parameters.
-+ You can omit the period from type applications. For example,
-`Array.<string>` and `Array<string>` are parsed in the same way.
-+ If can append `[]` to a name expression (for example, `string[]`), it is
++ If you append `[]` to a name expression (for example, `string[]`), it is
 interpreted as a type application with the expression `Array` (for example,
 `Array.<string>`).
 + Name expressions can contain the characters `#`, `~`, `:`, and `/`.
@@ -94,7 +89,7 @@ interpreted as a type application with the expression `Array` (for example,
 #### Returns
 
 An object containing the parse results. See the
-[`test/specs` directory](https://github.com/hegemonic/catharsis/tree/master/test/specs)
+[`test/specs` directory](https://github.com/hegemonic/catharsis/tree/main/test/specs)
 for examples of the parse results for different type expressions.
 
 The object also includes two non-enumerable properties:
@@ -119,11 +114,12 @@ enabled, throws an error if the stringified type expression cannot be parsed.
     + `options.linkClass`: A CSS class to add to HTML links. Used only if
     `options.links` is provided. By default, no CSS class is added.
     + `options.links`: An object or map whose keys are name expressions and
-    whose values are URIs. If a name expression matches a key in
-    `options.links`, the name expression will be wrapped in an HTML `<a>` tag
-    that links to the URI. If you also specify `options.linkClass`, the `<a>`
-    tag includes a `class` attribute. **Note**: When using this option, parsed
-    types are always restringified, and the resulting string is not cached.
+    whose values are URIs. You can also provide a map-like object with a `get()`
+    method. If a name expression matches a key in `options.links`, the name
+    expression will be wrapped in an HTML `<a>` tag that links to the URI. If
+    you also specify `options.linkClass`, the `<a>` tag includes a `class`
+    attribute. **Note**: When using this option, parsed types are always
+    restringified, and the resulting string is not cached.
     + `options.restringify`: Forces Catharsis to restringify the parsed type. If
     this option is not specified, and the parsed type object includes a
     `typeExpression` property, Catharsis returns the `typeExpression` property
@@ -194,16 +190,17 @@ method returns the following data:
     + `options.linkClass`: A CSS class to add to HTML links. Used only if
     `options.links` is provided. By default, no CSS class is added.
     + `options.links`: An object or map whose keys are name expressions and
-    whose values are URIs. If a name expression matches a key in
-    `options.links`, the name expression will be wrapped in an HTML `<a>` tag
-    that links to the URI. If you also specify `options.linkClass`, the `<a>`
-    tag includes a `class` attribute. **Note**: When you use this option, the
-    description is not cached.
+    whose values are URIs. You can also provide a map-like object with a `get()`
+    method. If a name expression matches a key in `options.links`, the name
+    expression will be wrapped in an HTML `<a>` tag that links to the URI. If
+    you also specify `options.linkClass`, the `<a>` tag includes a `class`
+    attribute. **Note**: When you use this option, the description is not
+    cached.
     + `options.resources`: An object that specifies how to describe type
     expressions for a given language. The object's property names should use the
     same format as `options.language`. Each property should contain an object in
     the same format as the translation resources in
-    [`res/en.json`](https://github.com/hegemonic/catharsis/blob/master/res/en.json).
+    [`res/en.json`](https://github.com/hegemonic/catharsis/blob/main/res/en.json).
     If you specify a value for `options.resources.en`, that value overrides the
     defaults in `res/en.json`.
     + `options.useCache`: Specifies whether to use the cache of descriptions.
@@ -390,4 +387,4 @@ previous versions.
 
 ## License
 
-[MIT license](https://github.com/hegemonic/catharsis/blob/master/LICENSE).
+[MIT license](https://github.com/hegemonic/catharsis/blob/main/LICENSE).

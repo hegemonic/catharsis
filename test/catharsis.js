@@ -225,6 +225,22 @@ describe('catharsis', () => {
       nameExpString.should.equal('<a href="https://example.org/">string</a>');
     });
 
+    it('should accept a `Map`-like object that contains links', () => {
+      const nameExpString = catharsis.stringify(
+        {
+          type: Types.NameExpression,
+          name: 'string',
+        },
+        {
+          links: {
+            get: (key) => (key === 'string' ? 'https://example.org/' : undefined),
+          },
+        }
+      );
+
+      nameExpString.should.equal('<a href="https://example.org/">string</a>');
+    });
+
     // used for multiple tests
     const typeApp = {
       type: Types.TypeApplication,
@@ -324,6 +340,22 @@ describe('catharsis', () => {
         },
         {
           links: new Map([['string', 'https://example.org/']]),
+        }
+      );
+
+      nameExpDescribe.simple.should.equal('<a href="https://example.org/">string</a>');
+    });
+
+    it('should accept a `Map`-like object that contains links', () => {
+      const nameExpDescribe = catharsis.describe(
+        {
+          type: Types.NameExpression,
+          name: 'string',
+        },
+        {
+          links: {
+            get: (key) => (key === 'string' ? 'https://example.org/' : undefined),
+          },
         }
       );
 
