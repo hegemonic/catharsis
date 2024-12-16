@@ -13,7 +13,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@jsdoc/eslint-config": "^2.0.0",
+    "@jsdoc/eslint-config": "^2.0.1",
     "@jsdoc/prettier-config": "^0.2.8",
     "ajv": "^8.17.1",
     "eslint": "^9.17.0",
