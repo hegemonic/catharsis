@@ -3,8 +3,8 @@ const Types = require('../../../lib/types');
 module.exports = [
   {
     description: 'type application',
-    expression: 'Array.<Foo>',
-    newExpression: 'Array.&lt;<a href="Foo.html" class="my-class">Foo</a>>',
+    expression: 'Array<Foo>',
+    newExpression: 'Array&lt;<a href="Foo.html" class="my-class">Foo</a>&gt;',
     parsed: {
       type: Types.TypeApplication,
       expression: {

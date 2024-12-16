@@ -33,7 +33,7 @@ try {
 }
 
 // JSDoc-style type expressions enabled
-const jsdocType = 'string[]';  // Closure Compiler expects Array.<string>
+const jsdocType = 'string[]';  // Closure Compiler expects Array<string>
 let parsedJsdocType;
 try {
   parsedJsdocType = catharsis.parse(jsdocType, { jsdoc: true });
@@ -44,7 +44,7 @@ try {
 // Converting parse results back to type expressions
 catharsis.stringify(parsedType);                              // !Object
 catharsis.stringify(parsedJsdocType);                         // string[]
-catharsis.stringify(parsedJsdocType, {restringify: true});    // Array.<string>
+catharsis.stringify(parsedJsdocType, {restringify: true});    // Array<string>
 
 // Converting parse results to descriptions of the type expression
 catharsis.describe(parsedType).simple;                        // non-null Object
@@ -70,7 +70,7 @@ also parse several kinds of type expressions that are permitted in
 + The string `function` is treated as a function type with no parameters.
 + If you append `[]` to a name expression (for example, `string[]`), it is
 interpreted as a type application with the expression `Array` (for example,
-`Array.<string>`).
+`Array<string>`).
 + Name expressions can contain the characters `#`, `~`, `:`, and `/`.
 + Name expressions can contain a suffix that is similar to a function signature
 (for example, `MyClass(foo, bar)`).
@@ -178,7 +178,7 @@ method returns the following data:
     class is added.
     + `options.codeTag`: The name of an HTML tag (for example, `code`) to wrap
     around type names. For example, if this option is set to `code`, the type
-    expression `Array.<string>` would have the simple description
+    expression `Array<string>` would have the simple description
     `<code>Array</code> of <code>string</code>`.
     + `options.language`: A string identifying the language in which to generate
     the description. The identifier should be an

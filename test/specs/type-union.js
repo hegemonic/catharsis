@@ -209,7 +209,7 @@ module.exports = [
   // http://goo.gl/vpRTe, http://goo.gl/DVh3f
   {
     description: 'union with 2 types (array and object with unknown value type)',
-    expression: '(Array|Object.<string, ?>)',
+    expression: '(Array|Object<string, ?>)',
     parsed: {
       type: Types.TypeUnion,
       elements: [
@@ -248,7 +248,7 @@ module.exports = [
   },
   {
     description: 'union with 2 type applications',
-    expression: '(Array.<string>|Object.<string, ?>)',
+    expression: '(Array<string>|Object<string, ?>)',
     parsed: {
       type: Types.TypeUnion,
       elements: [
@@ -388,7 +388,7 @@ module.exports = [
   // http://constellation.github.com/doctrine/demo/
   {
     description: 'optional union with multiple types',
-    expression: '(jQuerySelector|Element|Object|Array.<Element>|jQuery|string|function())=',
+    expression: '(jQuerySelector|Element|Object|Array<Element>|jQuery|string|function())=',
     parsed: {
       type: Types.TypeUnion,
       elements: [
@@ -451,7 +451,7 @@ module.exports = [
   },
   {
     description: 'optional union with multiple types, including a nested union type',
-    expression: '(Element|Object|Document|Object.<string, (string|function(!jQuery.event=))>)=',
+    expression: '(Element|Object|Document|Object<string, (string|function(!jQuery.event=))>)=',
     parsed: {
       type: Types.TypeUnion,
       elements: [

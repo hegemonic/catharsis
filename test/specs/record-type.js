@@ -217,7 +217,7 @@ module.exports = [
   },
   {
     description: 'record type with a property that uses a type application as a value',
-    expression: '{myArray: Array.<string>}',
+    expression: '{myArray: Array<string>}',
     parsed: {
       type: Types.RecordType,
       fields: [

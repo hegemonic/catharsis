@@ -369,10 +369,10 @@ module.exports = [
       'function with a variable number of parameters, a "new" type, a "this" ' +
       'type, and a return value',
     expression:
-      'function(new:Master, this:Everyone, string, goog.ui.Menu, Array.<Object>, ' +
+      'function(new:Master, this:Everyone, string, goog.ui.Menu, Array<Object>, ' +
       '...[string]): boolean',
     newExpression:
-      'function(new:Master, this:Everyone, string, goog.ui.Menu, Array.<Object>, ' +
+      'function(new:Master, this:Everyone, string, goog.ui.Menu, Array<Object>, ' +
       '...string): boolean',
     parsed: {
       type: Types.FunctionType,

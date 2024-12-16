@@ -176,14 +176,14 @@ describe('catharsis', () => {
               name: 'boolean',
             },
           ],
-          typeExpression: 'Array.<boolean>',
+          typeExpression: 'Array<boolean>',
         },
         {
           htmlSafe: true,
         }
       );
 
-      expect(typeAppString).toBe('Array.&lt;boolean>');
+      expect(typeAppString).toBe('Array&lt;boolean&gt;');
     });
 
     it('does not return the typeExpression property if the links option is provided', () => {
@@ -249,7 +249,7 @@ describe('catharsis', () => {
     it('passes the specified options to the stringifier', () => {
       const string = catharsis.stringify(typeApp, { htmlSafe: true });
 
-      expect(string).toBe('Array.&lt;string>');
+      expect(string).toBe('Array&lt;string&gt;');
     });
 
     it(
@@ -258,7 +258,7 @@ describe('catharsis', () => {
       () => {
         const string = catharsis.stringify(typeApp, {});
 
-        expect(string).toBe('Array.<string>');
+        expect(string).toBe('Array<string>');
       }
     );
   });

@@ -314,7 +314,6 @@ module.exports = [
   {
     description: 'type application with no period',
     expression: 'Array<string>',
-    newExpression: 'Array.<string>',
     parsed: {
       type: Types.TypeApplication,
       expression: {
@@ -342,7 +341,7 @@ module.exports = [
   {
     description: 'Jsdoc Toolkit 2-style array notation for an array of strings',
     expression: 'string[]',
-    newExpression: 'Array.<string>',
+    newExpression: 'Array<string>',
     parsed: {
       type: Types.TypeApplication,
       expression: {
@@ -370,7 +369,7 @@ module.exports = [
   {
     description: 'Jsdoc Toolkit 2-style array notation for an array of functions',
     expression: 'function[]',
-    newExpression: 'Array.<function()>',
+    newExpression: 'Array<function()>',
     parsed: {
       type: Types.TypeApplication,
       expression: {
@@ -398,7 +397,7 @@ module.exports = [
   {
     description: 'Jsdoc Toolkit 2-style nested array (two levels)',
     expression: 'number[][]',
-    newExpression: 'Array.<Array.<number>>',
+    newExpression: 'Array<Array<number>>',
     parsed: {
       type: Types.TypeApplication,
       expression: {
@@ -435,7 +434,7 @@ module.exports = [
   {
     description: 'Jsdoc Toolkit 2-style nested array (three levels)',
     expression: 'number[][][]',
-    newExpression: 'Array.<Array.<Array.<number>>>',
+    newExpression: 'Array<Array<Array<number>>>',
     parsed: {
       type: Types.TypeApplication,
       expression: {
@@ -480,7 +479,7 @@ module.exports = [
   },
   {
     description: 'record type with a property that uses a type application as a key',
-    expression: '{Array.<string>: number}',
+    expression: '{Array<string>: number}',
     parsed: {
       type: Types.RecordType,
       fields: [
@@ -682,7 +681,7 @@ module.exports = [
   {
     description: 'type union with no parentheses, a repeatable param, and a JSDoc-style array',
     expression: '...string|string[]',
-    newExpression: '(...string|Array.<string>)',
+    newExpression: '(...string|Array<string>)',
     parsed: {
       type: 'TypeUnion',
       elements: [

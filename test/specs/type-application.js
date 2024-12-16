@@ -28,7 +28,6 @@ module.exports = [
   {
     description: 'array of strings, without a dot separator',
     expression: 'Array<string>',
-    newExpression: 'Array.<string>',
     parsed: stringArray,
     described: {
       en: {
@@ -44,6 +43,7 @@ module.exports = [
   {
     description: 'array of strings, with a dot separator',
     expression: 'Array.<string>',
+    newExpression: 'Array<string>',
     parsed: stringArray,
     described: {
       en: {
@@ -58,7 +58,7 @@ module.exports = [
   },
   {
     description: 'repeatable array of strings',
-    expression: '...Array.<string>',
+    expression: '...Array<string>',
     parsed: stringArrayRepeatable,
     described: {
       en: {
@@ -75,7 +75,7 @@ module.exports = [
   },
   {
     description: 'object whose properties are strings and property values are numbers',
-    expression: 'Object.<string, number>',
+    expression: 'Object<string, number>',
     parsed: {
       type: Types.TypeApplication,
       expression: {
@@ -108,7 +108,7 @@ module.exports = [
     description:
       'object whose properties are a type application and property values are a type union',
     expression:
-      'Object.<Array.<(boolean|{myKey: Error})>, (boolean|string|function(new:foo): string)>',
+      'Object<Array<(boolean|{myKey: Error})>, (boolean|string|function(new:foo): string)>',
     parsed: {
       type: Types.TypeApplication,
       expression: {
@@ -194,7 +194,7 @@ module.exports = [
   },
   {
     description: 'array of objects that have a length property',
-    expression: 'Array.<{length}>',
+    expression: 'Array<{length}>',
     parsed: {
       type: Types.TypeApplication,
       expression: {
@@ -230,7 +230,7 @@ module.exports = [
   },
   {
     description: 'array of unknown',
-    expression: 'Array.<?>',
+    expression: 'Array<?>',
     parsed: {
       type: Types.TypeApplication,
       expression: {
@@ -256,7 +256,7 @@ module.exports = [
   },
   {
     description: 'Promise containing string',
-    expression: 'Promise.<string>',
+    expression: 'Promise<string>',
     parsed: {
       type: Types.TypeApplication,
       expression: {
@@ -283,7 +283,7 @@ module.exports = [
   },
   {
     description: 'foo.Promise containing string',
-    expression: 'foo.Promise.<string>',
+    expression: 'foo.Promise<string>',
     parsed: {
       type: Types.TypeApplication,
       expression: {
