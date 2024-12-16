@@ -1,9 +1,13 @@
 {
-    "extends": [
-        "config:base"
-    ],
-    "statusCheckVerify": true,
-    "automerge": true,
-    "automergeType": "branch",
-    "rangeStrategy": "bump"
+  "extends": ["config:base"],
+  "statusCheckVerify": true,
+  "automerge": true,
+  "automergeType": "branch",
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "packageNames": ["node"],
+      "enabled": false
+    }
+  ]
 }
