@@ -1,6 +1,6 @@
-const helper = require('./helper');
 const parse = require('../lib/parser').parse;
 const path = require('path');
+const runTestSpecs = require('./helpers/run-test-specs');
 const stringify = require('../lib/stringify');
 const util = require('util');
 
@@ -43,7 +43,7 @@ function checkStringifiedTypes(filepath, options) {
     }
   });
 
-  errors.should.eql([]);
+  expect(errors).toBeEmptyArray();
 }
 
 describe('stringify', () => {
@@ -64,19 +64,19 @@ describe('stringify', () => {
     });
   }
 
-  helper.testSpecs(specs, tester, {});
-  helper.testSpecs(jsdocSpecs, tester, { jsdoc: true });
-  helper.testSpecs(htmlSpecs, tester, {
+  runTestSpecs(specs, tester, {});
+  runTestSpecs(jsdocSpecs, tester, { jsdoc: true });
+  runTestSpecs(htmlSpecs, tester, {
     htmlSafe: true,
     validate: false,
   });
-  helper.testSpecs(linkSpecs, tester, {
+  runTestSpecs(linkSpecs, tester, {
     htmlSafe: true,
     jsdoc: true,
     links,
     validate: false,
   });
-  helper.testSpecs(linkCssSpecs, tester, {
+  runTestSpecs(linkCssSpecs, tester, {
     linkClass: 'my-class',
     htmlSafe: true,
     jsdoc: true,

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-exports.testSpecs = (filepath, tester, options) => {
+module.exports = (filepath, tester, options) => {
   let basename;
   const specPath = path.resolve(filepath);
   const specs = fs.readdirSync(specPath).filter((spec) => {

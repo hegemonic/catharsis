@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const Ajv = require('ajv');
-const helper = require('./helper');
+const runTestSpecs = require('./helpers/run-test-specs');
 const parse = require('../lib/parser').parse;
 const path = require('path');
 const schema = require('../lib/schema');
@@ -53,8 +53,8 @@ function checkTypes(filepath, options) {
     }
   });
 
-  errors.should.eql([]);
-  validationErrors.should.eql([]);
+  expect(errors).toBeEmptyArray();
+  expect(validationErrors).toBeEmptyArray();
 }
 
 describe('parser', () => {
@@ -74,7 +74,7 @@ describe('parser', () => {
       });
     }
 
-    helper.testSpecs(specs, tester);
-    helper.testSpecs(jsdocSpecs, jsdocTester);
+    runTestSpecs(specs, tester);
+    runTestSpecs(jsdocSpecs, jsdocTester);
   });
 });

@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-expressions */
 const catharsis = require('../catharsis');
-const should = require('should');
 const Types = catharsis.Types;
 
 const invalidType = '{*<?';
@@ -36,24 +34,20 @@ function dummyResources() {
 
 describe('catharsis', () => {
   describe('parse()', () => {
-    it('should exist', () => {
-      should.exist(catharsis.parse);
+    it('is a function', () => {
+      expect(catharsis.parse).toBeFunction();
     });
 
-    it('should be a function', () => {
-      catharsis.parse.should.be.a.Function;
+    it('returns an object when given basic input', () => {
+      expect(catharsis.parse('foo')).toBeObject();
     });
 
-    it('should return an object when given basic input', () => {
-      catharsis.parse('foo').should.be.an.Object;
+    it('returns a frozen object', () => {
+      expect(Object.isFrozen(catharsis.parse('foo'))).toBeTrue();
     });
 
-    it('should return a frozen object', () => {
-      Object.isFrozen(catharsis.parse('foo')).should.equal(true);
-    });
-
-    it('should only return its own properties', () => {
-      catharsis.parse('constructor').should.be.an.Object;
+    it('returns only its own properties', () => {
+      expect(catharsis.parse('constructor')).toBeObject();
     });
 
     it('should return an object with nonenumerable "typeExpression" and "jsdoc" properties', () => {
@@ -61,45 +55,45 @@ describe('catharsis', () => {
       let descriptor;
 
       descriptor = Object.getOwnPropertyDescriptor(parsedType, 'typeExpression');
-      descriptor.enumerable.should.equal(false);
-      descriptor.value.should.equal('foo');
+      expect(descriptor.enumerable).toBeFalse();
+      expect(descriptor.value).toBe('foo');
 
       descriptor = Object.getOwnPropertyDescriptor(parsedType, 'jsdoc');
-      descriptor.enumerable.should.equal(false);
-      descriptor.value.should.equal(false);
+      expect(descriptor.enumerable).toBeFalse();
+      expect(descriptor.value).toBeFalse();
     });
 
-    it('should throw an error when given an invalid type', () => {
+    it('throws an error when given an invalid type', () => {
       function invalid() {
         catharsis.parse(invalidType);
       }
 
-      invalid.should.throw();
+      expect(invalid).toThrowError();
     });
 
-    it('should throw an error when given an invalid repeatable type', () => {
+    it('throws an error when given an invalid repeatable type', () => {
       function invalid() {
         catharsis.parse(invalidRepeatableType);
       }
 
-      invalid.should.throw();
+      expect(invalid).toThrowError();
     });
 
-    it('should pass the specified options to the parser', () => {
+    it('passes the specified options to the parser', () => {
       function jsdoc() {
         catharsis.parse('number|string', { jsdoc: true });
       }
 
-      jsdoc.should.not.throw();
+      expect(jsdoc).not.toThrow();
     });
 
-    it('should use the regular cache when JSDoc mode is disabled', () => {
+    it('uses the regular cache when JSDoc mode is disabled', () => {
       // parse twice to make sure we're getting a cached version
       let bar = catharsis.parse('bar');
 
       bar = catharsis.parse('bar');
 
-      bar.jsdoc.should.equal(false);
+      expect(bar.jsdoc).toBeFalse();
     });
 
     it('should use the JSDoc cache when JSDoc mode is enabled', () => {
@@ -108,56 +102,52 @@ describe('catharsis', () => {
 
       baz = catharsis.parse('baz', { jsdoc: true });
 
-      baz.jsdoc.should.equal(true);
+      expect(baz.jsdoc).toBeTrue();
     });
 
     it('should strip newlines before parsing a type expression', () => {
       const parsed = catharsis.parse('My\rNew\nClass\r\n');
 
-      parsed.name.should.equal('MyNewClass');
+      expect(parsed.name).toBe('MyNewClass');
     });
   });
 
   describe('stringify()', () => {
-    it('should exist', () => {
-      should.exist(catharsis.stringify);
+    it('is a function', () => {
+      expect(catharsis.stringify).toBeFunction();
     });
 
-    it('should be a function', () => {
-      catharsis.stringify.should.be.a.Function;
+    it('returns a string when given basic input', () => {
+      expect(catharsis.stringify(simpleParsedType)).toBeString();
     });
 
-    it('should return a string when given basic input', () => {
-      catharsis.stringify(simpleParsedType).should.be.a.String;
-    });
-
-    it('should throw an error when given invalid input if validation is enabled', () => {
+    it('throws an error when given invalid input if validation is enabled', () => {
       function invalid() {
         catharsis.stringify(invalidParsedType, { validate: true });
       }
 
-      invalid.should.throw();
+      expect(invalid).toThrow();
     });
 
-    it('should not throw an error when given invalid input if validation is disabled', () => {
+    it('does not throw an error when given invalid input if validation is disabled', () => {
       function invalid() {
         catharsis.stringify(invalidParsedType);
       }
 
-      invalid.should.not.throw();
+      expect(invalid).not.toThrow();
     });
 
-    it('should return the typeExpression property as-is by default', () => {
+    it('returns the typeExpression property as-is by default', () => {
       const quxString = catharsis.stringify({
         type: Types.NameExpression,
         name: 'qux',
         typeExpression: 'fake type expression',
       });
 
-      quxString.should.equal('fake type expression');
+      expect(quxString).toBe('fake type expression');
     });
 
-    it('should not return the typeExpression property if restringification is requested', () => {
+    it('does not return the typeExpression property if restringification is requested', () => {
       const quuxString = catharsis.stringify(
         {
           type: Types.NameExpression,
@@ -169,10 +159,10 @@ describe('catharsis', () => {
         }
       );
 
-      quuxString.should.equal('quux');
+      expect(quuxString).toBe('quux');
     });
 
-    it('should not return the typeExpression property if htmlSafe is enabled', () => {
+    it('does not return the typeExpression property if htmlSafe is enabled', () => {
       const typeAppString = catharsis.stringify(
         {
           type: Types.TypeApplication,
@@ -193,10 +183,10 @@ describe('catharsis', () => {
         }
       );
 
-      typeAppString.should.equal('Array.&lt;boolean>');
+      expect(typeAppString).toBe('Array.&lt;boolean>');
     });
 
-    it('should not return the typeExpression property if the links option is provided', () => {
+    it('does not return the typeExpression property if the links option is provided', () => {
       const nameExpString = catharsis.stringify(
         {
           type: Types.NameExpression,
@@ -208,10 +198,10 @@ describe('catharsis', () => {
         }
       );
 
-      nameExpString.should.equal('string');
+      expect(nameExpString).toBe('string');
     });
 
-    it('should accept a `Map` object that contains links', () => {
+    it('accepts a `Map` object that contains links', () => {
       const nameExpString = catharsis.stringify(
         {
           type: Types.NameExpression,
@@ -222,10 +212,10 @@ describe('catharsis', () => {
         }
       );
 
-      nameExpString.should.equal('<a href="https://example.org/">string</a>');
+      expect(nameExpString).toBe('<a href="https://example.org/">string</a>');
     });
 
-    it('should accept a `Map`-like object that contains links', () => {
+    it('accepts a `Map`-like object that contains links', () => {
       const nameExpString = catharsis.stringify(
         {
           type: Types.NameExpression,
@@ -238,7 +228,7 @@ describe('catharsis', () => {
         }
       );
 
-      nameExpString.should.equal('<a href="https://example.org/">string</a>');
+      expect(nameExpString).toBe('<a href="https://example.org/">string</a>');
     });
 
     // used for multiple tests
@@ -256,10 +246,10 @@ describe('catharsis', () => {
       ],
     };
 
-    it('should pass the specified options to the stringifier', () => {
+    it('passes the specified options to the stringifier', () => {
       const string = catharsis.stringify(typeApp, { htmlSafe: true });
 
-      string.should.equal('Array.&lt;string>');
+      expect(string).toBe('Array.&lt;string>');
     });
 
     it(
@@ -268,34 +258,30 @@ describe('catharsis', () => {
       () => {
         const string = catharsis.stringify(typeApp, {});
 
-        string.should.equal('Array.<string>');
+        expect(string).toBe('Array.<string>');
       }
     );
   });
 
   describe('describe()', () => {
-    it('should exist', () => {
-      should.exist(catharsis.describe);
-    });
-
-    it('should be a function', () => {
-      catharsis.describe.should.be.a.Function;
+    it('is a function', () => {
+      expect(catharsis.describe).toBeFunction();
     });
 
     it('should return an object when given basic input', () => {
-      catharsis.describe(simpleParsedType).should.be.an.Object;
+      expect(catharsis.describe(simpleParsedType)).toBeObject();
     });
 
     it('should return a frozen object', () => {
-      Object.isFrozen(catharsis.describe(simpleParsedType)).should.equal(true);
+      expect(Object.isFrozen(catharsis.describe(simpleParsedType))).toBeTrue();
     });
 
     it('should return an object with a nonenumerable "jsdoc" property', () => {
       const description = catharsis.describe(simpleParsedType);
       const descriptor = Object.getOwnPropertyDescriptor(description, 'jsdoc');
 
-      descriptor.enumerable.should.equal(false);
-      descriptor.value.should.equal(false);
+      expect(descriptor.enumerable).toBeFalse();
+      expect(descriptor.value).toBeFalse();
     });
 
     it('should throw an error when given bad input', () => {
@@ -303,7 +289,7 @@ describe('catharsis', () => {
         catharsis.describe(invalidType);
       }
 
-      badInput.should.throw();
+      expect(badInput).toThrowError();
     });
 
     it('should use options.language and options.resources when provided', () => {
@@ -320,8 +306,8 @@ describe('catharsis', () => {
       options.resources.de.null = nullString;
 
       description = catharsis.describe(nullParsedType, options);
-      description.simple.should.equal(nullString);
-      description.extended.description.should.equal(nullString);
+      expect(description.simple).toBe(nullString);
+      expect(description.extended.description).toBe(nullString);
     });
 
     it('should throw an error when a language with no resources is specified', () => {
@@ -329,7 +315,7 @@ describe('catharsis', () => {
         catharsis.describe(nullParsedType, { language: 'qq' });
       }
 
-      noResources.should.throw();
+      expect(noResources).toThrowError();
     });
 
     it('should accept a `Map` object that contains links', () => {
@@ -343,7 +329,7 @@ describe('catharsis', () => {
         }
       );
 
-      nameExpDescribe.simple.should.equal('<a href="https://example.org/">string</a>');
+      expect(nameExpDescribe.simple).toBe('<a href="https://example.org/">string</a>');
     });
 
     it('should accept a `Map`-like object that contains links', () => {
@@ -359,7 +345,7 @@ describe('catharsis', () => {
         }
       );
 
-      nameExpDescribe.simple.should.equal('<a href="https://example.org/">string</a>');
+      expect(nameExpDescribe.simple).toBe('<a href="https://example.org/">string</a>');
     });
   });
 });

@@ -136,7 +136,6 @@ function cachedDescribe(parsedType, options) {
   }
 }
 
-/* eslint-disable class-methods-use-this */
 class Catharsis {
   constructor() {
     this.Types = require('./lib/types');
@@ -168,6 +167,5 @@ class Catharsis {
     return cachedDescribe(parsedType, options);
   }
 }
-/* eslint-enable class-methods-use-this */
 
 module.exports = new Catharsis();

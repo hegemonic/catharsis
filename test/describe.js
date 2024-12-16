@@ -1,7 +1,6 @@
 const _ = require('lodash');
 const describer = require('../lib/describe');
-const eql = require('should-equal');
-const helper = require('./helper');
+const runTestSpecs = require('./helpers/run-test-specs');
 const parse = require('../lib/parser').parse;
 const path = require('path');
 const util = require('util');
@@ -17,13 +16,15 @@ const defaultModifierText = {
 function describeIt(expression, parsedType, expected, options) {
   let actual;
 
-  expected.extended.modifiers = _.defaults(expected.extended.modifiers, defaultModifierText);
+  expected.extended.modifiers = _.defaults({}, expected.extended.modifiers, defaultModifierText);
   actual = describer(parsedType, options);
 
-  if (!eql(actual, expected)) {
+  try {
+    expect(JSON.parse(JSON.stringify(actual))).toEqual(JSON.parse(JSON.stringify(expected)));
+  } catch (e) {
     throw new Error(
       util.format(
-        'type expression "%s" was described as %j; expected %j',
+        'type expression %j was described as %j; expected %j',
         expression,
         actual,
         expected
@@ -47,7 +48,7 @@ function checkDescribedTypes(filepath, options) {
     }
   });
 
-  errors.should.eql([]);
+  expect(errors).toBeEmptyArray();
 }
 
 describe('describe', () => {
@@ -69,20 +70,20 @@ describe('describe', () => {
     });
   }
 
-  helper.testSpecs(specs, tester, {});
-  helper.testSpecs(codetagSpecs, tester, {
+  runTestSpecs(specs, tester, {});
+  runTestSpecs(codetagSpecs, tester, {
     codeClass: 'code-class',
     codeTag: 'foo',
   });
-  helper.testSpecs(htmlSpecs, tester, {});
-  helper.testSpecs(jsdocSpecs, tester, {
+  runTestSpecs(htmlSpecs, tester, {});
+  runTestSpecs(jsdocSpecs, tester, {
     jsdoc: true,
   });
-  helper.testSpecs(linkSpecs, tester, {
+  runTestSpecs(linkSpecs, tester, {
     jsdoc: true,
     links,
   });
-  helper.testSpecs(linkCssSpecs, tester, {
+  runTestSpecs(linkCssSpecs, tester, {
     linkClass: 'my-class',
     jsdoc: true,
     links,
