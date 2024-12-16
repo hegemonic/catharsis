@@ -1,6 +1,4 @@
 .editorconfig
-.eslintignore
-.eslintrc.cjs
 .git-blame-ignore-revs
 .gitignore
 .github/
@@ -8,6 +6,8 @@
 .prettierrc.cjs
 .renovaterc.json
 CONTRIBUTING.md
+eslint.config.mjs
+Herebyfile.mjs
 lib/parser.pegjs
 packages/
 test/
