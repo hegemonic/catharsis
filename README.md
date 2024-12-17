@@ -234,6 +234,16 @@ expression.
 
 ## Changelog
 
++ 0.10.0 (December 2024):
+    + The `stringify()` method no longer includes a dot separator for type
+    applications. For example, an array of numbers is stringified as
+    `Array<number>` rather than `Array.<number>`.
+    + For the `stringify()` method, when `options.htmlSafe` is set to `true`,
+    the `<` and `>` characters in type applications are escaped. Previously,
+    only the `<` character was escaped.
+    + For the `describe()` and `stringify()` methods, the `options.links`
+    parameter now accepts a map-like object that has a `get()` method. The
+    `get()` method must accept a key and return a value.
 + 0.9.0 (June 2020):
     + For the `describe()` and `stringify()` methods, the `options.links`
     parameter now accepts either a map or an object.
