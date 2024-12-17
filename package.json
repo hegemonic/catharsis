@@ -5,7 +5,7 @@
   "author": "Jeff Williams <jeffrey.l.williams@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hegemonic/catharsis"
+    "url": "git+https://github.com/hegemonic/catharsis.git"
   },
   "bugs": "https://github.com/hegemonic/catharsis/issues",
   "main": "catharsis.js",
