@@ -109,8 +109,8 @@ enabled, throws an error if the stringified type expression cannot be parsed.
     + `options.cssClass`: Synonym for `options.linkClass`. Deprecated in version
     0.8.0; will be removed in a future version.
     + `options.htmlSafe`: Specifies whether to return an HTML-safe string that
-    replaces left angle brackets (`<`) with the corresponding entity (`&lt;`).
-    **Note**: Characters in name expressions are not escaped.
+    replaces angle brackets (`<` and `>`) with HTML entities. **Note**:
+    Characters in name expressions are not escaped.
     + `options.linkClass`: A CSS class to add to HTML links. Used only if
     `options.links` is provided. By default, no CSS class is added.
     + `options.links`: An object or map whose keys are name expressions and
