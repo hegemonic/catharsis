@@ -11,8 +11,6 @@ Catharsis is designed to be:
 + **Accurate**. Catharsis is based on a [PEG.js](https://pegjs.org/) grammar
 that's designed to handle any valid type expression. It uses a thorough test
 suite to verify the parser's accuracy.
-+ **Fast**. Parse results are cached, so the parser is invoked only when
-necessary.
 + **Flexible**. Catharsis can convert a parse result back into a type
 expression, or into a description of the type expression. In addition, Catharsis
 can parse [JSDoc](https://github.com/jsdoc/jsdoc)-style type expressions.
@@ -42,13 +40,12 @@ try {
 }
 
 // Converting parse results back to type expressions
-catharsis.stringify(parsedType);                              // !Object
-catharsis.stringify(parsedJsdocType);                         // string[]
-catharsis.stringify(parsedJsdocType, {restringify: true});    // Array<string>
+catharsis.stringify(parsedType);            // !Object
+catharsis.stringify(parsedJsdocType);       // Array<string>
 
 // Converting parse results to descriptions of the type expression
-catharsis.describe(parsedType).simple;                        // non-null Object
-catharsis.describe(parsedJsdocType).simple;                   // Array of string
+catharsis.describe(parsedType).simple;      // non-null Object
+catharsis.describe(parsedJsdocType).simple; // Array of string
 ```
 
 See the
@@ -83,8 +80,6 @@ interpreted as a type application with the expression `Array` (for example,
 + `options`: Options for parsing the type expression.
     + `options.jsdoc`: Specifies whether to enable parsing of JSDoc-style type
     expressions. Defaults to `false`.
-    + `options.useCache`: Specifies whether to use the cache of parsed types.
-    Defaults to `true`.
 
 #### Returns
 
@@ -92,18 +87,13 @@ An object containing the parse results. See the
 [`test/specs` directory](https://github.com/hegemonic/catharsis/tree/main/test/specs)
 for examples of the parse results for different type expressions.
 
-The object also includes two non-enumerable properties:
-
-+ `jsdoc`: A boolean that indicates whether the type expression was parsed with
-JSDoc support enabled.
-+ `typeExpression`: A string that contains the type expression that was parsed.
-
 ### `stringify(parsedType, options)`
 
 Stringify `parsedType`, and return the type expression. If validation is
 enabled, throws an error if the stringified type expression cannot be parsed.
 
 #### Parameters ####
+
 + `parsedType`: An object containing a parsed Closure Compiler type expression.
 + `options`: Options for stringifying the parse results.
     + `options.cssClass`: Synonym for `options.linkClass`. Deprecated in version
@@ -118,14 +108,7 @@ enabled, throws an error if the stringified type expression cannot be parsed.
     method. If a name expression matches a key in `options.links`, the name
     expression will be wrapped in an HTML `<a>` tag that links to the URI. If
     you also specify `options.linkClass`, the `<a>` tag includes a `class`
-    attribute. **Note**: When using this option, parsed types are always
-    restringified, and the resulting string is not cached.
-    + `options.restringify`: Forces Catharsis to restringify the parsed type. If
-    this option is not specified, and the parsed type object includes a
-    `typeExpression` property, Catharsis returns the `typeExpression` property
-    without modification when possible. Defaults to `false`.
-    + `options.useCache`: Specifies whether to use the cache of stringified type
-    expressions. Defaults to `true`.
+    attribute.
     + `options.validate`: Specifies whether to validate the stringified parse
     results by attempting to parse them as a type expression. If the stringified
     results are not parsable with the default options, you must also provide the
@@ -194,8 +177,7 @@ method returns the following data:
     method. If a name expression matches a key in `options.links`, the name
     expression will be wrapped in an HTML `<a>` tag that links to the URI. If
     you also specify `options.linkClass`, the `<a>` tag includes a `class`
-    attribute. **Note**: When you use this option, the description is not
-    cached.
+    attribute.
     + `options.resources`: An object that specifies how to describe type
     expressions for a given language. The object's property names should use the
     same format as `options.language`. Each property should contain an object in
@@ -203,8 +185,6 @@ method returns the following data:
     [`res/en.json`](https://github.com/hegemonic/catharsis/blob/main/res/en.json).
     If you specify a value for `options.resources.en`, that value overrides the
     defaults in `res/en.json`.
-    + `options.useCache`: Specifies whether to use the cache of descriptions.
-    Defaults to `true`.
 
 ### Returns
 

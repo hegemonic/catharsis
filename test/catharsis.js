@@ -42,25 +42,8 @@ describe('catharsis', () => {
       expect(catharsis.parse('foo')).toBeObject();
     });
 
-    it('returns a frozen object', () => {
-      expect(Object.isFrozen(catharsis.parse('foo'))).toBeTrue();
-    });
-
     it('returns only its own properties', () => {
       expect(catharsis.parse('constructor')).toBeObject();
-    });
-
-    it('should return an object with nonenumerable "typeExpression" and "jsdoc" properties', () => {
-      const parsedType = catharsis.parse('foo');
-      let descriptor;
-
-      descriptor = Object.getOwnPropertyDescriptor(parsedType, 'typeExpression');
-      expect(descriptor.enumerable).toBeFalse();
-      expect(descriptor.value).toBe('foo');
-
-      descriptor = Object.getOwnPropertyDescriptor(parsedType, 'jsdoc');
-      expect(descriptor.enumerable).toBeFalse();
-      expect(descriptor.value).toBeFalse();
     });
 
     it('throws an error when given an invalid type', () => {
@@ -85,24 +68,6 @@ describe('catharsis', () => {
       }
 
       expect(jsdoc).not.toThrow();
-    });
-
-    it('uses the regular cache when JSDoc mode is disabled', () => {
-      // parse twice to make sure we're getting a cached version
-      let bar = catharsis.parse('bar');
-
-      bar = catharsis.parse('bar');
-
-      expect(bar.jsdoc).toBeFalse();
-    });
-
-    it('should use the JSDoc cache when JSDoc mode is enabled', () => {
-      // parse twice to make sure we're getting a cached version
-      let baz = catharsis.parse('baz', { jsdoc: true });
-
-      baz = catharsis.parse('baz', { jsdoc: true });
-
-      expect(baz.jsdoc).toBeTrue();
     });
 
     it('should strip newlines before parsing a type expression', () => {
@@ -135,70 +100,6 @@ describe('catharsis', () => {
       }
 
       expect(invalid).not.toThrow();
-    });
-
-    it('returns the typeExpression property as-is by default', () => {
-      const quxString = catharsis.stringify({
-        type: Types.NameExpression,
-        name: 'qux',
-        typeExpression: 'fake type expression',
-      });
-
-      expect(quxString).toBe('fake type expression');
-    });
-
-    it('does not return the typeExpression property if restringification is requested', () => {
-      const quuxString = catharsis.stringify(
-        {
-          type: Types.NameExpression,
-          name: 'quux',
-          typeExpression: 'fake type expression',
-        },
-        {
-          restringify: true,
-        }
-      );
-
-      expect(quuxString).toBe('quux');
-    });
-
-    it('does not return the typeExpression property if htmlSafe is enabled', () => {
-      const typeAppString = catharsis.stringify(
-        {
-          type: Types.TypeApplication,
-          expression: {
-            type: Types.NameExpression,
-            name: 'Array',
-          },
-          applications: [
-            {
-              type: Types.NameExpression,
-              name: 'boolean',
-            },
-          ],
-          typeExpression: 'Array<boolean>',
-        },
-        {
-          htmlSafe: true,
-        }
-      );
-
-      expect(typeAppString).toBe('Array&lt;boolean&gt;');
-    });
-
-    it('does not return the typeExpression property if the links option is provided', () => {
-      const nameExpString = catharsis.stringify(
-        {
-          type: Types.NameExpression,
-          name: 'string',
-          typeExpression: 'fake type expression',
-        },
-        {
-          links: {},
-        }
-      );
-
-      expect(nameExpString).toBe('string');
     });
 
     it('accepts a `Map` object that contains links', () => {
@@ -251,16 +152,6 @@ describe('catharsis', () => {
 
       expect(string).toBe('Array&lt;string&gt;');
     });
-
-    it(
-      'should not cache an HTML-safe expression, then return it when the htmlSafe option ' +
-        'is disabled',
-      () => {
-        const string = catharsis.stringify(typeApp, {});
-
-        expect(string).toBe('Array<string>');
-      }
-    );
   });
 
   describe('describe()', () => {
@@ -270,18 +161,6 @@ describe('catharsis', () => {
 
     it('should return an object when given basic input', () => {
       expect(catharsis.describe(simpleParsedType)).toBeObject();
-    });
-
-    it('should return a frozen object', () => {
-      expect(Object.isFrozen(catharsis.describe(simpleParsedType))).toBeTrue();
-    });
-
-    it('should return an object with a nonenumerable "jsdoc" property', () => {
-      const description = catharsis.describe(simpleParsedType);
-      const descriptor = Object.getOwnPropertyDescriptor(description, 'jsdoc');
-
-      expect(descriptor.enumerable).toBeFalse();
-      expect(descriptor.value).toBeFalse();
     });
 
     it('should throw an error when given bad input', () => {
