@@ -8,7 +8,7 @@ and [JSDoc](https://github.com/jsdoc/jsdoc) type expressions.
 
 Catharsis is designed to be:
 
-+ **Accurate**. Catharsis is based on a [PEG.js](https://pegjs.org/) grammar
++ **Accurate**. Catharsis is based on a [Peggy](https://peggyjs.org/) grammar
 that's designed to handle any valid type expression. It uses a thorough test
 suite to verify the parser's accuracy.
 + **Flexible**. Catharsis can convert a parse result back into a type
