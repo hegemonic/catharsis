@@ -1,5 +1,5 @@
 {
-  "version": "0.10.0",
+  "version": "0.11.0",
   "name": "catharsis",
   "description": "A JavaScript parser for Google Closure Compiler and JSDoc type expressions.",
   "author": "Jeff Williams <jeffrey.l.williams@gmail.com>",

@@ -212,6 +212,15 @@ expression.
 
 ## Changelog
 
++ 0.11.0 (December 2024):
+    + The `stringify()` method now always restringifies the parsed type, rather
+    than returning the original type expression in some cases.
+    + The `stringify()` method no longer accepts an `options.cssClass` property.
+    This property was deprecated in version 0.8.0.
+    + Catharsis no longer caches return values. Callers can cache the return
+    values as needed.
+    + Catharsis's methods no longer return frozen objects. Callers can freeze
+    the objects as needed.
 + 0.10.0 (December 2024):
     + The `stringify()` method no longer includes a dot separator for type
     applications. For example, an array of numbers is stringified as
