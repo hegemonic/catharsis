@@ -96,8 +96,6 @@ enabled, throws an error if the stringified type expression cannot be parsed.
 
 + `parsedType`: An object containing a parsed Closure Compiler type expression.
 + `options`: Options for stringifying the parse results.
-    + `options.cssClass`: Synonym for `options.linkClass`. Deprecated in version
-    0.8.0; will be removed in a future version.
     + `options.htmlSafe`: Specifies whether to return an HTML-safe string that
     replaces angle brackets (`<` and `>`) with HTML entities. **Note**:
     Characters in name expressions are not escaped.
