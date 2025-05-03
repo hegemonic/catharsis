@@ -22,7 +22,7 @@
     "hereby": "^1.10.0",
     "jasmine": "^5.7.1",
     "jasmine-console-reporter": "^3.1.0",
-    "peggy": "^4.2.0",
+    "peggy": "^5.0.0",
     "prettier": "^3.5.3"
   },
   "engines": {
