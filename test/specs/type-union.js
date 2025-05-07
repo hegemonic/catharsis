@@ -58,6 +58,96 @@ module.exports = [
     },
   },
   {
+    description: 'union with positive and negative integers',
+    expression: '(1|-1)',
+    parsed: {
+      type: Types.TypeUnion,
+      elements: [
+        {
+          type: Types.NameExpression,
+          name: '1',
+        },
+        {
+          type: Types.NameExpression,
+          name: '-1',
+        },
+      ],
+    },
+    described: {
+      en: {
+        simple: '(1 or -1)',
+        extended: {
+          description: '(1 or -1)',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
+    description: 'union with multiple numeric types including negatives',
+    expression: '(1|-1|0.5|-0.5)',
+    parsed: {
+      type: Types.TypeUnion,
+      elements: [
+        {
+          type: Types.NameExpression,
+          name: '1',
+        },
+        {
+          type: Types.NameExpression,
+          name: '-1',
+        },
+        {
+          type: Types.NameExpression,
+          name: '0.5',
+        },
+        {
+          type: Types.NameExpression,
+          name: '-0.5',
+        },
+      ],
+    },
+    described: {
+      en: {
+        simple: '(1, -1, 0.5, or -0.5)',
+        extended: {
+          description: '(1, -1, 0.5, or -0.5)',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
+    description: 'no-parentheses union with positive and negative integers',
+    expression: '1|-1',
+    newExpression: '(1|-1)',
+    parsed: {
+      type: Types.TypeUnion,
+      elements: [
+        {
+          type: Types.NameExpression,
+          name: '1',
+        },
+        {
+          type: Types.NameExpression,
+          name: '-1',
+        },
+      ],
+    },
+    described: {
+      en: {
+        simple: '(1 or -1)',
+        extended: {
+          description: '(1 or -1)',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
     description: 'union with 2 types (Object and undefined)',
     expression: '(Object|undefined)',
     parsed: {
