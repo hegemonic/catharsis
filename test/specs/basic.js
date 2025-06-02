@@ -152,6 +152,42 @@ module.exports = [
     },
   },
   {
+    description: 'negative integer',
+    expression: '-42',
+    parsed: {
+      type: Types.NameExpression,
+      name: '-42',
+    },
+    described: {
+      en: {
+        simple: '-42',
+        extended: {
+          description: '-42',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
+    description: 'negative decimal number',
+    expression: '-3.14',
+    parsed: {
+      type: Types.NameExpression,
+      name: '-3.14',
+    },
+    described: {
+      en: {
+        simple: '-3.14',
+        extended: {
+          description: '-3.14',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
     description: 'optional number parameter',
     expression: 'number=',
     parsed: {
