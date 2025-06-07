@@ -20,7 +20,7 @@
     "eslint": "^9.28.0",
     "execa": "^9.6.0",
     "hereby": "^1.11.0",
-    "jasmine": "^5.7.1",
+    "jasmine": "^5.8.0",
     "jasmine-console-reporter": "^3.1.0",
     "peggy": "^5.0.3",
     "prettier": "^3.5.3"
