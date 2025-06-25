@@ -23,7 +23,7 @@
     "jasmine": "^5.8.0",
     "jasmine-console-reporter": "^3.1.0",
     "peggy": "^5.0.4",
-    "prettier": "^3.6.0"
+    "prettier": "^3.6.1"
   },
   "engines": {
     "node": ">=10.0.0"
