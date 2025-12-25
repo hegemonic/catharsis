@@ -216,6 +216,46 @@ module.exports = [
     },
   },
   {
+    // TODO: This shouldn't be parsable without quotes around `Array<string>`.
+    description: 'record type with a property that uses a type application as a key',
+    expression: '{Array<string>: number}',
+    parsed: {
+      type: Types.RecordType,
+      fields: [
+        {
+          type: Types.FieldType,
+          key: {
+            type: Types.TypeApplication,
+            expression: {
+              type: Types.NameExpression,
+              name: 'Array',
+            },
+            applications: [
+              {
+                type: Types.NameExpression,
+                name: 'string',
+              },
+            ],
+          },
+          value: {
+            type: Types.NameExpression,
+            name: 'number',
+          },
+        },
+      ],
+    },
+    described: {
+      en: {
+        simple: '{Array of string: number}',
+        extended: {
+          description: '{Array of string: number}',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
     description: 'record type with a property that uses a type application as a value',
     expression: '{myArray: Array<string>}',
     parsed: {
@@ -393,6 +433,44 @@ module.exports = [
     },
   },
   {
+    description: 'record type with a property name that starts with a literal',
+    expression: '{undefinedHTML: (string|undefined)}',
+    parsed: {
+      type: Types.RecordType,
+      fields: [
+        {
+          type: Types.FieldType,
+          key: {
+            type: Types.NameExpression,
+            name: 'undefinedHTML',
+          },
+          value: {
+            type: Types.TypeUnion,
+            elements: [
+              {
+                type: Types.NameExpression,
+                name: 'string',
+              },
+              {
+                type: Types.UndefinedLiteral,
+              },
+            ],
+          },
+        },
+      ],
+    },
+    described: {
+      en: {
+        simple: '{undefinedHTML: (string or undefined)}',
+        extended: {
+          description: '{undefinedHTML: (string or undefined)}',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
     description: 'record type with a property that uses a numeric key',
     expression: '{0: string}',
     parsed: {
@@ -416,6 +494,37 @@ module.exports = [
         simple: '{0: string}',
         extended: {
           description: '{0: string}',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
+    description: 'record type with a property that contains a function with no preceding space',
+    expression: '{foo:function()}',
+    newExpression: '{foo: function()}',
+    parsed: {
+      type: 'RecordType',
+      fields: [
+        {
+          type: 'FieldType',
+          key: {
+            type: 'NameExpression',
+            name: 'foo',
+          },
+          value: {
+            type: 'FunctionType',
+            params: [],
+          },
+        },
+      ],
+    },
+    described: {
+      en: {
+        simple: '{foo: function()}',
+        extended: {
+          description: '{foo: function()}',
           modifiers: {},
           returns: '',
         },

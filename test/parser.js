@@ -57,6 +57,24 @@ function checkTypes(filepath, options) {
   expect(validationErrors).toBeEmptyArray();
 }
 
+function checkBadTypes(filepath, options) {
+  const errors = [];
+  const types = require(filepath);
+
+  types.forEach((type) => {
+    try {
+      parseIt(type, options);
+      errors.push(`\`${type.expression}\` was parsed successfully but should have failed`);
+    } catch (e) {
+      // This is supposed to throw, so do nothing.
+    }
+  });
+
+  errors.forEach((e) => {
+    expect(e).toBeNull();
+  });
+}
+
 describe('parser', () => {
   describe('parse()', () => {
     const specs = './test/specs';
@@ -74,7 +92,14 @@ describe('parser', () => {
       });
     }
 
+    function nonJsdocTester(specPath, basename) {
+      it(`can't parse types in the "${basename}" spec when JSDoc type parsing is not enabled`, () => {
+        checkBadTypes(path.join(specPath, basename), {});
+      });
+    }
+
     runTestSpecs(specs, tester);
     runTestSpecs(jsdocSpecs, jsdocTester);
+    runTestSpecs(jsdocSpecs, nonJsdocTester);
   });
 });

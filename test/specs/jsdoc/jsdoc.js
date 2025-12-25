@@ -1,27 +1,6 @@
-const en = {
-  modifiers: require('../../../res/en').modifiers,
-};
 const Types = require('../../../lib/types');
 
 module.exports = [
-  {
-    description: 'name expression that starts with the word "function"',
-    expression: 'functional',
-    parsed: {
-      type: Types.NameExpression,
-      name: 'functional',
-    },
-    described: {
-      en: {
-        simple: 'functional',
-        extended: {
-          description: 'functional',
-          modifiers: {},
-          returns: '',
-        },
-      },
-    },
-  },
   {
     description: 'name expression with instance scope punctuation',
     expression: 'MyClass#myMember',
@@ -113,24 +92,24 @@ module.exports = [
     },
   },
   {
-    description: 'name expression containing a reserved word',
-    expression: 'this',
+    description: 'name expression that includes an @ sign',
+    expression: 'module:@prefix/my-module~myCallback',
     parsed: {
       type: Types.NameExpression,
-      name: 'this',
-      reservedWord: true,
+      name: 'module:@prefix/my-module~myCallback',
     },
     described: {
       en: {
-        simple: 'this',
+        simple: 'module:@prefix/my-module~myCallback',
         extended: {
-          description: 'this',
+          description: 'module:@prefix/my-module~myCallback',
           modifiers: {},
           returns: '',
         },
       },
     },
   },
+
   {
     description: 'name expression for a symbol variation whose name is an empty string',
     expression: 'MyClass()',
@@ -258,42 +237,6 @@ module.exports = [
     },
   },
   {
-    description: 'name expression partially enclosed in double quotes',
-    expression: 'foo."bar.baz".qux',
-    parsed: {
-      type: Types.NameExpression,
-      name: 'foo."bar.baz".qux',
-    },
-    described: {
-      en: {
-        simple: 'foo."bar.baz".qux',
-        extended: {
-          description: 'foo."bar.baz".qux',
-          modifiers: {},
-          returns: '',
-        },
-      },
-    },
-  },
-  {
-    description: 'name expression partially enclosed in single quotes',
-    expression: "foo.'bar.baz'.qux",
-    parsed: {
-      type: Types.NameExpression,
-      name: "foo.'bar.baz'.qux",
-    },
-    described: {
-      en: {
-        simple: "foo.'bar.baz'.qux",
-        extended: {
-          description: "foo.'bar.baz'.qux",
-          modifiers: {},
-          returns: '',
-        },
-      },
-    },
-  },
-  {
     description: 'identifier with a repeatable param that is not enclosed in brackets',
     expression: 'MyClass(...foo)',
     parsed: {
@@ -305,33 +248,6 @@ module.exports = [
         simple: 'MyClass(...foo)',
         extended: {
           description: 'MyClass(...foo)',
-          modifiers: {},
-          returns: '',
-        },
-      },
-    },
-  },
-  {
-    description: 'type application with no period',
-    expression: 'Array<string>',
-    parsed: {
-      type: Types.TypeApplication,
-      expression: {
-        type: Types.NameExpression,
-        name: 'Array',
-      },
-      applications: [
-        {
-          type: Types.NameExpression,
-          name: 'string',
-        },
-      ],
-    },
-    described: {
-      en: {
-        simple: 'Array of string',
-        extended: {
-          description: 'Array of string',
           modifiers: {},
           returns: '',
         },
@@ -478,45 +394,6 @@ module.exports = [
     },
   },
   {
-    description: 'record type with a property that uses a type application as a key',
-    expression: '{Array<string>: number}',
-    parsed: {
-      type: Types.RecordType,
-      fields: [
-        {
-          type: Types.FieldType,
-          key: {
-            type: Types.TypeApplication,
-            expression: {
-              type: Types.NameExpression,
-              name: 'Array',
-            },
-            applications: [
-              {
-                type: Types.NameExpression,
-                name: 'string',
-              },
-            ],
-          },
-          value: {
-            type: Types.NameExpression,
-            name: 'number',
-          },
-        },
-      ],
-    },
-    described: {
-      en: {
-        simple: '{Array of string: number}',
-        extended: {
-          description: '{Array of string: number}',
-          modifiers: {},
-          returns: '',
-        },
-      },
-    },
-  },
-  {
     description: 'record type with a property that uses a type union as a key',
     expression: '{(number|boolean|string): number}',
     parsed: {
@@ -560,75 +437,6 @@ module.exports = [
     },
   },
   {
-    description: 'record type with a property name that starts with a literal',
-    expression: '{undefinedHTML: (string|undefined)}',
-    parsed: {
-      type: Types.RecordType,
-      fields: [
-        {
-          type: Types.FieldType,
-          key: {
-            type: Types.NameExpression,
-            name: 'undefinedHTML',
-          },
-          value: {
-            type: Types.TypeUnion,
-            elements: [
-              {
-                type: Types.NameExpression,
-                name: 'string',
-              },
-              {
-                type: Types.UndefinedLiteral,
-              },
-            ],
-          },
-        },
-      ],
-    },
-    described: {
-      en: {
-        simple: '{undefinedHTML: (string or undefined)}',
-        extended: {
-          description: '{undefinedHTML: (string or undefined)}',
-          modifiers: {},
-          returns: '',
-        },
-      },
-    },
-  },
-  {
-    description: 'record type with a property that contains a function with no preceding space',
-    expression: '{foo:function()}',
-    newExpression: '{foo: function()}',
-    parsed: {
-      type: 'RecordType',
-      fields: [
-        {
-          type: 'FieldType',
-          key: {
-            type: 'NameExpression',
-            name: 'foo',
-          },
-          value: {
-            type: 'FunctionType',
-            params: [],
-          },
-        },
-      ],
-    },
-    described: {
-      en: {
-        simple: '{foo: function()}',
-        extended: {
-          description: '{foo: function()}',
-          modifiers: {},
-          returns: '',
-        },
-      },
-    },
-  },
-  {
     description: 'function type with no trailing pathentheses',
     expression: 'function',
     newExpression: 'function()',
@@ -642,37 +450,6 @@ module.exports = [
         extended: {
           description: 'function()',
           modifiers: {},
-          returns: '',
-        },
-      },
-    },
-  },
-  {
-    description: 'standard function type (should still parse if JSDoc expressions are allowed)',
-    expression: 'function(this:my.namespace.Class, my.Class)=',
-    parsed: {
-      type: Types.FunctionType,
-      params: [
-        {
-          type: Types.NameExpression,
-          name: 'my.Class',
-        },
-      ],
-      this: {
-        type: Types.NameExpression,
-        name: 'my.namespace.Class',
-      },
-      optional: true,
-    },
-    described: {
-      en: {
-        simple: 'optional function(this = my.namespace.Class, my.Class)',
-        extended: {
-          description: 'function(my.Class)',
-          modifiers: {
-            functionThis: 'Within the function, this refers to my.namespace.Class.',
-            optional: en.modifiers.extended.optional,
-          },
           returns: '',
         },
       },

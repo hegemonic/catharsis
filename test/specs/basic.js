@@ -95,6 +95,42 @@ module.exports = [
     },
   },
   {
+    description: 'object with a double-quoted property that looks like a property chain',
+    expression: 'foo."bar.baz".qux',
+    parsed: {
+      type: Types.NameExpression,
+      name: 'foo."bar.baz".qux',
+    },
+    described: {
+      en: {
+        simple: 'foo."bar.baz".qux',
+        extended: {
+          description: 'foo."bar.baz".qux',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
+    description: 'object with a single-quoted property that looks like a property chain',
+    expression: "foo.'bar.baz'.qux",
+    parsed: {
+      type: Types.NameExpression,
+      name: "foo.'bar.baz'.qux",
+    },
+    described: {
+      en: {
+        simple: "foo.'bar.baz'.qux",
+        extended: {
+          description: "foo.'bar.baz'.qux",
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
     description: 'object with a string-literal property that includes other punctuation',
     expression: 'myObj."#weirdProp".foo',
     parsed: {
@@ -342,6 +378,24 @@ module.exports = [
     },
   },
   {
+    description: 'name that starts with "function"',
+    expression: 'functional',
+    parsed: {
+      type: Types.NameExpression,
+      name: 'functional',
+    },
+    described: {
+      en: {
+        simple: 'functional',
+        extended: {
+          description: 'functional',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
     description: 'name that starts with a reserved word',
     expression: 'forsooth',
     parsed: {
@@ -353,6 +407,25 @@ module.exports = [
         simple: 'forsooth',
         extended: {
           description: 'forsooth',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
+    description: 'name that is a reserved word',
+    expression: 'this',
+    parsed: {
+      type: Types.NameExpression,
+      name: 'this',
+      reservedWord: true,
+    },
+    described: {
+      en: {
+        simple: 'this',
+        extended: {
+          description: 'this',
           modifiers: {},
           returns: '',
         },
@@ -378,17 +451,17 @@ module.exports = [
     },
   },
   {
-    description: 'name that includes an @ sign',
-    expression: 'module:@prefix/my-module~myCallback',
+    description: 'name that starts with an @ sign',
+    expression: '@prefix',
     parsed: {
       type: Types.NameExpression,
-      name: 'module:@prefix/my-module~myCallback',
+      name: '@prefix',
     },
     described: {
       en: {
-        simple: 'module:@prefix/my-module~myCallback',
+        simple: '@prefix',
         extended: {
-          description: 'module:@prefix/my-module~myCallback',
+          description: '@prefix',
           modifiers: {},
           returns: '',
         },
