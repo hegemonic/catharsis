@@ -237,6 +237,24 @@ module.exports = [
     },
   },
   {
+    description: 'name expression with JSDoc scope punctuation and a bracketed property',
+    expression: 'Foo#[Symbol.iterator]',
+    parsed: {
+      type: Types.NameExpression,
+      name: 'Foo#[Symbol.iterator]',
+    },
+    described: {
+      en: {
+        simple: 'Foo#[Symbol.iterator]',
+        extended: {
+          description: 'Foo#[Symbol.iterator]',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
     description: 'identifier with a repeatable param that is not enclosed in brackets',
     expression: 'MyClass(...foo)',
     parsed: {

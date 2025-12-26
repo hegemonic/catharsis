@@ -167,6 +167,42 @@ module.exports = [
     },
   },
   {
+    description: 'object with a bracketed property',
+    expression: 'Foo[Symbol.iterator]',
+    parsed: {
+      type: Types.NameExpression,
+      name: 'Foo[Symbol.iterator]',
+    },
+    described: {
+      en: {
+        simple: 'Foo[Symbol.iterator]',
+        extended: {
+          description: 'Foo[Symbol.iterator]',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
+    description: 'prototype with a bracketed property',
+    expression: 'Foo.prototype[Symbol.iterator]',
+    parsed: {
+      type: Types.NameExpression,
+      name: 'Foo.prototype[Symbol.iterator]',
+    },
+    described: {
+      en: {
+        simple: 'Foo.prototype[Symbol.iterator]',
+        extended: {
+          description: 'Foo.prototype[Symbol.iterator]',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
     description: 'variable number of parameters',
     expression: '...number',
     parsed: {
