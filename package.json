@@ -22,6 +22,7 @@
     "hereby": "^1.11.1",
     "jasmine": "^5.13.0",
     "jasmine-console-reporter": "^3.1.0",
+    "license-check-and-add": "^4.0.5",
     "peggy": "^5.0.6",
     "prettier": "^3.7.4"
   },
@@ -32,6 +33,7 @@
     "build": "npx peggy ./lib/parser.pegjs",
     "default": "npx hereby lint-and-test",
     "format": "npx hereby format",
+    "license-headers": "npx hereby license-headers",
     "lint": "npx hereby lint",
     "test": "npx hereby test"
   },

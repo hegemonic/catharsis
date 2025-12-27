@@ -1,0 +1,30 @@
+{
+  "defaultFormat": {
+    "prepend": "",
+    "append": ""
+  },
+  "ignore": [
+    ".github/**/*",
+    "**/.*",
+    "!**/.*.js",
+    "**/*.json",
+    "**/*.md",
+    "**/*.txt",
+    "**/coverage",
+    "**/test/fixtures",
+    "bin/parse.js",
+    "lib/parser.*",
+    "tmp"
+  ],
+  "license": ".license-header.txt",
+  "licenseFormats": {
+    "cjs|js|mjs": {
+      "prepend": "/*",
+      "eachLine": {
+        "prepend": "  "
+      },
+      "append": "*/"
+    }
+  },
+  "regexIdentifier": "%%"
+}
