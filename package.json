@@ -10,7 +10,7 @@
   "bugs": "https://github.com/hegemonic/catharsis/issues",
   "main": "catharsis.js",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.23"
   },
   "devDependencies": {
     "@jsdoc/eslint-config": "^2.0.2",
