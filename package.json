@@ -17,7 +17,7 @@
     "@jsdoc/prettier-config": "^0.2.10",
     "@jsdoc/test-matchers": "^0.2.6",
     "ajv": "^8.18.0",
-    "eslint": "^9.39.2",
+    "eslint": "^9.39.3",
     "execa": "^9.6.1",
     "hereby": "^1.12.0",
     "jasmine": "^6.0.0",
