@@ -15,7 +15,7 @@
   "devDependencies": {
     "@jsdoc/eslint-config": "^3.0.1",
     "@jsdoc/prettier-config": "^0.2.12",
-    "@jsdoc/test-matchers": "^0.2.7",
+    "@jsdoc/test-matchers": "^0.2.8",
     "ajv": "^8.18.0",
     "eslint": "^10.1.0",
     "execa": "^9.6.1",
