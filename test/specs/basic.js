@@ -472,6 +472,24 @@ module.exports = [
     },
   },
   {
+    description: 'name that starts with a literal',
+    expression: 'nullable',
+    parsed: {
+      type: Types.NameExpression,
+      name: 'nullable',
+    },
+    described: {
+      en: {
+        simple: 'nullable',
+        extended: {
+          description: 'nullable',
+          modifiers: {},
+          returns: '',
+        },
+      },
+    },
+  },
+  {
     description: 'name that is a reserved word',
     expression: 'this',
     parsed: {
