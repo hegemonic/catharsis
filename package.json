@@ -23,7 +23,7 @@
     "jasmine": "^7.0.0",
     "jasmine-console-reporter": "^3.1.0",
     "license-check-and-add": "^4.0.5",
-    "peggy": "^5.1.0",
+    "peggy": "^5.1.1",
     "prettier": "^3.9.10"
   },
   "engines": {
